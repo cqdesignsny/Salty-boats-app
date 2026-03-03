@@ -85,7 +85,7 @@ export default function HomePage() {
                     <div className="absolute bottom-4 left-4">
                       {brand.isPackageBrand && (
                         <span className="inline-block bg-ocean text-white text-xs font-semibold px-2 py-1 rounded mb-2">
-                          ALL-IN PACKAGE
+                          PICK YOUR POWER
                         </span>
                       )}
                     </div>

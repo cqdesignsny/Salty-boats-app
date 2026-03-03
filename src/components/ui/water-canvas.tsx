@@ -212,9 +212,13 @@ export function WaterCanvas() {
       addRipple(touch.clientX - rect.left, touch.clientY - rect.top, true);
     };
 
-    canvas.addEventListener("mousemove", handleMouse);
-    canvas.addEventListener("touchmove", handleTouch, { passive: true });
-    canvas.addEventListener("touchstart", handleTouch, { passive: true });
+    // Listen on the parent <section> so ripples work even when the mouse
+    // is over the text-content div that sits above the canvas in z-order.
+    const section = container.parentElement;
+    const eventTarget = section ?? canvas;
+    eventTarget.addEventListener("mousemove", handleMouse);
+    eventTarget.addEventListener("touchmove", handleTouch, { passive: true } as AddEventListenerOptions);
+    eventTarget.addEventListener("touchstart", handleTouch, { passive: true } as AddEventListenerOptions);
 
     // --- Reduced motion listener ---
     const handleMotionChange = (e: MediaQueryListEvent) => {
@@ -241,9 +245,9 @@ export function WaterCanvas() {
     return () => {
       cancelAnimationFrame(animRef.current);
       observer.disconnect();
-      canvas.removeEventListener("mousemove", handleMouse);
-      canvas.removeEventListener("touchmove", handleTouch);
-      canvas.removeEventListener("touchstart", handleTouch);
+      eventTarget.removeEventListener("mousemove", handleMouse);
+      eventTarget.removeEventListener("touchmove", handleTouch);
+      eventTarget.removeEventListener("touchstart", handleTouch);
       motionQuery.removeEventListener("change", handleMotionChange);
     };
   }, [addRipple]);

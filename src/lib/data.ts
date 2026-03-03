@@ -214,7 +214,7 @@ export const boatModels: BoatModel[] = [
     imageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84ce5c1e21665aa3b73_relume-571026.jpeg",
     galleryImages: [],
-    basePrice: 4800,
+    basePrice: 5999,
     specs: {
       length: '14\'0"',
       beam: '60"',
@@ -245,7 +245,7 @@ export const boatModels: BoatModel[] = [
     imageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84d44168c818a89331d_relume-571027.jpeg",
     galleryImages: [],
-    basePrice: 5100,
+    basePrice: 6299,
     specs: {
       length: '14\'0"',
       beam: '60"',
@@ -515,7 +515,7 @@ export const inventoryItems: InventoryItem[] = [
     title: "2025 Salty Skiffs 14 S — White",
     description:
       "Complete package: Salty Skiffs 14 Standard in white with motor and trailer. The most affordable way to get on the water.",
-    price: 4800,
+    price: 5999,
     imageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84ce5c1e21665aa3b73_relume-571026.jpeg",
     galleryImages: [],
@@ -532,7 +532,7 @@ export const inventoryItems: InventoryItem[] = [
     title: "2025 Salty Skiffs 14 F — Fighting Lady Yellow",
     description:
       "Complete fishing package: Salty Skiffs 14 Fish in Fighting Lady Yellow with motor and trailer. Enhanced fishing layout.",
-    price: 5100,
+    price: 6299,
     imageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84d44168c818a89331d_relume-571027.jpeg",
     galleryImages: [],
