@@ -181,7 +181,7 @@ export const boatModels: BoatModel[] = [
     imageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b857ac4ab035bea690d0_relume-572947.png",
     galleryImages: [],
-    basePrice: 29990,
+    basePrice: 32990,
     specs: {
       length: '17\'0"',
       beam: '76"',
@@ -214,7 +214,7 @@ export const boatModels: BoatModel[] = [
     imageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84ce5c1e21665aa3b73_relume-571026.jpeg",
     galleryImages: [],
-    basePrice: 5999,
+    basePrice: 6000,
     specs: {
       length: '14\'0"',
       beam: '60"',
@@ -245,7 +245,7 @@ export const boatModels: BoatModel[] = [
     imageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84d44168c818a89331d_relume-571027.jpeg",
     galleryImages: [],
-    basePrice: 6299,
+    basePrice: 10500,
     specs: {
       length: '14\'0"',
       beam: '60"',
@@ -498,7 +498,7 @@ export const inventoryItems: InventoryItem[] = [
     title: "2025 Palmetto Bay 1701 CC — Gray w/ 90HP Yamaha",
     description:
       "Complete center console package: Palmetto Bay 1701 CC in Gray with Yamaha 90HP four-stroke, trailer, and all equipment.",
-    price: 29990,
+    price: 32990,
     imageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b857ac4ab035bea690d0_relume-572947.png",
     galleryImages: [],
@@ -515,7 +515,7 @@ export const inventoryItems: InventoryItem[] = [
     title: "2025 Salty Skiffs 14 S — White",
     description:
       "Complete package: Salty Skiffs 14 Standard in white with motor and trailer. The most affordable way to get on the water.",
-    price: 5999,
+    price: 6000,
     imageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84ce5c1e21665aa3b73_relume-571026.jpeg",
     galleryImages: [],
@@ -532,7 +532,7 @@ export const inventoryItems: InventoryItem[] = [
     title: "2025 Salty Skiffs 14 F — Fighting Lady Yellow",
     description:
       "Complete fishing package: Salty Skiffs 14 Fish in Fighting Lady Yellow with motor and trailer. Enhanced fishing layout.",
-    price: 6299,
+    price: 10500,
     imageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84d44168c818a89331d_relume-571027.jpeg",
     galleryImages: [],

@@ -72,51 +72,50 @@ export default function HomePage() {
               );
 
               return (
-                <Card key={brand.id} className="group">
-                  <div className="relative h-56 overflow-hidden">
-                    <Image
-                      src={brand.heroImageUrl}
-                      alt={brand.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-4">
-                      {brand.isPackageBrand && (
-                        <span className="inline-block bg-ocean text-white text-xs font-semibold px-2 py-1 rounded mb-2">
-                          PICK YOUR POWER
-                        </span>
-                      )}
+                <Link key={brand.id} href={`/brands/${brand.slug}`} className="block">
+                  <Card className="group h-full">
+                    <div className="relative h-56 overflow-hidden">
+                      <Image
+                        src={brand.heroImageUrl}
+                        alt={brand.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      <div className="absolute bottom-4 left-4">
+                        {brand.isPackageBrand && (
+                          <span className="inline-block bg-ocean text-white text-xs font-semibold px-2 py-1 rounded mb-2">
+                            {brand.slug === "salty-skiffs" ? "PICK YOUR POWER" : "ALL-IN PACKAGE"}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-navy mb-1">
-                      {brand.name}
-                    </h3>
-                    <p className="text-sm text-ocean font-medium mb-3">
-                      {brand.tagline}
-                    </p>
-                    <p className="text-slate-600 text-sm mb-4 line-clamp-2">
-                      {brand.description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-slate-500">
-                        Starting at{" "}
-                        <span className="text-navy font-bold text-lg">
-                          {formatPrice(lowestPrice)}
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-navy mb-1">
+                        {brand.name}
+                      </h3>
+                      <p className="text-sm text-ocean font-medium mb-3">
+                        {brand.tagline}
+                      </p>
+                      <p className="text-slate-600 text-sm mb-4 line-clamp-2">
+                        {brand.description}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-slate-500">
+                          Starting at{" "}
+                          <span className="text-navy font-bold text-lg">
+                            {formatPrice(lowestPrice)}
+                          </span>
                         </span>
-                      </span>
-                      <Link
-                        href={`/brands/${brand.slug}`}
-                        className="text-ocean font-semibold text-sm hover:text-ocean-dark transition-colors flex items-center gap-1"
-                      >
-                        Explore
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
+                        <span className="text-ocean font-semibold text-sm group-hover:text-ocean-dark transition-colors flex items-center gap-1">
+                          Explore
+                          <ArrowRight className="w-4 h-4" />
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </Link>
               );
             })}
           </div>

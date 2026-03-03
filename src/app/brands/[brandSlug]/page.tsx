@@ -123,7 +123,7 @@ export default async function BrandPage({ params }: Props) {
                     </div>
                   </div>
 
-                  {brand.isPackageBrand && (
+                  {brand.isPackageBrand && brand.slug !== "salty-skiffs" && (
                     <div className="mb-4 space-y-1">
                       {["Motor included", "Trailer included", "Colors included"].map((f) => (
                         <div key={f} className="flex items-center gap-1.5 text-xs text-sea-green">
@@ -137,7 +137,7 @@ export default async function BrandPage({ params }: Props) {
                   <div className="flex items-center justify-between pt-4 border-t border-slate-100">
                     <div>
                       <span className="text-xs text-slate-500">
-                        {brand.isPackageBrand ? "Package" : "Starting at"}
+                        {brand.isPackageBrand && brand.slug !== "salty-skiffs" ? "Package" : "Starting at"}
                       </span>
                       <span className="block text-2xl font-bold text-navy">
                         {formatPrice(model.basePrice)}
