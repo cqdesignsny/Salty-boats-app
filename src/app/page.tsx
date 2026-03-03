@@ -1,65 +1,219 @@
+import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight, Anchor, Wrench, Shield, Waves } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { brands, boatModels } from "@/lib/data";
+import { formatPrice } from "@/lib/utils";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      {/* Hero */}
+      <section className="relative bg-navy text-white overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-navy opacity-90" />
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "url(\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><path d='M0 40 Q20 30 40 40 Q60 50 80 40' fill='none' stroke='white' stroke-width='0.5'/></svg>\")",
+              backgroundSize: "80px 80px",
+            }}
+          />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36">
+          <div className="max-w-3xl">
+            <p className="text-ocean font-semibold text-sm uppercase tracking-widest mb-4">
+              Florida&apos;s Boat Builder
+            </p>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              Built for the Water.
+              <br />
+              <span className="text-ocean">Built for You.</span>
+            </h1>
+            <p className="text-lg sm:text-xl text-white/70 mb-8 leading-relaxed max-w-2xl">
+              Three brands of quality skiffs and bay boats — from fully
+              customizable builds to ready-to-fish packages. Handcrafted in
+              Florida with a 10-year hull warranty.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/build-your-boat">
+                <Button size="lg">
+                  Build Your Boat
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+              <Link href="/inventory">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-white/30 text-white hover:bg-white/10 hover:text-white"
+                >
+                  Shop Inventory
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Brand Cards */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold text-navy mb-4">
+              Our Brands
+            </h2>
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+              Three distinct lines to fit every angler — from custom
+              shallow-water skiffs to complete ready-to-fish packages.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {brands.map((brand) => {
+              const brandModels = boatModels.filter(
+                (m) => m.brandSlug === brand.slug && m.isActive
+              );
+              const lowestPrice = Math.min(
+                ...brandModels.map((m) => m.basePrice)
+              );
+
+              return (
+                <Card key={brand.id} className="group">
+                  <div className="relative h-56 overflow-hidden">
+                    <Image
+                      src={brand.heroImageUrl}
+                      alt={brand.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4">
+                      {brand.isPackageBrand && (
+                        <span className="inline-block bg-ocean text-white text-xs font-semibold px-2 py-1 rounded mb-2">
+                          ALL-IN PACKAGE
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-navy mb-1">
+                      {brand.name}
+                    </h3>
+                    <p className="text-sm text-ocean font-medium mb-3">
+                      {brand.tagline}
+                    </p>
+                    <p className="text-slate-600 text-sm mb-4 line-clamp-2">
+                      {brand.description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-slate-500">
+                        Starting at{" "}
+                        <span className="text-navy font-bold text-lg">
+                          {formatPrice(lowestPrice)}
+                        </span>
+                      </span>
+                      <Link
+                        href={`/brands/${brand.slug}`}
+                        className="text-ocean font-semibold text-sm hover:text-ocean-dark transition-colors flex items-center gap-1"
+                      >
+                        Explore
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Process Steps */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold text-navy mb-4">
+              How It Works
+            </h2>
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+              Getting your dream boat is simple. Build it your way or pick one
+              ready to go.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                icon: Anchor,
+                title: "Choose Your Brand",
+                desc: "Pick from Stumpnocker, Palmetto Bay, or Salty Skiffs based on your fishing style.",
+              },
+              {
+                icon: Wrench,
+                title: "Configure Your Build",
+                desc: "Select your hull color, equipment, motor, and trailer. Or choose an all-in package.",
+              },
+              {
+                icon: Shield,
+                title: "Secure with Deposit",
+                desc: "Lock in your build with a $500 deposit. We'll start building your boat.",
+              },
+              {
+                icon: Waves,
+                title: "Hit the Water",
+                desc: "Pick up at our location or we'll deliver. You're ready to fish.",
+              },
+            ].map((step, i) => (
+              <div key={step.title} className="text-center">
+                <div className="w-16 h-16 bg-ocean/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <step.icon className="w-8 h-8 text-ocean" />
+                </div>
+                <span className="text-xs font-bold text-ocean uppercase tracking-widest">
+                  Step {i + 1}
+                </span>
+                <h3 className="text-lg font-bold text-navy mt-2 mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-slate-600 text-sm">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-navy py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            Ready to Build Your Dream Boat?
+          </h2>
+          <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
+            Use our boat configurator to customize your perfect skiff, or browse
+            our in-stock inventory for boats ready to go today.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/build-your-boat">
+              <Button size="lg">
+                Start Building
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-white/30 text-white hover:bg-white/10 hover:text-white"
+              >
+                Contact Us
+              </Button>
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+    </>
   );
 }
