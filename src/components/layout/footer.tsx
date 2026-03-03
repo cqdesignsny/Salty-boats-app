@@ -15,7 +15,7 @@ export function Footer() {
                 alt="Salty Boats"
                 width={200}
                 height={60}
-                className="h-12 w-auto"
+                className="h-[60px] w-auto"
               />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed">
