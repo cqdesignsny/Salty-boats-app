@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -34,9 +35,14 @@ export function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <span className="text-2xl font-bold tracking-tight">
-              SALTY <span className="text-ocean">BOATS</span>
-            </span>
+            <Image
+              src="/salty-boats-logo-white.svg"
+              alt="Salty Boats"
+              width={180}
+              height={54}
+              priority
+              className="h-10 lg:h-12 w-auto"
+            />
           </Link>
 
           {/* Desktop Nav */}

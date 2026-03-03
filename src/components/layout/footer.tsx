@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 export function Footer() {
@@ -8,9 +9,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold tracking-tight mb-4">
-              SALTY <span className="text-ocean">BOATS</span>
-            </h3>
+            <Link href="/" className="inline-block mb-4">
+              <Image
+                src="/salty-boats-logo-white.svg"
+                alt="Salty Boats"
+                width={200}
+                height={60}
+                className="h-12 w-auto"
+              />
+            </Link>
             <p className="text-white/60 text-sm leading-relaxed">
               Florida&apos;s home for quality skiffs and bay boats. Three brands,
               one commitment to getting you on the water.
