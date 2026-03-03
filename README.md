@@ -15,7 +15,7 @@ Full-stack website and boat configurator for Salty Boats — a Florida-based boa
 ## Features
 
 ### Marketing Pages
-- **Home** — Hero, brand showcase cards, "How It Works" process steps, CTA
+- **Home** — Interactive water canvas hero, brand showcase cards (fully clickable), "How It Works" process steps, CTA
 - **Brand pages** (3) — Brand hero, boat model grid with pricing
 - **Boat detail pages** (7) — Specs, features, gallery, warranty badge, CTAs
 - **Inventory** — Filterable grid of in-stock boats with deposit buttons
@@ -45,12 +45,18 @@ Package brands (Palmetto Bay, Salty Skiffs) skip equipment and trailer steps —
 - **Webhook handler** — `/api/webhooks/stripe` processes `checkout.session.completed`
 - **Confirmation page** — Post-payment receipt with order details
 
+### Interactive Hero
+- **Water Canvas** — Canvas 2D animated water effect with sine waves and mouse-reactive ripples
+- Listens on the full hero `<section>` for mouse/touch interaction across the entire area
+- Ambient ripples spawn automatically for organic motion
+- Respects `prefers-reduced-motion` for accessibility
+
 ## Project Structure
 
 ```
 src/
 ├── app/
-│   ├── layout.tsx              # Root layout (header + footer)
+│   ├── layout.tsx              # Root layout (header + footer + scroll-to-top)
 │   ├── page.tsx                # Home
 │   ├── not-found.tsx           # Custom 404
 │   ├── about/page.tsx
@@ -78,8 +84,9 @@ src/
 │       └── webhooks/
 │           └── stripe/         # Stripe webhook handler
 ├── components/
-│   ├── ui/                     # Button, Card, Input, Select, Badge, Dialog
+│   ├── ui/                     # Button, Card, Input, Select, Badge, Dialog, WaterCanvas
 │   ├── layout/                 # Header, Footer
+│   ├── scroll-to-top.tsx       # Client component — scrolls to top on route change
 │   └── configurator/           # Shell, steps, summary, hook
 │       ├── configurator-shell.tsx
 │       ├── build-summary.tsx
@@ -98,7 +105,7 @@ src/
 
 All product data is defined as TypeScript constants in `src/lib/data.ts`:
 
-- **3 brands** — Stumpnocker (custom), Palmetto Bay (package), Salty Skiffs (package)
+- **3 brands** — Stumpnocker (custom), Palmetto Bay (package), Salty Skiffs (pick your power)
 - **7 active boat models** — with specs, base pricing, and feature lists
 - **8 hull colors** — with hex codes and per-model pricing
 - **Equipment options** — categorized (Electrical, Plumbing, Accessories) with dependencies
@@ -182,13 +189,13 @@ Set these in your Vercel project settings:
 | Model | Starting Price |
 |-------|---------------|
 | 186 Bay (115HP) | $36,990 |
-| 1701 Center Console (90HP) | $29,990 |
+| 1701 Center Console (90HP) | $32,990 |
 
-### Salty Skiffs (All-In Package)
-| Model | Price |
+### Salty Skiffs (Pick Your Power)
+| Model | Starting Price |
 |-------|-------|
-| 14S Skiff | $5,800 |
-| 14F Flat Bottom | $4,800 |
+| 14S | $6,000 |
+| 14F | $10,500 |
 
 ## Design System
 
@@ -196,6 +203,7 @@ Set these in your Vercel project settings:
 - **Font:** Inter (variable weight)
 - **Layout:** Max-width 1280px container, responsive breakpoints at `sm`, `md`, `lg`
 - **Components:** Card-based boat showcase, sticky nav, mobile hamburger menu
+- **Hero:** Interactive water canvas with Canvas 2D ripples and sine waves
 
 ## Contact
 
