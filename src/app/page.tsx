@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowRight, Anchor, Wrench, Shield, Waves } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { WaterCanvas } from "@/components/ui/water-canvas";
 import { brands, boatModels } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
 
@@ -11,17 +12,7 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="relative bg-navy text-white overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-navy opacity-90" />
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "url(\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><path d='M0 40 Q20 30 40 40 Q60 50 80 40' fill='none' stroke='white' stroke-width='0.5'/></svg>\")",
-              backgroundSize: "80px 80px",
-            }}
-          />
-        </div>
+        <WaterCanvas />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36">
           <div className="max-w-3xl">
             <p className="text-ocean font-semibold text-sm uppercase tracking-widest mb-4">
