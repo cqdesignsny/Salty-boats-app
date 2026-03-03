@@ -197,6 +197,12 @@ Set these in your Vercel project settings:
 - **Layout:** Max-width 1280px container, responsive breakpoints at `sm`, `md`, `lg`
 - **Components:** Card-based boat showcase, sticky nav, mobile hamburger menu
 
+## Contact
+
+- **Email:** sales@saltyboats.com
+- **Phone:** (352) 748-1161
+- **Address:** 900 Industrial Drive, Wildwood, FL 34785
+
 ## License
 
 Private — Salty Boats LLC

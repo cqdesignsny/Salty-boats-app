@@ -57,10 +57,10 @@ export default function ContactPage() {
                     <div>
                       <p className="font-semibold text-navy text-sm">Phone</p>
                       <a
-                        href="tel:+15550123456"
+                        href="tel:+13527481161"
                         className="text-ocean hover:text-ocean-dark transition-colors"
                       >
-                        (555) 012-3456
+                        (352) 748-1161
                       </a>
                     </div>
                   </div>
@@ -72,7 +72,7 @@ export default function ContactPage() {
                       <p className="font-semibold text-navy text-sm">
                         Location
                       </p>
-                      <p className="text-slate-600">Florida, USA</p>
+                      <p className="text-slate-600">900 Industrial Drive, Wildwood, FL 34785</p>
                     </div>
                   </div>
                 </div>

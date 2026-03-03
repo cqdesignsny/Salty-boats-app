@@ -89,13 +89,13 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2 text-white/70 text-sm">
                 <Phone className="w-4 h-4 text-ocean flex-shrink-0" />
-                <a href="tel:+15550123456" className="hover:text-ocean transition-colors">
-                  (555) 012-3456
+                <a href="tel:+13527481161" className="hover:text-ocean transition-colors">
+                  (352) 748-1161
                 </a>
               </li>
               <li className="flex items-start gap-2 text-white/70 text-sm">
                 <MapPin className="w-4 h-4 text-ocean flex-shrink-0 mt-0.5" />
-                <span>Florida, USA</span>
+                <span>900 Industrial Drive, Wildwood, FL 34785</span>
               </li>
             </ul>
           </div>

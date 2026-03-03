@@ -48,7 +48,7 @@ export function DeliverySelect({
                 <h4 className="font-semibold text-navy">Pick Up</h4>
               </div>
               <p className="text-sm text-slate-500 mt-1">
-                Pick up your completed boat at our Salty Boats location in Florida.
+                Pick up your completed boat at 900 Industrial Drive, Wildwood, FL 34785.
               </p>
             </div>
           </div>
