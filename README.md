@@ -10,14 +10,14 @@ Full-stack website and boat configurator for Salty Boats — a Florida-based boa
 - **Email:** Resend (transactional emails)
 - **Icons:** Lucide React
 - **Fonts:** Inter (via next/font)
-- **Hosting:** Vercel
+- **Hosting:** Vercel (auto-deploy from `main`)
 
 ## Features
 
 ### Marketing Pages
 - **Home** — Interactive water canvas hero, brand showcase cards (fully clickable), "How It Works" process steps, CTA
-- **Brand pages** (3) — Brand hero, boat model grid with pricing
-- **Boat detail pages** (7) — Specs, features, gallery, warranty badge, CTAs
+- **Brand pages** (3) — Brand hero, boat model grid with pricing, "Build Your [Brand]" buttons link directly to configurator with brand pre-selected
+- **Boat detail pages** (9) — Specs, features, gallery, warranty badge, "Build This Boat" CTA (auto-selects brand in configurator)
 - **Inventory** — Filterable grid of in-stock boats with deposit buttons
 - **Inventory detail** — Full boat details with $500 deposit checkout
 - **About** — Company story, values, team
@@ -27,18 +27,26 @@ Full-stack website and boat configurator for Salty Boats — a Florida-based boa
 - **404** — Custom not-found page
 
 ### Boat Configurator (`/build-your-boat`)
-Interactive 8-step wizard for building custom boats:
+Interactive multi-step wizard for building custom boats:
 
+**Stumpnocker (8 steps):**
 1. **Brand Select** — Choose from 3 brands
 2. **Boat Select** — Pick a model with specs and pricing
 3. **Color Select** — Hull color picker with per-model pricing
-4. **Equipment Select** — Electrical, plumbing, and accessories (Stumpnocker only)
-5. **Trailer Select** — Trailer options with pricing (Stumpnocker only)
-6. **Motor Select** — Motor dropdown or "I have my own motor" (all brands)
+4. **Equipment Select** — Electrical, plumbing, and accessories
+5. **Trailer Select** — Trailer options with pricing
+6. **Motor Select** — Motor dropdown or "I have my own motor"
 7. **Delivery** — Pickup or delivery with address form
-8. **Review & Submit** — Full build summary with customer info and submission
+8. **Review & Submit** — Full build summary, print/download quote, customer info, and submission
 
-Package brands (Palmetto Bay, Salty Skiffs) skip equipment and trailer steps — they flow directly from color to motor.
+**Package brands (Palmetto Bay, Salty Skiffs) — 5 steps:**
+Brand → Boat → Color → Delivery → Review (skip equipment, trailer, and motor steps)
+
+**Smart features:**
+- Brand auto-selection via URL query param (`?brand=stumpnocker`)
+- Print Quote / Save as PDF — generates a clean branded quote document
+- Real-time price calculation in sidebar and mobile sticky bar
+- Step validation prevents advancing without required selections
 
 ### E-Commerce
 - **Stripe Checkout** — $500 deposit for both custom builds and inventory purchases
@@ -69,7 +77,7 @@ src/
 │   │       └── [modelSlug]/
 │   │           └── page.tsx    # Boat detail page
 │   ├── build-your-boat/
-│   │   └── page.tsx            # Configurator
+│   │   └── page.tsx            # Configurator (wrapped in Suspense)
 │   ├── inventory/
 │   │   ├── page.tsx            # Inventory grid
 │   │   └── [itemId]/
@@ -88,17 +96,26 @@ src/
 │   ├── layout/                 # Header, Footer
 │   ├── scroll-to-top.tsx       # Client component — scrolls to top on route change
 │   └── configurator/           # Shell, steps, summary, hook
-│       ├── configurator-shell.tsx
+│       ├── configurator-shell.tsx   # Main wizard with step routing + brand auto-select
 │       ├── build-summary.tsx
 │       ├── step-indicator.tsx
-│       ├── use-configurator.ts
-│       └── steps/              # 8 step components
+│       ├── use-configurator.ts      # useReducer state management (16 action types)
+│       └── steps/                   # 8 step components
+│           ├── brand-select.tsx
+│           ├── boat-select.tsx
+│           ├── color-select.tsx
+│           ├── equipment-select.tsx
+│           ├── trailer-select.tsx
+│           ├── motor-select.tsx
+│           ├── delivery-select.tsx
+│           └── review-submit.tsx    # Review, print/PDF, contact form, submit
 ├── lib/
 │   ├── data.ts                 # All boat/brand/equipment/inventory data
 │   ├── stripe.ts               # Stripe client (lazy loaded)
 │   └── utils.ts                # cn(), formatPrice()
 └── types/
-    └── configurator.ts         # TypeScript types
+    ├── configurator.ts         # State, actions, step arrays
+    └── database.ts             # Brand, BoatModel, HullColor, EquipmentOption, Trailer, etc.
 ```
 
 ## Data Architecture
@@ -106,12 +123,35 @@ src/
 All product data is defined as TypeScript constants in `src/lib/data.ts`:
 
 - **3 brands** — Stumpnocker (custom), Palmetto Bay (package), Salty Skiffs (pick your power)
-- **7 active boat models** — with specs, base pricing, and feature lists
+- **9 active boat models** — with specs, base pricing, and feature lists
 - **8 hull colors** — with hex codes and per-model pricing
-- **Equipment options** — categorized (Electrical, Plumbing, Accessories) with dependencies
-- **Trailer options** — with per-model pricing
+- **Equipment options** — categorized (Electrical, Plumbing, Accessories) with per-model applicability
+- **Trailer options** — with per-model pricing and applicability
 - **Motor options** — per-model with package pricing
 - **~8 inventory items** — in-stock boats with full details
+
+## Boat Lineup
+
+### Stumpnocker (Custom Build)
+| Model | Base Price | Max HP |
+|-------|-----------|--------|
+| 144 Skiff Tiller | $5,990 | 25 |
+| 164 Skiff Tiller | $6,990 | 40 |
+| 174 Skiff Tiller | $10,990 | 50 |
+| 174 Skiff Tiller Deluxe | $10,990 | 50 |
+| 174 Skiff CC (Center Console) | $16,990 | 60 |
+
+### Palmetto Bay (All-In Package)
+| Model | Package Price |
+|-------|--------------|
+| 186 Bay (115HP) | $36,990 |
+| 1701 Center Console (90HP) | $32,990 |
+
+### Salty Skiffs (Pick Your Power)
+| Model | Starting Price |
+|-------|---------------|
+| 14S | $6,000 |
+| 14F | $10,500 |
 
 ## Getting Started
 
@@ -122,6 +162,7 @@ All product data is defined as TypeScript constants in `src/lib/data.ts`:
 ### Installation
 
 ```bash
+cd salty-boats-app
 npm install
 ```
 
@@ -160,7 +201,7 @@ npx tsc --noEmit
 
 ## Deployment
 
-This project is configured for Vercel deployment:
+This project is configured for Vercel deployment. Pushes to `main` auto-deploy.
 
 1. Connect the GitHub repo to Vercel
 2. Set environment variables in the Vercel dashboard
@@ -168,34 +209,11 @@ This project is configured for Vercel deployment:
 
 ### Environment Variables for Vercel
 
-Set these in your Vercel project settings:
-
 | Variable | Description |
 |----------|-------------|
 | `STRIPE_SECRET_KEY` | Stripe secret key (use live key for production) |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key |
 | `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret |
-
-## Boat Lineup
-
-### Stumpnocker (Custom Build)
-| Model | Base Price |
-|-------|-----------|
-| 144 Skiff | $5,990 |
-| 164 Skiff | $6,990 |
-| 174 Skiff Tiller | $10,990 |
-
-### Palmetto Bay (All-In Package)
-| Model | Starting Price |
-|-------|---------------|
-| 186 Bay (115HP) | $36,990 |
-| 1701 Center Console (90HP) | $32,990 |
-
-### Salty Skiffs (Pick Your Power)
-| Model | Starting Price |
-|-------|-------|
-| 14S | $6,000 |
-| 14F | $10,500 |
 
 ## Design System
 
