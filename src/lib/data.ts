@@ -461,7 +461,15 @@ export const trailers: Trailer[] = [
     description:
       'Side guides w/ PVC covers, tongue jack, hubs, 2" coupler, bow bunk board, 12" tires, bow safety chain.',
     price: 890,
-    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-144-skiff-tiller"],
+  },
+  {
+    id: "continental-gta1615",
+    trailerName: "Continental Model GTA1615",
+    description:
+      "Aluminum / Alum Side Guides w/ PVC Covers / Tongue Jack / Galv Hubs / 2 Inch Coupler / Bow Bunk Board / 12b Tires / Bow Safety Chain.",
+    price: 1990,
+    applicableModelIds: ["stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
   {
     id: "gta-1615",
