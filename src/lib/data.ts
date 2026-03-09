@@ -144,8 +144,7 @@ export const boatModels: BoatModel[] = [
     brandSlug: "stumpnocker",
     modelName: "174 Skiff Tiller Deluxe",
     slug: "174-skiff-tiller-deluxe",
-    imageUrl:
-      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b8740d7c8a8d98e08902_relume-573164.jpeg",
+    imageUrl: "/174-cc-deluxe.png",
     galleryImages: [],
     basePrice: 10990,
     specs: {
