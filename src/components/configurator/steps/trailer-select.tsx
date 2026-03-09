@@ -37,9 +37,14 @@ export function TrailerSelect({ modelId, selected, onSelect, isPackageBrand }: T
                   <h4 className="font-semibold text-navy text-lg">
                     {trailer.trailerName}
                   </h4>
-                  <span className="text-ocean font-bold text-lg">
-                    {formatPrice(trailer.price)}
-                  </span>
+                  <div className="text-right">
+                    <span className="text-slate-400 line-through text-sm">
+                      {formatPrice(trailer.price)}
+                    </span>
+                    <span className="block text-sea-green font-bold text-lg">
+                      FREE
+                    </span>
+                  </div>
                 </div>
                 <p className="text-sm text-slate-500 mt-1">
                   {trailer.description}
