@@ -54,7 +54,7 @@ export interface EquipmentOption {
   optionName: string;
   description: string;
   price: number;
-  category: "electrical" | "plumbing" | "seating";
+  category: "electrical" | "trolling-motor" | "plumbing" | "seating";
   sortOrder: number;
   requiresOptionId?: string;
   applicableModelIds: string[];
