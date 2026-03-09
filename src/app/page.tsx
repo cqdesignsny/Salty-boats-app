@@ -16,7 +16,7 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36">
           <div className="max-w-3xl">
             <p className="text-ocean font-semibold text-sm uppercase tracking-widest mb-4">
-              Florida&apos;s Factory Direct Boat Builder
+              Florida&apos;s Factory-Direct Boat Builder
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               Built for the Water.
