@@ -122,7 +122,7 @@ export const boatModels: BoatModel[] = [
       boatWeightApprox: "650 lbs",
       maxPersonsOrWeight: "5 or 800 lbs",
       maxWeight: "1250 lbs",
-      maxHP: "60",
+      maxHP: "50",
       draft: '5"–8"',
       hullWarrantyYears: 10,
     },
@@ -144,7 +144,7 @@ export const boatModels: BoatModel[] = [
     brandSlug: "stumpnocker",
     modelName: "174 Skiff CC",
     slug: "174-skiff-cc",
-    imageUrl: "",
+    imageUrl: "/174skiff-cc.jpg",
     galleryImages: [],
     basePrice: 16990,
     specs: {
