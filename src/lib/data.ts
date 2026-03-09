@@ -140,6 +140,39 @@ export const boatModels: BoatModel[] = [
     isActive: true,
   },
   {
+    id: "stumpnocker-174-skiff-tiller-deluxe",
+    brandSlug: "stumpnocker",
+    modelName: "174 Skiff Tiller Deluxe",
+    slug: "174-skiff-tiller-deluxe",
+    imageUrl:
+      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b8740d7c8a8d98e08902_relume-573164.jpeg",
+    galleryImages: [],
+    basePrice: 10990,
+    specs: {
+      length: '17\'4"',
+      beam: '74"',
+      transomHeight: '20"',
+      boatWeightApprox: "650 lbs",
+      maxPersonsOrWeight: "5 or 800 lbs",
+      maxWeight: "1250 lbs",
+      maxHP: "50",
+      draft: '5"–8"',
+      hullWarrantyYears: 10,
+    },
+    standardColors: ["White", "Gray"],
+    description:
+      "Our largest Stumpnocker tiller skiff. The 174 delivers serious shallow-water performance with room for the whole crew. Perfect for backwater flats fishing.",
+    features: [
+      "Hand-laid fiberglass hull",
+      "Self-bailing deck",
+      "Integrated rod holders",
+      "Spacious casting deck",
+      "74-inch beam for maximum stability",
+      "10-year hull warranty",
+    ],
+    isActive: true,
+  },
+  {
     id: "stumpnocker-174-skiff-cc",
     brandSlug: "stumpnocker",
     modelName: "174 Skiff CC",
@@ -341,7 +374,7 @@ export const equipmentOptions: EquipmentOption[] = [
     price: 185,
     category: "electrical",
     sortOrder: 1,
-    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
   {
     id: "switch-panel-24v",
@@ -350,7 +383,7 @@ export const equipmentOptions: EquipmentOption[] = [
     price: 246,
     category: "electrical",
     sortOrder: 2,
-    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
   {
     id: "nav-lights",
@@ -359,7 +392,7 @@ export const equipmentOptions: EquipmentOption[] = [
     price: 273,
     category: "electrical",
     sortOrder: 3,
-    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
   {
     id: "bilge-pump-12v",
@@ -368,7 +401,7 @@ export const equipmentOptions: EquipmentOption[] = [
     price: 240,
     category: "electrical",
     sortOrder: 4,
-    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
   {
     id: "bilge-pump-24v",
@@ -377,7 +410,7 @@ export const equipmentOptions: EquipmentOption[] = [
     price: 245,
     category: "electrical",
     sortOrder: 5,
-    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
   // PLUMBING (section 2 — second)
   {
@@ -388,7 +421,7 @@ export const equipmentOptions: EquipmentOption[] = [
     category: "plumbing",
     sortOrder: 10,
     requiresOptionId: "switch-panel-12v",
-    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
   // SEATING (keep for now — pending from Dean)
   {
@@ -398,7 +431,7 @@ export const equipmentOptions: EquipmentOption[] = [
     price: 185,
     category: "seating",
     sortOrder: 20,
-    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
   {
     id: "rear-bench-exchange",
@@ -407,7 +440,7 @@ export const equipmentOptions: EquipmentOption[] = [
     price: 145,
     category: "seating",
     sortOrder: 21,
-    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
   {
     id: "base-plate-seat",
@@ -416,7 +449,7 @@ export const equipmentOptions: EquipmentOption[] = [
     price: 167,
     category: "seating",
     sortOrder: 22,
-    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
 ];
 
@@ -428,7 +461,7 @@ export const trailers: Trailer[] = [
     description:
       'Side guides w/ PVC covers, tongue jack, hubs, 2" coupler, bow bunk board, 12" tires, bow safety chain.',
     price: 890,
-    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
   {
     id: "gta-1615",
