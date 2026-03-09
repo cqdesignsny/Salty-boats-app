@@ -141,12 +141,24 @@ export function useConfigurator() {
     ? packageMotorOptions.find((m) => m.id === state.motorId) ?? null
     : null;
 
-  // For package brands, the total is the package motor price (which includes everything)
-  // For Stumpnocker, it's base + color + equipment + trailer + motor install
+  // Pricing varies by brand type:
+  // - Palmetto Bay (all-in): packagePrice includes boat + motor + trailer + equipment
+  // - Salty Skiffs (pick-your-power): base boat/trailer + motor add-on
+  // - Stumpnocker: base + color + equipment + trailer + motor install
   const basePrice = selectedModel?.basePrice ?? 0;
-  const totalPrice = isPackageBrand && selectedPackageMotor
-    ? selectedPackageMotor.packagePrice + colorPrice
-    : basePrice + colorPrice + equipmentTotal + trailerPrice + motorInstallFee;
+  const motorAddOn = selectedPackageMotor?.motorPrice ?? 0;
+  const totalPrice = (() => {
+    if (isPackageBrand && selectedPackageMotor) {
+      if (selectedPackageMotor.packagePrice > 0) {
+        // All-in package (Palmetto Bay): packagePrice includes everything
+        return selectedPackageMotor.packagePrice + colorPrice;
+      }
+      // Pick-your-power (Salty Skiffs): base boat + motor add-on
+      return basePrice + selectedPackageMotor.motorPrice + colorPrice;
+    }
+    // Stumpnocker: base + color + equipment + trailer + motor install
+    return basePrice + colorPrice + equipmentTotal + trailerPrice + motorInstallFee;
+  })();
 
   const canGoNext = useCallback((): boolean => {
     switch (currentStepName) {
@@ -190,6 +202,7 @@ export function useConfigurator() {
     selectedTrailer,
     trailerPrice,
     motorInstallFee,
+    motorAddOn,
     selectedPackageMotor,
     basePrice,
     totalPrice,

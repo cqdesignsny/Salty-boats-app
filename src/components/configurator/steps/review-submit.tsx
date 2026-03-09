@@ -5,6 +5,7 @@ import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Send, CheckCircle, Printer, Download } from "lucide-react";
 import type { BoatModel, HullColor, EquipmentOption, Trailer, Brand } from "@/types/database";
+import type { PackageMotorOption } from "@/lib/data";
 
 interface ReviewSubmitProps {
   brand: Brand;
@@ -17,6 +18,8 @@ interface ReviewSubmitProps {
   trailerPrice: number;
   motorOption: "select" | "own" | null;
   motorInstallFee: number;
+  motorAddOn: number;
+  selectedPackageMotor: PackageMotorOption | null;
   deliveryType: "pickup" | "delivery" | null;
   deliveryAddress: string;
   totalPrice: number;
@@ -40,6 +43,8 @@ export function ReviewSubmit({
   trailerPrice,
   motorOption,
   motorInstallFee,
+  motorAddOn,
+  selectedPackageMotor,
   deliveryType,
   deliveryAddress,
   totalPrice,
@@ -83,11 +88,13 @@ export function ReviewSubmit({
         <table>
           <thead><tr><th>Item</th><th style="text-align:right">Price</th></tr></thead>
           <tbody>
-            <tr><td style="padding:4px 8px">${model.modelName} (${isPackageBrand ? "Package" : "Base"})</td><td style="padding:4px 8px;text-align:right">${formatPrice(model.basePrice)}</td></tr>
+            <tr><td style="padding:4px 8px">${model.modelName} (${selectedPackageMotor && selectedPackageMotor.motorPrice > 0 ? "Boat + Trailer" : isPackageBrand ? "Package" : "Base"})</td><td style="padding:4px 8px;text-align:right">${selectedPackageMotor && selectedPackageMotor.packagePrice > 0 ? formatPrice(selectedPackageMotor.packagePrice) : formatPrice(model.basePrice)}</td></tr>
             <tr><td style="padding:4px 8px">Hull Color — ${color.colorName}</td><td style="padding:4px 8px;text-align:right">${colorPrice > 0 ? formatPrice(colorPrice) : "Included"}</td></tr>
             ${equipmentLines}
-            ${trailer ? `<tr><td style="padding:4px 8px">${trailer.trailerName}</td><td style="padding:4px 8px;text-align:right">${formatPrice(trailer.price)}</td></tr>` : ""}
-            ${motorOption ? `<tr><td style="padding:4px 8px">Motor — ${motorOption === "own" ? "Customer Supplied" : "Contact for options"}</td><td style="padding:4px 8px;text-align:right">${motorInstallFee > 0 ? formatPrice(motorInstallFee) + " install" : "—"}</td></tr>` : ""}
+            ${selectedPackageMotor && selectedPackageMotor.motorPrice > 0 ? `<tr><td style="padding:4px 8px">Motor — ${selectedPackageMotor.label}${selectedPackageMotor.sku ? ` (${selectedPackageMotor.sku})` : ""}</td><td style="padding:4px 8px;text-align:right">${formatPrice(selectedPackageMotor.motorPrice)}</td></tr>` : ""}
+            ${selectedPackageMotor && selectedPackageMotor.packagePrice > 0 ? `<tr><td style="padding:4px 8px">Motor — ${selectedPackageMotor.label}</td><td style="padding:4px 8px;text-align:right">Included</td></tr>` : ""}
+            ${trailer ? `<tr><td style="padding:4px 8px">${trailer.trailerName}</td><td style="padding:4px 8px;text-align:right">${isPackageBrand ? "Included" : formatPrice(trailer.price)}</td></tr>` : ""}
+            ${motorOption && !selectedPackageMotor ? `<tr><td style="padding:4px 8px">Motor — ${motorOption === "own" ? "Customer Supplied" : "Contact for options"}</td><td style="padding:4px 8px;text-align:right">${motorInstallFee > 0 ? formatPrice(motorInstallFee) + " install" : "—"}</td></tr>` : ""}
             <tr><td style="padding:4px 8px">Delivery</td><td style="padding:4px 8px;text-align:right">${deliveryType === "pickup" ? "Pickup at Salty Boats" : "Delivery"}</td></tr>
             ${deliveryType === "delivery" && deliveryAddress ? `<tr><td style="padding:4px 8px;color:#64748b" colspan="2">${deliveryAddress}</td></tr>` : ""}
           </tbody>
@@ -131,6 +138,9 @@ export function ReviewSubmit({
           selectedEquipment: equipment.map((e) => e.id),
           trailerId: trailer?.id ?? null,
           motorOption,
+          motorId: selectedPackageMotor?.id ?? null,
+          motorLabel: selectedPackageMotor?.label ?? null,
+          motorSku: selectedPackageMotor?.sku ?? null,
           deliveryType,
           deliveryAddress,
           totalPrice,
@@ -185,10 +195,18 @@ export function ReviewSubmit({
           </div>
           <div>
             <span className="text-slate-500">
-              {isPackageBrand ? "Package Price" : "Base Price"}
+              {selectedPackageMotor && selectedPackageMotor.packagePrice > 0
+                ? "Package Price"
+                : selectedPackageMotor && selectedPackageMotor.motorPrice > 0
+                ? "Boat + Trailer"
+                : isPackageBrand
+                ? "Package Price"
+                : "Base Price"}
             </span>
             <p className="font-semibold text-navy">
-              {formatPrice(model.basePrice)}
+              {selectedPackageMotor && selectedPackageMotor.packagePrice > 0
+                ? formatPrice(selectedPackageMotor.packagePrice)
+                : formatPrice(model.basePrice)}
             </p>
           </div>
           <div>
@@ -225,7 +243,37 @@ export function ReviewSubmit({
             </div>
           )}
 
-          {motorOption && (
+          {/* Motor — pick your power (Salty Skiffs) */}
+          {selectedPackageMotor && selectedPackageMotor.motorPrice > 0 && (
+            <div className="sm:col-span-2">
+              <span className="text-slate-500">Motor</span>
+              <p className="font-semibold text-navy">
+                {selectedPackageMotor.label}
+                <span className="text-ocean text-xs ml-1">
+                  +{formatPrice(motorAddOn)}
+                </span>
+              </p>
+              {selectedPackageMotor.sku && (
+                <p className="text-xs text-slate-400 mt-0.5">
+                  SKU: {selectedPackageMotor.sku}
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Motor — all-in (Palmetto Bay) */}
+          {selectedPackageMotor && selectedPackageMotor.packagePrice > 0 && (
+            <div>
+              <span className="text-slate-500">Motor</span>
+              <p className="font-semibold text-navy">
+                {selectedPackageMotor.label}
+                <span className="text-sea-green text-xs ml-1">Included</span>
+              </p>
+            </div>
+          )}
+
+          {/* Motor — Stumpnocker */}
+          {motorOption && !selectedPackageMotor && (
             <div>
               <span className="text-slate-500">Motor</span>
               <p className="font-semibold text-navy">

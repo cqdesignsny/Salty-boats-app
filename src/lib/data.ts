@@ -507,38 +507,173 @@ export const trailers: Trailer[] = [
 ];
 
 // ─── PACKAGE MOTOR OPTIONS (Palmetto Bay & Salty Skiffs) ────────────────────
-// For package brands, the "motor price" is actually the full package price
+// Palmetto Bay: packagePrice = all-in price, motorPrice = 0
+// Salty Skiffs: packagePrice = 0, motorPrice = add-on price to base boat
 export interface PackageMotorOption {
   id: string;
+  sku: string;
   label: string;
+  description: string;
   horsepower: number;
-  packagePrice: number; // full package price when this motor is selected
+  packagePrice: number; // all-in price (Palmetto Bay) — 0 for pick-your-power brands
+  motorPrice: number;   // add-on motor price (Salty Skiffs) — 0 for all-in brands
   applicableModelIds: string[];
 }
 
 export const packageMotorOptions: PackageMotorOption[] = [
-  // 186 Bay — two motor choices
+  // ── Palmetto Bay 186 Bay — two motor choices (all-in pricing) ──
   {
     id: "palmetto-186-115hp",
+    sku: "",
     label: "115 HP Motor",
+    description: "Included in all-in package with trailer and equipment.",
     horsepower: 115,
     packagePrice: 36990,
+    motorPrice: 0,
     applicableModelIds: ["palmetto-186-bay"],
   },
   {
     id: "palmetto-186-140hp",
+    sku: "",
     label: "140 HP Motor",
+    description: "Included in all-in package with trailer and equipment.",
     horsepower: 140,
     packagePrice: 39990,
+    motorPrice: 0,
     applicableModelIds: ["palmetto-186-bay"],
   },
-  // 1701 CC — single motor (included)
+  // ── Palmetto Bay 1701 CC — single motor (all-in pricing) ──
   {
     id: "palmetto-1701-90hp",
+    sku: "",
     label: "90 HP Motor",
+    description: "Included in all-in package with trailer and equipment.",
     horsepower: 90,
     packagePrice: 32990,
+    motorPrice: 0,
     applicableModelIds: ["palmetto-1701-cc"],
+  },
+  // ── Salty Skiffs — Pick Your Power (12 Suzuki motors, additive pricing) ──
+  // All apply to both 14S and 14F. All include fuel tank, fuel line, propeller — installed.
+  {
+    id: "salty-df2-5l5",
+    sku: "DF2.5L5",
+    label: "Suzuki 2.5 HP",
+    description: "Manual start · Tiller handle · 20\" shaft",
+    horsepower: 2.5,
+    packagePrice: 0,
+    motorPrice: 975,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+  },
+  {
+    id: "salty-df6al5",
+    sku: "DF6AL5",
+    label: "Suzuki 6 HP",
+    description: "Manual start · Tiller handle · 20\" shaft",
+    horsepower: 6,
+    packagePrice: 0,
+    motorPrice: 1780,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+  },
+  {
+    id: "salty-df9-9bel5",
+    sku: "DF9.9BEL5",
+    label: "Suzuki 9.9 HP — Electric Start",
+    description: "Electric start · Tiller handle · 20\" shaft",
+    horsepower: 9.9,
+    packagePrice: 0,
+    motorPrice: 3070,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+  },
+  {
+    id: "salty-df9-9bthl5",
+    sku: "DF9.9BTHL5",
+    label: "Suzuki 9.9 HP — Electric Start, Power Tilt",
+    description: "Electric start · Power tilt · Tiller handle · 20\" shaft",
+    horsepower: 9.9,
+    packagePrice: 0,
+    motorPrice: 3270,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+  },
+  {
+    id: "salty-df9-9bthlw5",
+    sku: "DF9.9BTHLW5",
+    label: "Suzuki 9.9 HP — Electric Start, Power Tilt (White)",
+    description: "Electric start · Power tilt · Tiller handle · 20\" shaft · White cowling",
+    horsepower: 9.9,
+    packagePrice: 0,
+    motorPrice: 3370,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+  },
+  {
+    id: "salty-df15athl5",
+    sku: "DF15ATHL5",
+    label: "Suzuki 15 HP — Electric Start, Power Tilt",
+    description: "Electric start · Power tilt · Tiller handle · 20\" shaft",
+    horsepower: 15,
+    packagePrice: 0,
+    motorPrice: 3465,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+  },
+  {
+    id: "salty-df20athl5",
+    sku: "DF20ATHL5",
+    label: "Suzuki 20 HP — Electric Start, Power Tilt",
+    description: "Electric start · Power tilt · Tiller handle · 20\" shaft",
+    horsepower: 20,
+    packagePrice: 0,
+    motorPrice: 4070,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+  },
+  {
+    id: "salty-df20athlw5",
+    sku: "DF20ATHLW5",
+    label: "Suzuki 20 HP — Electric Start, Power Tilt (White)",
+    description: "Electric start · Power tilt · Tiller handle · 20\" shaft · White cowling",
+    horsepower: 20,
+    packagePrice: 0,
+    motorPrice: 4170,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+  },
+  {
+    id: "salty-df25athl5",
+    sku: "DF25ATHL5",
+    label: "Suzuki 25 HP — Electric Start, Power Trim & Tilt",
+    description: "Electric start · Power trim & tilt · Tiller handle · 20\" shaft",
+    horsepower: 25,
+    packagePrice: 0,
+    motorPrice: 5130,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+  },
+  {
+    id: "salty-df25athlw5",
+    sku: "DF25ATHLW5",
+    label: "Suzuki 25 HP — Electric Start, Power Trim & Tilt (White)",
+    description: "Electric start · Power trim & tilt · Tiller handle · 20\" shaft · White cowling",
+    horsepower: 25,
+    packagePrice: 0,
+    motorPrice: 5280,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+  },
+  {
+    id: "salty-df30athl5",
+    sku: "DF30ATHL5",
+    label: "Suzuki 30 HP — Electric Start, Power Trim & Tilt",
+    description: "Electric start · Power trim & tilt · Tiller handle · 20\" shaft",
+    horsepower: 30,
+    packagePrice: 0,
+    motorPrice: 5945,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+  },
+  {
+    id: "salty-df30athlw5",
+    sku: "DF30ATHLW5",
+    label: "Suzuki 30 HP — Electric Start, Power Trim & Tilt (White)",
+    description: "Electric start · Power trim & tilt · Tiller handle · 20\" shaft · White cowling",
+    horsepower: 30,
+    packagePrice: 0,
+    motorPrice: 6095,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
   },
 ];
 

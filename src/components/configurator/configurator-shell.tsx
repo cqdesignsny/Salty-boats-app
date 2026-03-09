@@ -35,6 +35,8 @@ export function ConfiguratorShell() {
     selectedTrailer,
     trailerPrice,
     motorInstallFee,
+    motorAddOn,
+    selectedPackageMotor,
     basePrice,
     totalPrice,
     canGoNext,
@@ -162,6 +164,8 @@ export function ConfiguratorShell() {
             trailerPrice={trailerPrice}
             motorOption={state.motorOption}
             motorInstallFee={motorInstallFee}
+            motorAddOn={motorAddOn}
+            selectedPackageMotor={selectedPackageMotor}
             deliveryType={state.deliveryType}
             deliveryAddress={state.deliveryAddress}
             totalPrice={totalPrice}
@@ -245,7 +249,9 @@ export function ConfiguratorShell() {
                 trailer={selectedTrailer}
                 trailerPrice={trailerPrice}
                 motorInstallFee={motorInstallFee}
+                motorAddOn={motorAddOn}
                 motorOption={state.motorOption}
+                selectedPackageMotor={selectedPackageMotor}
                 deliveryType={state.deliveryType}
                 basePrice={basePrice}
                 totalPrice={totalPrice}

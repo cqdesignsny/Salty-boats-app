@@ -2,6 +2,7 @@
 
 import { formatPrice } from "@/lib/utils";
 import type { BoatModel, HullColor, EquipmentOption, Trailer } from "@/types/database";
+import type { PackageMotorOption } from "@/lib/data";
 
 interface BuildSummaryProps {
   brand: { name: string } | null;
@@ -13,7 +14,9 @@ interface BuildSummaryProps {
   trailer: Trailer | null;
   trailerPrice: number;
   motorInstallFee: number;
+  motorAddOn: number;
   motorOption: "select" | "own" | null;
+  selectedPackageMotor: PackageMotorOption | null;
   deliveryType: "pickup" | "delivery" | null;
   basePrice: number;
   totalPrice: number;
@@ -30,12 +33,18 @@ export function BuildSummary({
   trailer,
   trailerPrice,
   motorInstallFee,
+  motorAddOn,
   motorOption,
+  selectedPackageMotor,
   deliveryType,
   basePrice,
   totalPrice,
   isPackageBrand,
 }: BuildSummaryProps) {
+  // Determine which price label to show for the base line
+  const isPickYourPower = selectedPackageMotor && selectedPackageMotor.motorPrice > 0;
+  const isAllInPackage = selectedPackageMotor && selectedPackageMotor.packagePrice > 0;
+
   return (
     <div className="bg-white border border-slate-200 rounded-xl p-6 sticky top-36 lg:top-40">
       <h3 className="font-bold text-navy text-lg mb-4">Build Summary</h3>
@@ -58,10 +67,18 @@ export function BuildSummary({
         {model && (
           <div className="flex justify-between">
             <span className="text-slate-500">
-              {isPackageBrand ? "Package Price" : "Base Price"}
+              {isAllInPackage
+                ? "Package Price"
+                : isPickYourPower
+                ? "Boat + Trailer"
+                : isPackageBrand
+                ? "Package Price"
+                : "Base Price"}
             </span>
             <span className="font-medium text-navy">
-              {formatPrice(basePrice)}
+              {isAllInPackage
+                ? formatPrice(selectedPackageMotor.packagePrice)
+                : formatPrice(basePrice)}
             </span>
           </div>
         )}
@@ -97,16 +114,44 @@ export function BuildSummary({
           </div>
         )}
 
-        {trailer && (
+        {/* Motor — pick your power (Salty Skiffs) */}
+        {selectedPackageMotor && isPickYourPower && (
           <div className="flex justify-between border-t border-slate-100 pt-3">
-            <span className="text-slate-500">Trailer</span>
-            <span className="font-medium text-navy">
-              +{formatPrice(trailerPrice)}
+            <div className="min-w-0 flex-1 pr-2">
+              <span className="text-slate-500">Motor</span>
+              <p className="text-xs text-slate-600 mt-0.5 truncate">{selectedPackageMotor.label}</p>
+            </div>
+            <span className="font-medium text-navy whitespace-nowrap">
+              +{formatPrice(motorAddOn)}
             </span>
           </div>
         )}
 
-        {motorOption && (
+        {/* Motor — all-in (Palmetto Bay) */}
+        {selectedPackageMotor && isAllInPackage && (
+          <div className="flex justify-between">
+            <span className="text-slate-500">Motor</span>
+            <span className="font-medium text-sea-green">
+              {selectedPackageMotor.label} — Included
+            </span>
+          </div>
+        )}
+
+        {trailer && (
+          <div className="flex justify-between border-t border-slate-100 pt-3">
+            <span className="text-slate-500">Trailer</span>
+            <span className="font-medium text-navy">
+              {isPackageBrand ? (
+                <span className="text-sea-green">Included</span>
+              ) : (
+                <>+{formatPrice(trailerPrice)}</>
+              )}
+            </span>
+          </div>
+        )}
+
+        {/* Motor — Stumpnocker */}
+        {motorOption && !selectedPackageMotor && (
           <div className="flex justify-between">
             <span className="text-slate-500">Motor</span>
             <span className="font-medium text-navy">
@@ -114,7 +159,7 @@ export function BuildSummary({
                 ? "Customer Supplied"
                 : motorInstallFee > 0
                 ? `Install +${formatPrice(motorInstallFee)}`
-                : "Included"}
+                : "Contact for options"}
             </span>
           </div>
         )}
