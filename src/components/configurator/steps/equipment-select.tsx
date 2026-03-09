@@ -15,9 +15,10 @@ export function EquipmentSelect({ modelId, selected, onToggle }: EquipmentSelect
   const equipment = getEquipmentForModel(modelId);
 
   // Group by category
-  const categories = ["electrical", "plumbing", "seating"] as const;
+  const categories = ["electrical", "trolling-motor", "plumbing", "seating"] as const;
   const categoryLabels: Record<string, string> = {
     electrical: "Electrical",
+    "trolling-motor": "Trolling Motor",
     plumbing: "Plumbing",
     seating: "Seating",
   };
