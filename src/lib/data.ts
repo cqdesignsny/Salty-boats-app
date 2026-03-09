@@ -80,7 +80,7 @@ export const boatModels: BoatModel[] = [
     modelName: "164 Skiff Tiller",
     slug: "164-skiff-tiller",
     imageUrl:
-      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b8740d7c8a8d98e08902_relume-573164.jpeg",
+      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920ae5add96ece37b4eae32_relume-570454.jpeg",
     galleryImages: [],
     basePrice: 6990,
     specs: {
@@ -112,7 +112,7 @@ export const boatModels: BoatModel[] = [
     modelName: "174 Skiff Tiller",
     slug: "174-skiff-tiller",
     imageUrl:
-      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920ae5add96ece37b4eae32_relume-570454.jpeg",
+      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b8740d7c8a8d98e08902_relume-573164.jpeg",
     galleryImages: [],
     basePrice: 10990,
     specs: {
