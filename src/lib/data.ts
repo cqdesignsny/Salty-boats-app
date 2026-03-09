@@ -457,9 +457,9 @@ export const equipmentOptions: EquipmentOption[] = [
 export const trailers: Trailer[] = [
   {
     id: "continental-ec312",
-    trailerName: "Continental Model EC312 Trailer (Galvanized/Aluminum)",
+    trailerName: "Continental Model EC312 Trailer",
     description:
-      'Side guides w/ PVC covers, tongue jack, hubs, 2" coupler, bow bunk board, 12" tires, bow safety chain.',
+      'Galvanized, Side guides w/ PVC covers, tongue jack, hubs, 2" coupler, bow bunk board, 12" tires, bow safety chain.',
     price: 890,
     applicableModelIds: ["stumpnocker-144-skiff-tiller"],
   },
