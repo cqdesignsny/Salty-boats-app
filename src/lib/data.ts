@@ -369,7 +369,7 @@ export const equipmentOptions: EquipmentOption[] = [
   {
     id: "switch-panel-12v-prewire",
     optionName: "Switch Panel — 12V Prewire with Plugs + 12V Battery Tray",
-    description: "Complete 12-volt switch panel pre-wire with plugs and battery tray. Powers accessories like navigation lights, bilge pump, and live well.",
+    description: "Complete 12-volt switch panel pre-wire with plugs and battery tray. Needed to power accessories like navigation lights, bilge pump, and live well.",
     price: 389,
     category: "electrical",
     sortOrder: 0,
