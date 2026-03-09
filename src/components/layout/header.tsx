@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { brands } from "@/lib/data";
@@ -28,6 +28,21 @@ const navLinks = [
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [brandsOpen, setBrandsOpen] = useState(false);
+  const closeTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = useCallback(() => {
+    if (closeTimeout.current) {
+      clearTimeout(closeTimeout.current);
+      closeTimeout.current = null;
+    }
+    setBrandsOpen(true);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    closeTimeout.current = setTimeout(() => {
+      setBrandsOpen(false);
+    }, 200);
+  }, []);
 
   return (
     <header className="bg-navy text-white sticky top-0 z-50 shadow-lg">
@@ -52,26 +67,28 @@ export function Header() {
                 <div
                   key={link.label}
                   className="relative"
-                  onMouseEnter={() => setBrandsOpen(true)}
-                  onMouseLeave={() => setBrandsOpen(false)}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
                   <button className="px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-colors flex items-center gap-1">
                     {link.label}
                     <ChevronDown className={cn("w-4 h-4 transition-transform", brandsOpen && "rotate-180")} />
                   </button>
                   {brandsOpen && (
-                    <div className="absolute top-full left-0 mt-1 w-64 bg-white text-slate-900 rounded-xl shadow-xl border border-slate-200 overflow-hidden">
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className="block px-4 py-3 hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-0"
-                          onClick={() => setBrandsOpen(false)}
-                        >
-                          <span className="font-semibold text-sm">{child.label}</span>
-                          <span className="block text-xs text-slate-500 mt-0.5">{child.description}</span>
-                        </Link>
-                      ))}
+                    <div className="absolute top-full left-0 pt-2 w-64">
+                      <div className="bg-white text-slate-900 rounded-xl shadow-xl border border-slate-200 overflow-hidden">
+                        {link.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className="block px-4 py-3 hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-0"
+                            onClick={() => setBrandsOpen(false)}
+                          >
+                            <span className="font-semibold text-sm">{child.label}</span>
+                            <span className="block text-xs text-slate-500 mt-0.5">{child.description}</span>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
