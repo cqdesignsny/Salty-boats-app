@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, Printer, Download } from "lucide-react";
 import type { BoatModel, HullColor, EquipmentOption, Trailer, Brand } from "@/types/database";
 
 interface ReviewSubmitProps {
@@ -53,6 +53,65 @@ export function ReviewSubmit({
 }: ReviewSubmitProps) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const quoteRef = useRef<HTMLDivElement>(null);
+
+  function handlePrint() {
+    const equipmentLines = equipment
+      .map((e) => `<tr><td style="padding:4px 8px">${e.optionName}</td><td style="padding:4px 8px;text-align:right">${formatPrice(e.price)}</td></tr>`)
+      .join("");
+
+    const html = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Salty Boats — Build Quote</title>
+        <style>
+          body { font-family: Arial, sans-serif; color: #0c1b3a; max-width: 700px; margin: 0 auto; padding: 40px 24px; }
+          h1 { font-size: 22px; margin-bottom: 4px; }
+          .subtitle { color: #64748b; font-size: 14px; margin-bottom: 24px; }
+          table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+          th { text-align: left; padding: 8px; background: #f1f5f9; font-size: 13px; color: #64748b; border-bottom: 1px solid #e2e8f0; }
+          td { padding: 8px; font-size: 14px; border-bottom: 1px solid #f1f5f9; }
+          .total-row td { border-top: 2px solid #0c1b3a; font-weight: bold; font-size: 18px; padding-top: 12px; }
+          .footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8; }
+          @media print { body { padding: 20px; } }
+        </style>
+      </head>
+      <body>
+        <h1>Salty Boats — Build Quote</h1>
+        <p class="subtitle">${brand.name} ${model.modelName} &bull; ${new Date().toLocaleDateString()}</p>
+        <table>
+          <thead><tr><th>Item</th><th style="text-align:right">Price</th></tr></thead>
+          <tbody>
+            <tr><td style="padding:4px 8px">${model.modelName} (${isPackageBrand ? "Package" : "Base"})</td><td style="padding:4px 8px;text-align:right">${formatPrice(model.basePrice)}</td></tr>
+            <tr><td style="padding:4px 8px">Hull Color — ${color.colorName}</td><td style="padding:4px 8px;text-align:right">${colorPrice > 0 ? formatPrice(colorPrice) : "Included"}</td></tr>
+            ${equipmentLines}
+            ${trailer ? `<tr><td style="padding:4px 8px">${trailer.trailerName}</td><td style="padding:4px 8px;text-align:right">${formatPrice(trailer.price)}</td></tr>` : ""}
+            ${motorOption ? `<tr><td style="padding:4px 8px">Motor — ${motorOption === "own" ? "Customer Supplied" : "Contact for options"}</td><td style="padding:4px 8px;text-align:right">${motorInstallFee > 0 ? formatPrice(motorInstallFee) + " install" : "—"}</td></tr>` : ""}
+            <tr><td style="padding:4px 8px">Delivery</td><td style="padding:4px 8px;text-align:right">${deliveryType === "pickup" ? "Pickup at Salty Boats" : "Delivery"}</td></tr>
+            ${deliveryType === "delivery" && deliveryAddress ? `<tr><td style="padding:4px 8px;color:#64748b" colspan="2">${deliveryAddress}</td></tr>` : ""}
+          </tbody>
+          <tbody>
+            <tr class="total-row"><td>Estimated Total</td><td style="text-align:right">${formatPrice(totalPrice)}</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:13px;color:#64748b;">$500 deposit required to start your build.</p>
+        <div class="footer">
+          <p>Salty Boats &bull; 900 Industrial Drive, Wildwood, FL 34785</p>
+          <p>(352) 748-1161 &bull; sales@saltyboats.com</p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    const printWindow = window.open("", "_blank");
+    if (printWindow) {
+      printWindow.document.write(html);
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.print();
+    }
+  }
 
   async function handleSubmit() {
     if (!customerName.trim() || !customerEmail.trim()) return;
@@ -203,6 +262,28 @@ export function ReviewSubmit({
           <p className="text-xs text-slate-400 text-right mt-1">
             $500 deposit to start your build
           </p>
+        </div>
+
+        {/* Print / Download */}
+        <div className="flex gap-3 mt-4 pt-4 border-t border-slate-200">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handlePrint}
+            className="flex-1"
+          >
+            <Printer className="w-4 h-4 mr-2" />
+            Print Quote
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handlePrint}
+            className="flex-1"
+          >
+            <Download className="w-4 h-4 mr-2" />
+            Save as PDF
+          </Button>
         </div>
       </div>
 
