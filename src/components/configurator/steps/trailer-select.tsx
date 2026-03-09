@@ -3,17 +3,70 @@
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/utils";
 import { getTrailersForModel } from "@/lib/data";
-import { Check } from "lucide-react";
+import { Check, PackageCheck } from "lucide-react";
 
 interface TrailerSelectProps {
   modelId: string;
   selected: string | null;
   onSelect: (trailerId: string | null) => void;
+  isPackageBrand?: boolean;
 }
 
-export function TrailerSelect({ modelId, selected, onSelect }: TrailerSelectProps) {
+export function TrailerSelect({ modelId, selected, onSelect, isPackageBrand }: TrailerSelectProps) {
   const availableTrailers = getTrailersForModel(modelId);
 
+  // Package brand — display-only trailer (included in package)
+  if (isPackageBrand) {
+    const trailer = availableTrailers[0];
+
+    return (
+      <div>
+        <h2 className="text-2xl font-bold text-navy mb-2">Your Trailer</h2>
+        <p className="text-slate-500 mb-8">
+          Your package includes a trailer — no extra cost.
+        </p>
+
+        {trailer ? (
+          <div className="rounded-xl border-2 border-ocean bg-ocean/5 p-6">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-full bg-ocean/20 flex items-center justify-center flex-shrink-0">
+                <PackageCheck className="w-5 h-5 text-ocean" />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <h4 className="font-semibold text-navy text-lg">
+                    {trailer.trailerName}
+                  </h4>
+                  <span className="text-ocean font-bold text-lg">
+                    {formatPrice(trailer.price)}
+                  </span>
+                </div>
+                <p className="text-sm text-slate-500 mt-1">
+                  {trailer.description}
+                </p>
+                <div className="mt-3 inline-flex items-center gap-1.5 bg-sea-green/10 text-sea-green px-3 py-1 rounded-full text-xs font-semibold">
+                  <Check className="w-3.5 h-3.5" />
+                  Included in package
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-xl border-2 border-slate-200 p-6 text-center text-slate-500">
+            Trailer information coming soon.
+          </div>
+        )}
+
+        <div className="bg-sea-green/10 rounded-xl p-4 border border-sea-green/20 mt-6">
+          <p className="text-sm text-navy">
+            <span className="font-semibold">Great value:</span> Your trailer is included in the all-in package price. No additional trailer cost needed.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Stumpnocker — selectable trailer (existing behavior)
   return (
     <div>
       <h2 className="text-2xl font-bold text-navy mb-2">Select a Trailer</h2>

@@ -247,7 +247,7 @@ export const boatModels: BoatModel[] = [
     imageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b857ac4ab035bea690d0_relume-572947.png",
     galleryImages: [],
-    basePrice: 32990,
+    basePrice: 34990,
     specs: {
       length: '17\'0"',
       beam: '76"',
@@ -481,7 +481,7 @@ export const trailers: Trailer[] = [
     description:
       "Aluminum / Alum Side Guides w/ PVC Covers / Tongue Jack / Galv Hubs / 2 Inch Coupler / Bow Bunk Board / 12b Tires / Bow Safety Chain.",
     price: 1990,
-    applicableModelIds: ["stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
   },
   {
     id: "gta-1615",
@@ -490,7 +490,61 @@ export const trailers: Trailer[] = [
     price: 1995,
     applicableModelIds: ["salty-skiffs-14-f", "salty-skiffs-14-s"],
   },
+  {
+    id: "as1830-2400",
+    trailerName: "AS1830-2400",
+    description: "Trailer for 186 Palmetto Bay.",
+    price: 3890,
+    applicableModelIds: ["palmetto-186-bay"],
+  },
+  {
+    id: "a2030-2400",
+    trailerName: "A2030-2400",
+    description: "Trailer for 1701 Palmetto Bay.",
+    price: 3690,
+    applicableModelIds: ["palmetto-1701-cc"],
+  },
 ];
+
+// ─── PACKAGE MOTOR OPTIONS (Palmetto Bay & Salty Skiffs) ────────────────────
+// For package brands, the "motor price" is actually the full package price
+export interface PackageMotorOption {
+  id: string;
+  label: string;
+  horsepower: number;
+  packagePrice: number; // full package price when this motor is selected
+  applicableModelIds: string[];
+}
+
+export const packageMotorOptions: PackageMotorOption[] = [
+  // 186 Bay — two motor choices
+  {
+    id: "palmetto-186-115hp",
+    label: "115 HP Motor",
+    horsepower: 115,
+    packagePrice: 36990,
+    applicableModelIds: ["palmetto-186-bay"],
+  },
+  {
+    id: "palmetto-186-140hp",
+    label: "140 HP Motor",
+    horsepower: 140,
+    packagePrice: 39990,
+    applicableModelIds: ["palmetto-186-bay"],
+  },
+  // 1701 CC — single motor (included)
+  {
+    id: "palmetto-1701-90hp",
+    label: "90 HP Motor",
+    horsepower: 90,
+    packagePrice: 32990,
+    applicableModelIds: ["palmetto-1701-cc"],
+  },
+];
+
+export function getPackageMotorsForModel(modelId: string): PackageMotorOption[] {
+  return packageMotorOptions.filter((m) => m.applicableModelIds.includes(modelId));
+}
 
 // ─── INVENTORY (on-hand boats ready to purchase) ─────────────────────────────
 export const inventoryItems: InventoryItem[] = [

@@ -114,6 +114,7 @@ export function ConfiguratorShell() {
             modelId={state.modelId}
             selected={state.trailerId}
             onSelect={(id) => dispatch({ type: "SET_TRAILER", payload: id })}
+            isPackageBrand={isPackageBrand}
           />
         );
 
@@ -123,6 +124,12 @@ export function ConfiguratorShell() {
             motorOption={state.motorOption}
             onSetOption={(opt) =>
               dispatch({ type: "SET_MOTOR_OPTION", payload: opt })
+            }
+            isPackageBrand={isPackageBrand}
+            modelId={state.modelId}
+            selectedPackageMotorId={state.motorId}
+            onSelectPackageMotor={(id) =>
+              dispatch({ type: "SET_MOTOR", payload: id })
             }
           />
         );

@@ -48,6 +48,8 @@ export const PACKAGE_STEPS = [
   "Brand",
   "Boat",
   "Color",
+  "Motor",
+  "Trailer",
   "Delivery",
   "Review",
 ] as const;

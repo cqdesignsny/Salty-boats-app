@@ -13,6 +13,8 @@ import {
   getTrailersForModel,
   equipmentOptions,
   trailers,
+  packageMotorOptions,
+  getPackageMotorsForModel,
 } from "@/lib/data";
 
 const initialState: ConfiguratorState = {
@@ -131,11 +133,20 @@ export function useConfigurator() {
 
   const trailerPrice = selectedTrailer?.price ?? 0;
 
-  // Motor install fee ($85 if motor selected)
-  const motorInstallFee = state.motorOption === "select" && state.motorId ? 85 : 0;
+  // Motor install fee ($85 if motor selected — Stumpnocker only)
+  const motorInstallFee = !isPackageBrand && state.motorOption === "select" && state.motorId ? 85 : 0;
 
+  // Package motor selection
+  const selectedPackageMotor = state.motorId
+    ? packageMotorOptions.find((m) => m.id === state.motorId) ?? null
+    : null;
+
+  // For package brands, the total is the package motor price (which includes everything)
+  // For Stumpnocker, it's base + color + equipment + trailer + motor install
   const basePrice = selectedModel?.basePrice ?? 0;
-  const totalPrice = basePrice + colorPrice + equipmentTotal + trailerPrice + motorInstallFee;
+  const totalPrice = isPackageBrand && selectedPackageMotor
+    ? selectedPackageMotor.packagePrice + colorPrice
+    : basePrice + colorPrice + equipmentTotal + trailerPrice + motorInstallFee;
 
   const canGoNext = useCallback((): boolean => {
     switch (currentStepName) {
@@ -148,8 +159,11 @@ export function useConfigurator() {
       case "Equipment":
         return true; // Equipment is optional
       case "Trailer":
-        return true; // Trailer is optional
+        return true; // Trailer is optional (or display-only for package)
       case "Motor":
+        if (isPackageBrand) {
+          return !!state.motorId; // Must select a package motor
+        }
         return state.motorOption === "own" || (state.motorOption === "select");
       case "Delivery":
         return state.deliveryType === "pickup" || (state.deliveryType === "delivery" && state.deliveryAddress.trim().length > 0);
@@ -158,7 +172,7 @@ export function useConfigurator() {
       default:
         return false;
     }
-  }, [currentStepName, state]);
+  }, [currentStepName, state, isPackageBrand]);
 
   return {
     state,
@@ -176,6 +190,7 @@ export function useConfigurator() {
     selectedTrailer,
     trailerPrice,
     motorInstallFee,
+    selectedPackageMotor,
     basePrice,
     totalPrice,
     canGoNext,
