@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { ConfiguratorShell } from "@/components/configurator/configurator-shell";
 import type { Metadata } from "next";
 
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function BuildYourBoatPage() {
-  return <ConfiguratorShell />;
+  return (
+    <Suspense>
+      <ConfiguratorShell />
+    </Suspense>
+  );
 }

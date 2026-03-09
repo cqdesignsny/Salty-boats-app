@@ -135,7 +135,7 @@ export default async function BoatDetailPage({ params }: Props) {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-3 mb-8">
-              <Link href="/build-your-boat" className="flex-1">
+              <Link href={`/build-your-boat?brand=${brandSlug}`} className="flex-1">
                 <Button size="lg" className="w-full">
                   Build This Boat
                   <ArrowRight className="w-5 h-5 ml-2" />

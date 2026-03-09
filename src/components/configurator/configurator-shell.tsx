@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import { useConfigurator } from "./use-configurator";
 import { StepIndicator } from "./step-indicator";
 import { BuildSummary } from "./build-summary";
@@ -14,6 +16,7 @@ import { ReviewSubmit } from "./steps/review-submit";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
+import { getBrandBySlug } from "@/lib/data";
 
 export function ConfiguratorShell() {
   const {
@@ -36,6 +39,20 @@ export function ConfiguratorShell() {
     totalPrice,
     canGoNext,
   } = useConfigurator();
+
+  // Auto-select brand from URL query param (e.g., ?brand=stumpnocker)
+  const searchParams = useSearchParams();
+  const didAutoSelect = useRef(false);
+
+  useEffect(() => {
+    if (didAutoSelect.current) return;
+    const brandParam = searchParams.get("brand");
+    if (brandParam && getBrandBySlug(brandParam) && !state.brandSlug) {
+      didAutoSelect.current = true;
+      dispatch({ type: "SET_BRAND", payload: brandParam });
+      dispatch({ type: "NEXT_STEP" });
+    }
+  }, [searchParams, state.brandSlug, dispatch]);
 
   function handleNext() {
     if (canGoNext()) {
