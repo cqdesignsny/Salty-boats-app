@@ -336,8 +336,7 @@ export function WaterCanvas() {
       reduced = e.matches;
       if (e.matches) {
         cancelAnimationFrame(raf);
-        ctx!.fillStyle = "#0c1b3a";
-        ctx!.fillRect(0, 0, W, H);
+        ctx!.clearRect(0, 0, W, H);
       } else {
         tick();
       }
@@ -371,7 +370,7 @@ export function WaterCanvas() {
       aria-hidden="true"
       role="presentation"
     >
-      <canvas ref={canvasRef} className="block w-full h-full" />
+      <canvas ref={canvasRef} className="block w-full h-full opacity-60" />
     </div>
   );
 }
