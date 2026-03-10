@@ -60,12 +60,20 @@ export interface EquipmentOption {
   applicableModelIds: string[];
 }
 
+export interface TrailerAddOn {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+}
+
 export interface Trailer {
   id: string;
   trailerName: string;
   description: string;
   price: number;
   applicableModelIds: string[];
+  addOns?: TrailerAddOn[];
 }
 
 export interface Motor {

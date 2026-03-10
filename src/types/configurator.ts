@@ -5,6 +5,7 @@ export interface ConfiguratorState {
   hullColorId: string | null;
   selectedEquipmentIds: string[];
   trailerId: string | null;
+  selectedTrailerAddOnIds: string[];
   motorOption: "select" | "own" | null;
   motorId: string | null;
   installationOption: "yes" | "no" | null;
@@ -21,6 +22,7 @@ export type ConfiguratorAction =
   | { type: "SET_COLOR"; payload: string }
   | { type: "TOGGLE_EQUIPMENT"; payload: string }
   | { type: "SET_TRAILER"; payload: string | null }
+  | { type: "TOGGLE_TRAILER_ADDON"; payload: string }
   | { type: "SET_MOTOR_OPTION"; payload: "select" | "own" }
   | { type: "SET_MOTOR"; payload: string | null }
   | { type: "SET_INSTALLATION"; payload: "yes" | "no" }

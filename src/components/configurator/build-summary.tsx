@@ -1,7 +1,7 @@
 "use client";
 
 import { formatPrice } from "@/lib/utils";
-import type { BoatModel, HullColor, EquipmentOption, Trailer } from "@/types/database";
+import type { BoatModel, HullColor, EquipmentOption, Trailer, TrailerAddOn } from "@/types/database";
 import type { PackageMotorOption } from "@/lib/data";
 
 interface BuildSummaryProps {
@@ -13,6 +13,8 @@ interface BuildSummaryProps {
   equipmentTotal: number;
   trailer: Trailer | null;
   trailerPrice: number;
+  trailerAddOns: TrailerAddOn[];
+  trailerAddOnTotal: number;
   motorInstallFee: number;
   installationFee: number;
   motorAddOn: number;
@@ -33,6 +35,8 @@ export function BuildSummary({
   equipmentTotal,
   trailer,
   trailerPrice,
+  trailerAddOns,
+  trailerAddOnTotal,
   motorInstallFee,
   installationFee,
   motorAddOn,
@@ -142,6 +146,19 @@ export function BuildSummary({
                 <>+{formatPrice(trailerPrice)}</>
               )}
             </span>
+          </div>
+        )}
+
+        {trailerAddOns.length > 0 && (
+          <div>
+            {trailerAddOns.map((a) => (
+              <div key={a.id} className="flex justify-between mt-1.5">
+                <span className="text-slate-600 text-xs">{a.name}</span>
+                <span className="text-navy text-xs font-medium">
+                  +{formatPrice(a.price)}
+                </span>
+              </div>
+            ))}
           </div>
         )}
 

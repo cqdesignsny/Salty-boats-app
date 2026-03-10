@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Send, CheckCircle, Printer, Download } from "lucide-react";
-import type { BoatModel, HullColor, EquipmentOption, Trailer, Brand } from "@/types/database";
+import type { BoatModel, HullColor, EquipmentOption, Trailer, Brand, TrailerAddOn } from "@/types/database";
 import type { PackageMotorOption } from "@/lib/data";
 
 interface ReviewSubmitProps {
@@ -16,6 +16,8 @@ interface ReviewSubmitProps {
   equipmentTotal: number;
   trailer: Trailer | null;
   trailerPrice: number;
+  trailerAddOns: TrailerAddOn[];
+  trailerAddOnTotal: number;
   motorOption: "select" | "own" | null;
   motorInstallFee: number;
   installationFee: number;
@@ -42,6 +44,8 @@ export function ReviewSubmit({
   equipmentTotal,
   trailer,
   trailerPrice,
+  trailerAddOns,
+  trailerAddOnTotal,
   motorOption,
   motorInstallFee,
   installationFee,
@@ -96,6 +100,7 @@ export function ReviewSubmit({
             ${selectedPackageMotor && selectedPackageMotor.motorPrice > 0 ? `<tr><td style="padding:4px 8px">Motor — ${selectedPackageMotor.label}${selectedPackageMotor.sku ? ` (${selectedPackageMotor.sku})` : ""}</td><td style="padding:4px 8px;text-align:right">${formatPrice(selectedPackageMotor.motorPrice)}</td></tr>` : ""}
             ${selectedPackageMotor && selectedPackageMotor.packagePrice > 0 ? `<tr><td style="padding:4px 8px">Motor — ${selectedPackageMotor.label}</td><td style="padding:4px 8px;text-align:right">Included</td></tr>` : ""}
             ${trailer ? `<tr><td style="padding:4px 8px">${trailer.trailerName}</td><td style="padding:4px 8px;text-align:right">${isPackageBrand ? "Included" : formatPrice(trailer.price)}</td></tr>` : ""}
+            ${trailerAddOns.map((a) => `<tr><td style="padding:4px 8px;color:#64748b">&nbsp;&nbsp;${a.name}</td><td style="padding:4px 8px;text-align:right">${formatPrice(a.price)}</td></tr>`).join("")}
             ${motorOption && !selectedPackageMotor ? `<tr><td style="padding:4px 8px">Motor — ${motorOption === "own" ? "Customer Supplied" : "Contact for options"}</td><td style="padding:4px 8px;text-align:right">${motorInstallFee > 0 ? formatPrice(motorInstallFee) + " install" : "—"}</td></tr>` : ""}
             ${installationFee > 0 ? `<tr><td style="padding:4px 8px">Motor Installation</td><td style="padding:4px 8px;text-align:right">${formatPrice(installationFee)}</td></tr>` : ""}
             <tr><td style="padding:4px 8px">Delivery</td><td style="padding:4px 8px;text-align:right">${deliveryType === "pickup" ? "Pickup at Salty Boats" : "Delivery"}</td></tr>
@@ -140,6 +145,7 @@ export function ReviewSubmit({
           hullColorId: color.id,
           selectedEquipment: equipment.map((e) => e.id),
           trailerId: trailer?.id ?? null,
+          trailerAddOns: trailerAddOns.map((a) => ({ id: a.id, name: a.name, price: a.price })),
           motorOption,
           motorId: selectedPackageMotor?.id ?? null,
           motorLabel: selectedPackageMotor?.label ?? null,
@@ -240,6 +246,15 @@ export function ReviewSubmit({
               <p className="font-semibold text-navy">
                 {trailer.trailerName} — {formatPrice(trailer.price)}
               </p>
+              {trailerAddOns.length > 0 && (
+                <div className="mt-1 space-y-0.5">
+                  {trailerAddOns.map((a) => (
+                    <p key={a.id} className="text-xs text-navy">
+                      + {a.name} — <span className="text-ocean">{formatPrice(a.price)}</span>
+                    </p>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 

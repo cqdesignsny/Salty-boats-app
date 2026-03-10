@@ -503,6 +503,14 @@ export const trailers: Trailer[] = [
     description: "Continental Trailer JB-1612 Galvanized Frame with Galvanized torsion axel components.",
     price: 1690,
     applicableModelIds: ["stumpnocker-164-skiff-tiller"],
+    addOns: [
+      {
+        id: "jb-1612-side-guides",
+        name: "Aluminum Side Guides with PVC Covers",
+        description: "Add aluminum side guides with PVC covers for easier loading.",
+        price: 195,
+      },
+    ],
   },
 ];
 
@@ -709,7 +717,7 @@ export const inventoryItems: InventoryItem[] = [
       "New Stumpnocker 164 Skiff Tiller in Aqua with nav lights and switch panel pre-installed. Hull only.",
     price: 7906,
     imageUrl:
-      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b8740d7c8a8d98e08902_relume-573164.jpeg",
+      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920ae5add96ece37b4eae32_relume-570454.jpeg",
     galleryImages: [],
     year: 2025,
     condition: "new",
@@ -726,7 +734,8 @@ export const inventoryItems: InventoryItem[] = [
       "Our flagship Stumpnocker 174 in Sea Foam green. Fully loaded with 24V switch panel, nav lights, bilge pump, and live well kit. Hull only.",
     price: 12304,
     imageUrl:
-      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920ae5add96ece37b4eae32_relume-570454.jpeg",
+
+      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b8740d7c8a8d98e08902_relume-573164.jpeg",
     galleryImages: [],
     year: 2025,
     condition: "new",

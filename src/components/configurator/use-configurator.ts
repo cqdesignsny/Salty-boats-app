@@ -24,6 +24,7 @@ const initialState: ConfiguratorState = {
   hullColorId: null,
   selectedEquipmentIds: [],
   trailerId: null,
+  selectedTrailerAddOnIds: [],
   motorOption: null,
   motorId: null,
   installationOption: null,
@@ -46,6 +47,7 @@ function reducer(state: ConfiguratorState, action: ConfiguratorAction): Configur
         hullColorId: null,
         selectedEquipmentIds: [],
         trailerId: null,
+        selectedTrailerAddOnIds: [],
         motorOption: null,
         motorId: null,
       };
@@ -56,6 +58,7 @@ function reducer(state: ConfiguratorState, action: ConfiguratorAction): Configur
         hullColorId: null,
         selectedEquipmentIds: [],
         trailerId: null,
+        selectedTrailerAddOnIds: [],
         motorOption: null,
         motorId: null,
       };
@@ -72,7 +75,17 @@ function reducer(state: ConfiguratorState, action: ConfiguratorAction): Configur
       };
     }
     case "SET_TRAILER":
-      return { ...state, trailerId: action.payload };
+      return { ...state, trailerId: action.payload, selectedTrailerAddOnIds: [] };
+    case "TOGGLE_TRAILER_ADDON": {
+      const addOnIds = state.selectedTrailerAddOnIds;
+      const exists = addOnIds.includes(action.payload);
+      return {
+        ...state,
+        selectedTrailerAddOnIds: exists
+          ? addOnIds.filter((id) => id !== action.payload)
+          : [...addOnIds, action.payload],
+      };
+    }
     case "SET_MOTOR_OPTION":
       return { ...state, motorOption: action.payload, motorId: null, installationOption: null };
     case "SET_MOTOR":
@@ -137,6 +150,12 @@ export function useConfigurator() {
 
   const trailerPrice = selectedTrailer?.price ?? 0;
 
+  // Trailer add-ons (e.g., side guides for JB-1612)
+  const selectedTrailerAddOns = (selectedTrailer?.addOns ?? []).filter((a) =>
+    state.selectedTrailerAddOnIds.includes(a.id)
+  );
+  const trailerAddOnTotal = selectedTrailerAddOns.reduce((sum, a) => sum + a.price, 0);
+
   // Package/pick-your-power motor selection
   const selectedPackageMotor = state.motorId
     ? packageMotorOptions.find((m) => m.id === state.motorId) ?? null
@@ -162,7 +181,7 @@ export function useConfigurator() {
     const motorCost = selectedPackageMotor
       ? selectedPackageMotor.motorPrice  // Pick-your-power motor
       : 0;
-    return basePrice + colorPrice + equipmentTotal + trailerPrice + motorCost + installationFee;
+    return basePrice + colorPrice + equipmentTotal + trailerPrice + trailerAddOnTotal + motorCost + installationFee;
   })();
 
   const canGoNext = useCallback((): boolean => {
@@ -217,6 +236,8 @@ export function useConfigurator() {
     equipmentTotal,
     selectedTrailer,
     trailerPrice,
+    selectedTrailerAddOns,
+    trailerAddOnTotal,
     motorInstallFee,
     installationFee,
     isSaltySkiffs,

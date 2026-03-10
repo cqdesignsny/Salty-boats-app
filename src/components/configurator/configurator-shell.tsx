@@ -35,6 +35,8 @@ export function ConfiguratorShell() {
     equipmentTotal,
     selectedTrailer,
     trailerPrice,
+    selectedTrailerAddOns,
+    trailerAddOnTotal,
     motorInstallFee,
     installationFee,
     isSaltySkiffs,
@@ -120,6 +122,8 @@ export function ConfiguratorShell() {
             selected={state.trailerId}
             onSelect={(id) => dispatch({ type: "SET_TRAILER", payload: id })}
             isPackageBrand={isPackageBrand}
+            selectedAddOnIds={state.selectedTrailerAddOnIds}
+            onToggleAddOn={(id) => dispatch({ type: "TOGGLE_TRAILER_ADDON", payload: id })}
           />
         );
 
@@ -176,6 +180,8 @@ export function ConfiguratorShell() {
             equipmentTotal={equipmentTotal}
             trailer={selectedTrailer}
             trailerPrice={trailerPrice}
+            trailerAddOns={selectedTrailerAddOns}
+            trailerAddOnTotal={trailerAddOnTotal}
             motorOption={state.motorOption}
             motorInstallFee={motorInstallFee}
             installationFee={installationFee}
@@ -263,6 +269,8 @@ export function ConfiguratorShell() {
                 equipmentTotal={equipmentTotal}
                 trailer={selectedTrailer}
                 trailerPrice={trailerPrice}
+                trailerAddOns={selectedTrailerAddOns}
+                trailerAddOnTotal={trailerAddOnTotal}
                 motorInstallFee={motorInstallFee}
                 installationFee={installationFee}
                 motorAddOn={motorAddOn}

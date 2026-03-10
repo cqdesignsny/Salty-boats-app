@@ -3,16 +3,18 @@
 import { cn } from "@/lib/utils";
 import { formatPrice } from "@/lib/utils";
 import { getTrailersForModel } from "@/lib/data";
-import { Check, PackageCheck } from "lucide-react";
+import { Check, PackageCheck, Plus } from "lucide-react";
 
 interface TrailerSelectProps {
   modelId: string;
   selected: string | null;
   onSelect: (trailerId: string | null) => void;
   isPackageBrand?: boolean;
+  selectedAddOnIds?: string[];
+  onToggleAddOn?: (addOnId: string) => void;
 }
 
-export function TrailerSelect({ modelId, selected, onSelect, isPackageBrand }: TrailerSelectProps) {
+export function TrailerSelect({ modelId, selected, onSelect, isPackageBrand, selectedAddOnIds = [], onToggleAddOn }: TrailerSelectProps) {
   const availableTrailers = getTrailersForModel(modelId);
 
   // Package brand — display-only trailer (included in package)
@@ -110,46 +112,103 @@ export function TrailerSelect({ modelId, selected, onSelect, isPackageBrand }: T
           </div>
         </button>
 
-        {availableTrailers.map((trailer) => (
-          <button
-            key={trailer.id}
-            onClick={() => onSelect(trailer.id)}
-            className={cn(
-              "w-full rounded-xl border-2 p-4 transition-all duration-200 text-left cursor-pointer",
-              selected === trailer.id
-                ? "border-ocean bg-ocean/5 ring-2 ring-ocean/30"
-                : "border-slate-200 hover:border-ocean/50"
-            )}
-          >
-            <div className="flex items-start gap-3">
-              <div
+        {availableTrailers.map((trailer) => {
+          const isSelected = selected === trailer.id;
+          return (
+            <div key={trailer.id}>
+              <button
+                onClick={() => onSelect(trailer.id)}
                 className={cn(
-                  "w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5",
-                  selected === trailer.id
-                    ? "border-ocean bg-ocean"
-                    : "border-slate-300"
+                  "w-full rounded-xl border-2 p-4 transition-all duration-200 text-left cursor-pointer",
+                  isSelected
+                    ? "border-ocean bg-ocean/5 ring-2 ring-ocean/30"
+                    : "border-slate-200 hover:border-ocean/50"
                 )}
               >
-                {selected === trailer.id && (
-                  <Check className="w-3 h-3 text-white" />
-                )}
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <h4 className="font-semibold text-navy text-sm">
-                    {trailer.trailerName}
-                  </h4>
-                  <span className="text-ocean font-bold">
-                    {formatPrice(trailer.price)}
-                  </span>
+                <div className="flex items-start gap-3">
+                  <div
+                    className={cn(
+                      "w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5",
+                      isSelected
+                        ? "border-ocean bg-ocean"
+                        : "border-slate-300"
+                    )}
+                  >
+                    {isSelected && (
+                      <Check className="w-3 h-3 text-white" />
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-semibold text-navy text-sm">
+                        {trailer.trailerName}
+                      </h4>
+                      <span className="text-ocean font-bold">
+                        {formatPrice(trailer.price)}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-500 mt-1">
+                      {trailer.description}
+                    </p>
+                  </div>
                 </div>
-                <p className="text-xs text-slate-500 mt-1">
-                  {trailer.description}
-                </p>
-              </div>
+              </button>
+
+              {/* Trailer add-ons (shown when this trailer is selected) */}
+              {isSelected && trailer.addOns && trailer.addOns.length > 0 && (
+                <div className="mt-3 ml-8 space-y-2">
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider flex items-center gap-1">
+                    <Plus className="w-3 h-3" />
+                    Available Add-Ons
+                  </p>
+                  {trailer.addOns.map((addOn) => {
+                    const addOnSelected = selectedAddOnIds.includes(addOn.id);
+                    return (
+                      <button
+                        key={addOn.id}
+                        onClick={() => onToggleAddOn?.(addOn.id)}
+                        className={cn(
+                          "w-full rounded-lg border-2 p-3 transition-all duration-200 text-left cursor-pointer",
+                          addOnSelected
+                            ? "border-ocean bg-ocean/5 ring-1 ring-ocean/30"
+                            : "border-slate-200 hover:border-ocean/50"
+                        )}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div
+                            className={cn(
+                              "w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5",
+                              addOnSelected
+                                ? "border-ocean bg-ocean"
+                                : "border-slate-300"
+                            )}
+                          >
+                            {addOnSelected && (
+                              <Check className="w-2.5 h-2.5 text-white" />
+                            )}
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between">
+                              <h5 className="font-medium text-navy text-sm">
+                                {addOn.name}
+                              </h5>
+                              <span className="text-ocean font-bold text-sm">
+                                +{formatPrice(addOn.price)}
+                              </span>
+                            </div>
+                            <p className="text-xs text-slate-500 mt-0.5">
+                              {addOn.description}
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          </button>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
