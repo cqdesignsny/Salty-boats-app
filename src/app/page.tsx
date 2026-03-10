@@ -12,8 +12,15 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="relative bg-navy text-white overflow-hidden">
+        <Image
+          src="/salty-boats-hero.png"
+          alt=""
+          fill
+          className="object-cover opacity-30"
+          priority
+        />
         <WaterCanvas />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36">
           <div className="max-w-3xl">
             <p className="text-ocean font-semibold text-sm uppercase tracking-widest mb-4">
               Florida&apos;s Factory-Direct Boat Builder
