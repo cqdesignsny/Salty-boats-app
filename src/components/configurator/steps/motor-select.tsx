@@ -72,7 +72,7 @@ export function MotorSelect({
                   Yes, I&apos;d like to purchase a motor
                 </h4>
                 <p className="text-xs text-slate-500 mt-0.5">
-                  Choose from our Suzuki outboard motors — installed and ready to go.
+                  Choose from our Suzuki outboard motors — fuel tank, fuel line, and propeller included.
                 </p>
               </div>
             </div>
@@ -114,7 +114,7 @@ export function MotorSelect({
             <div className="border-t border-slate-200 pt-6 mb-4">
               <h3 className="text-lg font-semibold text-navy mb-1">Pick Your Power</h3>
               <p className="text-xs text-slate-400 mb-4 italic">
-                All motors include fuel tank, fuel line, propeller — installed and ready to go.
+                All motors include fuel tank, fuel line, and propeller. Installation is available on the next step.
               </p>
             </div>
 
@@ -166,7 +166,7 @@ export function MotorSelect({
 
             <div className="bg-ocean/5 rounded-xl p-4 border border-ocean/20 mt-6">
               <p className="text-sm text-navy">
-                <span className="font-semibold">Pick Your Power:</span> Motor price is added to your build total. All motors come installed with fuel tank, fuel line, and propeller.
+                <span className="font-semibold">Pick Your Power:</span> Motor price is added to your build total. All motors include fuel tank, fuel line, and propeller. Motors do not come installed — you can add installation on the next step.
               </p>
             </div>
           </>
