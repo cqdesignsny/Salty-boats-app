@@ -156,6 +156,10 @@ export function useConfigurator() {
       // Pick-your-power (Salty Skiffs): base boat + motor add-on
       return basePrice + selectedPackageMotor.motorPrice + colorPrice;
     }
+    // Pick-your-power with no motor: boat + color only
+    if (isPackageBrand && state.motorOption === "own") {
+      return basePrice + colorPrice;
+    }
     // Stumpnocker: base + color + equipment + trailer + motor install
     return basePrice + colorPrice + equipmentTotal + trailerPrice + motorInstallFee;
   })();
@@ -174,7 +178,9 @@ export function useConfigurator() {
         return true; // Trailer is optional (or display-only for package)
       case "Motor":
         if (isPackageBrand) {
-          return !!state.motorId; // Must select a package motor
+          // Pick-your-power: can proceed with no motor ("own") or with a selected motor
+          if (state.motorOption === "own") return true;
+          return !!state.motorId;
         }
         return state.motorOption === "own" || (state.motorOption === "select");
       case "Delivery":

@@ -39,8 +39,11 @@ Interactive multi-step wizard for building custom boats:
 7. **Delivery** — Pickup or delivery with address form
 8. **Review & Submit** — Full build summary, print/download quote, customer info, and submission
 
-**Package brands (Palmetto Bay, Salty Skiffs) — 5 steps:**
-Brand → Boat → Color → Delivery → Review (skip equipment, trailer, and motor steps)
+**Package brands (Palmetto Bay, Salty Skiffs) — 7 steps:**
+Brand → Boat → Color → Motor → Trailer → Delivery → Review
+
+- **Palmetto Bay (all-in):** Motor step shows included motor(s), trailer shows as "Included"
+- **Salty Skiffs (pick your power):** 12 Suzuki motor options ($975–$6,095 add-on), trailer included
 
 **Smart features:**
 - Brand auto-selection via URL query param (`?brand=stumpnocker`)
@@ -127,7 +130,7 @@ All product data is defined as TypeScript constants in `src/lib/data.ts`:
 - **8 hull colors** — with hex codes and per-model pricing
 - **Equipment options** — categorized (Electrical, Plumbing, Accessories) with per-model applicability
 - **Trailer options** — with per-model pricing and applicability
-- **Motor options** — per-model with package pricing
+- **Motor options** — dual pricing system: all-in package (Palmetto Bay) and additive pick-your-power (Salty Skiffs, 12 Suzuki motors)
 - **~8 inventory items** — in-stock boats with full details
 
 ## Boat Lineup
@@ -152,6 +155,24 @@ All product data is defined as TypeScript constants in `src/lib/data.ts`:
 |-------|---------------|
 | 14S | $6,000 |
 | 14F | $10,500 |
+
+#### Salty Skiffs Motor Options (12 Suzuki outboards)
+| Motor | HP | SKU | Add-on Price |
+|-------|-----|-----|-------------|
+| Suzuki 2.5 HP Tiller | 2.5 | DF2.5L5 | $975 |
+| Suzuki 4 HP Tiller | 4 | DF4AL5 | $1,575 |
+| Suzuki 6 HP Tiller | 6 | DF6AL5 | $1,765 |
+| Suzuki 9.9B HP E-Start Tiller + Power Tilt | 9.9 | DF9.9BETL5 | $3,295 |
+| Suzuki 15 HP E-Start Tiller + Power Tilt | 15 | DF15AEHTL5 | $3,195 |
+| Suzuki 20 HP E-Start Tiller + Power Tilt | 20 | DF20AEHTL5 | $3,495 |
+| Suzuki 20 HP E-Start Tiller + Power Tilt (White) | 20 | DF20AEHTLW5 | $3,595 |
+| Suzuki 25 HP E-Start Tiller + Power Trim & Tilt | 25 | DF25AETL5 | $4,195 |
+| Suzuki 25 HP E-Start Tiller + PT&T (White) | 25 | DF25AETLW5 | $4,295 |
+| Suzuki 30 HP E-Start Tiller + Power Trim & Tilt | 30 | DF30ATHL5 | $5,895 |
+| Suzuki 30 HP E-Start Tiller + PT&T (White) | 30 | DF30ATHLW5 | $6,095 |
+| Suzuki 30 HP 2nd Gen E-Start Tiller + PT&T | 30 | DF30ATL5 | $5,295 |
+
+> Motor price is added to the base boat + trailer price. All motors include fuel tank, fuel line, and propeller — installed and ready to go.
 
 ## Getting Started
 
