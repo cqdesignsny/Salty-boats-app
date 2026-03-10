@@ -42,7 +42,6 @@ export function BuildSummary({
   isPackageBrand,
 }: BuildSummaryProps) {
   // Determine which price label to show for the base line
-  const isPickYourPower = selectedPackageMotor && selectedPackageMotor.motorPrice > 0;
   const isAllInPackage = selectedPackageMotor && selectedPackageMotor.packagePrice > 0;
 
   return (
@@ -67,13 +66,7 @@ export function BuildSummary({
         {model && (
           <div className="flex justify-between">
             <span className="text-slate-500">
-              {isAllInPackage
-                ? "Package Price"
-                : isPickYourPower
-                ? "Boat + Trailer"
-                : isPackageBrand
-                ? "Package Price"
-                : "Base Price"}
+              {isAllInPackage ? "Package Price" : "Base Price"}
             </span>
             <span className="font-medium text-navy">
               {isAllInPackage
@@ -91,7 +84,7 @@ export function BuildSummary({
               {colorPrice > 0 && (
                 <span className="text-ocean ml-1">+{formatPrice(colorPrice)}</span>
               )}
-              {colorPrice === 0 && !color.isStandard && isPackageBrand && (
+              {colorPrice === 0 && !color.isStandard && (
                 <span className="text-sea-green ml-1">FREE</span>
               )}
             </span>
@@ -115,7 +108,7 @@ export function BuildSummary({
         )}
 
         {/* Motor — pick your power (Salty Skiffs) */}
-        {selectedPackageMotor && isPickYourPower && (
+        {selectedPackageMotor && selectedPackageMotor.motorPrice > 0 && (
           <div className="flex justify-between border-t border-slate-100 pt-3">
             <div className="min-w-0 flex-1 pr-2">
               <span className="text-slate-500">Motor</span>

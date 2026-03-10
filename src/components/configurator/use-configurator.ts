@@ -133,35 +133,30 @@ export function useConfigurator() {
 
   const trailerPrice = selectedTrailer?.price ?? 0;
 
-  // Motor install fee ($85 if motor selected — Stumpnocker only)
-  const motorInstallFee = !isPackageBrand && state.motorOption === "select" && state.motorId ? 85 : 0;
-
-  // Package motor selection
+  // Package/pick-your-power motor selection
   const selectedPackageMotor = state.motorId
     ? packageMotorOptions.find((m) => m.id === state.motorId) ?? null
     : null;
 
+  // Motor install fee ($85 if "contact for options" — Stumpnocker only)
+  const motorInstallFee = !isPackageBrand && state.motorOption === "select" && state.motorId && !selectedPackageMotor ? 85 : 0;
+
   // Pricing varies by brand type:
   // - Palmetto Bay (all-in): packagePrice includes boat + motor + trailer + equipment
-  // - Salty Skiffs (pick-your-power): base boat/trailer + motor add-on
+  // - Salty Skiffs (pick-your-power motor): base + color + equipment + trailer + motorPrice
   // - Stumpnocker: base + color + equipment + trailer + motor install
   const basePrice = selectedModel?.basePrice ?? 0;
   const motorAddOn = selectedPackageMotor?.motorPrice ?? 0;
   const totalPrice = (() => {
-    if (isPackageBrand && selectedPackageMotor) {
-      if (selectedPackageMotor.packagePrice > 0) {
-        // All-in package (Palmetto Bay): packagePrice includes everything
-        return selectedPackageMotor.packagePrice + colorPrice;
-      }
-      // Pick-your-power (Salty Skiffs): base boat + motor add-on
-      return basePrice + selectedPackageMotor.motorPrice + colorPrice;
+    if (isPackageBrand && selectedPackageMotor && selectedPackageMotor.packagePrice > 0) {
+      // All-in package (Palmetto Bay): packagePrice includes everything
+      return selectedPackageMotor.packagePrice + colorPrice;
     }
-    // Pick-your-power with no motor: boat + color only
-    if (isPackageBrand && state.motorOption === "own") {
-      return basePrice + colorPrice;
-    }
-    // Stumpnocker: base + color + equipment + trailer + motor install
-    return basePrice + colorPrice + equipmentTotal + trailerPrice + motorInstallFee;
+    // Standard build: base + color + equipment + trailer + motor cost
+    const motorCost = selectedPackageMotor
+      ? selectedPackageMotor.motorPrice  // Pick-your-power motor (Salty Skiffs)
+      : motorInstallFee;                 // Stumpnocker $85 install (or $0)
+    return basePrice + colorPrice + equipmentTotal + trailerPrice + motorCost;
   })();
 
   const canGoNext = useCallback((): boolean => {
@@ -178,11 +173,16 @@ export function useConfigurator() {
         return true; // Trailer is optional (or display-only for package)
       case "Motor":
         if (isPackageBrand) {
-          // Pick-your-power: can proceed with no motor ("own") or with a selected motor
-          if (state.motorOption === "own") return true;
-          return !!state.motorId;
+          return !!state.motorId; // Palmetto Bay: must select a package motor
         }
-        return state.motorOption === "own" || (state.motorOption === "select");
+        if (state.motorOption === "own") return true; // No motor needed
+        if (state.motorOption === "select") {
+          // If model has selectable motors (Salty Skiffs), must pick one
+          const motors = state.modelId ? getPackageMotorsForModel(state.modelId) : [];
+          if (motors.some((m) => m.motorPrice > 0)) return !!state.motorId;
+          return true; // Stumpnocker: "contact for options" is enough
+        }
+        return false;
       case "Delivery":
         return state.deliveryType === "pickup" || (state.deliveryType === "delivery" && state.deliveryAddress.trim().length > 0);
       case "Review":

@@ -88,7 +88,7 @@ export function ReviewSubmit({
         <table>
           <thead><tr><th>Item</th><th style="text-align:right">Price</th></tr></thead>
           <tbody>
-            <tr><td style="padding:4px 8px">${model.modelName} (${selectedPackageMotor && selectedPackageMotor.motorPrice > 0 ? "Boat + Trailer" : isPackageBrand && motorOption === "own" ? "Boat + Trailer" : isPackageBrand ? "Package" : "Base"})</td><td style="padding:4px 8px;text-align:right">${selectedPackageMotor && selectedPackageMotor.packagePrice > 0 ? formatPrice(selectedPackageMotor.packagePrice) : formatPrice(model.basePrice)}</td></tr>
+            <tr><td style="padding:4px 8px">${model.modelName} (${isPackageBrand && selectedPackageMotor && selectedPackageMotor.packagePrice > 0 ? "Package" : "Base"})</td><td style="padding:4px 8px;text-align:right">${selectedPackageMotor && selectedPackageMotor.packagePrice > 0 ? formatPrice(selectedPackageMotor.packagePrice) : formatPrice(model.basePrice)}</td></tr>
             <tr><td style="padding:4px 8px">Hull Color — ${color.colorName}</td><td style="padding:4px 8px;text-align:right">${colorPrice > 0 ? formatPrice(colorPrice) : "Included"}</td></tr>
             ${equipmentLines}
             ${selectedPackageMotor && selectedPackageMotor.motorPrice > 0 ? `<tr><td style="padding:4px 8px">Motor — ${selectedPackageMotor.label}${selectedPackageMotor.sku ? ` (${selectedPackageMotor.sku})` : ""}</td><td style="padding:4px 8px;text-align:right">${formatPrice(selectedPackageMotor.motorPrice)}</td></tr>` : ""}
@@ -196,12 +196,6 @@ export function ReviewSubmit({
           <div>
             <span className="text-slate-500">
               {selectedPackageMotor && selectedPackageMotor.packagePrice > 0
-                ? "Package Price"
-                : selectedPackageMotor && selectedPackageMotor.motorPrice > 0
-                ? "Boat + Trailer"
-                : isPackageBrand && motorOption === "own"
-                ? "Boat + Trailer"
-                : isPackageBrand
                 ? "Package Price"
                 : "Base Price"}
             </span>

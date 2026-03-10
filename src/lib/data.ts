@@ -32,11 +32,11 @@ export const brands: Brand[] = [
     slug: "salty-skiffs",
     tagline: "Simple. Affordable. Ready to Fish.",
     description:
-      "Salty Skiffs are compact, affordable fishing skiffs delivered as complete packages. Motor, trailer, and everything you need — included in one straightforward price.",
+      "Salty Skiffs are compact, affordable fishing skiffs built for the water. Pick your motor, choose a trailer, and customize your build.",
     logoUrl: "/images/logos/salty-skiffs-logo.png",
     heroImageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84ce5c1e21665aa3b73_relume-571026.jpeg",
-    isPackageBrand: true,
+    isPackageBrand: false,
   },
 ];
 
@@ -359,7 +359,7 @@ export function getColorPrice(modelId: string, colorId: string): number {
   if (modelId.includes("164")) return 650;
   if (modelId.includes("174")) return 750;
 
-  // Package brands — free
+  // Salty Skiffs and other models — free color
   return 0;
 }
 
