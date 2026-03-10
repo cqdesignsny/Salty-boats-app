@@ -222,7 +222,11 @@ export function ConfiguratorShell() {
       {/* Header */}
       <div className="bg-white border-b border-slate-200 sticky top-16 lg:top-20 z-30">
         <div className="max-w-6xl mx-auto px-4 py-4">
-          <StepIndicator steps={steps} currentStep={state.step} />
+          <StepIndicator
+            steps={steps}
+            currentStep={state.step}
+            onGoToStep={(step) => dispatch({ type: "GO_TO_STEP", payload: step })}
+          />
         </div>
       </div>
 
@@ -235,9 +239,9 @@ export function ConfiguratorShell() {
               {renderStep()}
             </div>
 
-            {/* Navigation buttons */}
+            {/* Navigation buttons — mobile/tablet only (desktop uses build summary nav) */}
             {currentStepName !== "Review" && (
-              <div className="flex justify-between mt-6">
+              <div className="flex justify-between mt-6 lg:hidden">
                 <Button
                   variant="outline"
                   onClick={handleBack}
@@ -282,6 +286,12 @@ export function ConfiguratorShell() {
                 basePrice={basePrice}
                 totalPrice={totalPrice}
                 isPackageBrand={isPackageBrand}
+                onNext={handleNext}
+                onBack={handleBack}
+                canGoNext={canGoNext()}
+                isFirstStep={isFirstStep}
+                isLastStep={isLastStep}
+                showNav={currentStepName !== "Review"}
               />
             </div>
           )}

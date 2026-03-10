@@ -1,6 +1,8 @@
 "use client";
 
 import { formatPrice } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { BoatModel, HullColor, EquipmentOption, Trailer, TrailerAddOn } from "@/types/database";
 import type { PackageMotorOption } from "@/lib/data";
 
@@ -24,6 +26,12 @@ interface BuildSummaryProps {
   basePrice: number;
   totalPrice: number;
   isPackageBrand: boolean;
+  onNext?: () => void;
+  onBack?: () => void;
+  canGoNext?: boolean;
+  isFirstStep?: boolean;
+  isLastStep?: boolean;
+  showNav?: boolean;
 }
 
 export function BuildSummary({
@@ -46,6 +54,12 @@ export function BuildSummary({
   basePrice,
   totalPrice,
   isPackageBrand,
+  onNext,
+  onBack,
+  canGoNext = false,
+  isFirstStep = false,
+  isLastStep = false,
+  showNav = false,
 }: BuildSummaryProps) {
   // Determine which price label to show for the base line
   const isAllInPackage = selectedPackageMotor && selectedPackageMotor.packagePrice > 0;
@@ -210,6 +224,30 @@ export function BuildSummary({
           </p>
         )}
       </div>
+
+      {/* Navigation buttons */}
+      {showNav && (
+        <div className="flex justify-between mt-4 pt-4 border-t border-slate-200">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onBack}
+            disabled={isFirstStep}
+            className={isFirstStep ? "invisible" : ""}
+          >
+            <ChevronLeft className="w-4 h-4 mr-1" />
+            Back
+          </Button>
+          <Button
+            size="sm"
+            onClick={onNext}
+            disabled={!canGoNext}
+          >
+            {isLastStep ? "Review Build" : "Next"}
+            <ChevronRight className="w-4 h-4 ml-1" />
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
