@@ -474,7 +474,7 @@ export const trailers: Trailer[] = [
     description:
       "Aluminum / Alum Side Guides w/ PVC Covers / Tongue Jack / Galv Hubs / 2 Inch Coupler / Bow Bunk Board / 12b Tires / Bow Safety Chain.",
     price: 1990,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
   },
   {
     id: "as1830-2400",
