@@ -146,7 +146,7 @@ export function ConfiguratorShell() {
             onSetOption={(opt) =>
               dispatch({ type: "SET_INSTALLATION", payload: opt })
             }
-            hasMotor={state.motorOption === "select" && !!state.motorId}
+            hasMotor={state.motorOption === "select"}
           />
         );
 

@@ -142,16 +142,15 @@ export function useConfigurator() {
     ? packageMotorOptions.find((m) => m.id === state.motorId) ?? null
     : null;
 
-  // Motor install fee ($85 if "contact for options" — Stumpnocker only)
-  const motorInstallFee = !isPackageBrand && state.motorOption === "select" && state.motorId && !selectedPackageMotor ? 85 : 0;
+  // Motor install fee (legacy — now handled by Installation step)
+  const motorInstallFee = 0;
 
-  // Salty Skiffs motor installation fee ($250)
-  const installationFee = isSaltySkiffs && state.installationOption === "yes" ? 250 : 0;
+  // Motor installation fee ($250 — Stumpnocker and Salty Skiffs)
+  const installationFee = !isPackageBrand && state.installationOption === "yes" ? 250 : 0;
 
   // Pricing varies by brand type:
-  // - Palmetto Bay (all-in): packagePrice includes boat + motor + trailer + equipment
-  // - Salty Skiffs: base + color + trailer + motorPrice + installation
-  // - Stumpnocker: base + color + equipment + trailer + motor install
+  // - Palmetto Bay (all-in): packagePrice includes boat + motor + trailer + equipment + installation
+  // - Stumpnocker & Salty Skiffs: base + color + equipment + trailer + motor cost + installation
   const basePrice = selectedModel?.basePrice ?? 0;
   const motorAddOn = selectedPackageMotor?.motorPrice ?? 0;
   const totalPrice = (() => {
@@ -161,8 +160,8 @@ export function useConfigurator() {
     }
     // Standard build: base + color + equipment + trailer + motor cost + installation
     const motorCost = selectedPackageMotor
-      ? selectedPackageMotor.motorPrice  // Pick-your-power motor (Salty Skiffs)
-      : motorInstallFee;                 // Stumpnocker $85 install (or $0)
+      ? selectedPackageMotor.motorPrice  // Pick-your-power motor
+      : 0;
     return basePrice + colorPrice + equipmentTotal + trailerPrice + motorCost + installationFee;
   })();
 

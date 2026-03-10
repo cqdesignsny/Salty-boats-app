@@ -42,6 +42,7 @@ export const STUMPNOCKER_STEPS = [
   "Equipment",
   "Trailer",
   "Motor",
+  "Installation",
   "Delivery",
   "Review",
 ] as const;
