@@ -554,8 +554,8 @@ export const packageMotorOptions: PackageMotorOption[] = [
     motorPrice: 0,
     applicableModelIds: ["palmetto-1701-cc"],
   },
-  // ── Salty Skiffs — Pick Your Power (12 Suzuki motors, additive pricing) ──
-  // All apply to both 14S and 14F. All include fuel tank, fuel line, propeller — installed.
+  // ── Salty Skiffs — Pick Your Power (10 Suzuki motors up to 25HP, additive pricing) ──
+  // All apply to both 14S and 14F. Installation available as separate step.
   {
     id: "salty-df2-5l5",
     sku: "DF2.5L5",
@@ -656,25 +656,26 @@ export const packageMotorOptions: PackageMotorOption[] = [
     motorPrice: 5280,
     applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
   },
+  // ── Stumpnocker — 30 HP Suzuki motors ──
   {
-    id: "salty-df30athl5",
+    id: "stump-df30athl5",
     sku: "DF30ATHL5",
     label: "Suzuki 30 HP — Electric Start, Power Trim & Tilt",
     description: "Electric start · Power trim & tilt · Tiller handle · 20\" shaft",
     horsepower: 30,
     packagePrice: 0,
     motorPrice: 5945,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+    applicableModelIds: ["stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
   {
-    id: "salty-df30athlw5",
+    id: "stump-df30athlw5",
     sku: "DF30ATHLW5",
     label: "Suzuki 30 HP — Electric Start, Power Trim & Tilt (White)",
     description: "Electric start · Power trim & tilt · Tiller handle · 20\" shaft · White cowling",
     horsepower: 30,
     packagePrice: 0,
     motorPrice: 6095,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+    applicableModelIds: ["stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
 ];
 
