@@ -69,6 +69,12 @@ export function BuildSummary({
       <h3 className="font-bold text-navy text-lg mb-4">Build Summary</h3>
 
       <div className="space-y-3 text-sm">
+        {!brand && !model && (
+          <p className="text-slate-400 text-sm">
+            Select a brand to start building your boat.
+          </p>
+        )}
+
         {brand && (
           <div className="flex justify-between">
             <span className="text-slate-500">Brand</span>

@@ -215,7 +215,7 @@ export function ConfiguratorShell() {
 
   const isFirstStep = state.step === 0;
   const isLastStep = state.step === totalSteps - 1;
-  const showSummary = state.step > 0 && selectedModel;
+  const showSummary = true;
 
   return (
     <div className="min-h-screen bg-slate-50 pb-20 lg:pb-0">
