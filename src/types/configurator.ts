@@ -7,6 +7,7 @@ export interface ConfiguratorState {
   trailerId: string | null;
   motorOption: "select" | "own" | null;
   motorId: string | null;
+  installationOption: "yes" | "no" | null;
   deliveryType: "pickup" | "delivery" | null;
   deliveryAddress: string;
   customerName: string;
@@ -22,6 +23,7 @@ export type ConfiguratorAction =
   | { type: "SET_TRAILER"; payload: string | null }
   | { type: "SET_MOTOR_OPTION"; payload: "select" | "own" }
   | { type: "SET_MOTOR"; payload: string | null }
+  | { type: "SET_INSTALLATION"; payload: "yes" | "no" }
   | { type: "SET_DELIVERY_TYPE"; payload: "pickup" | "delivery" }
   | { type: "SET_DELIVERY_ADDRESS"; payload: string }
   | { type: "SET_CUSTOMER_NAME"; payload: string }
@@ -50,6 +52,7 @@ export const SALTY_SKIFFS_STEPS = [
   "Color",
   "Trailer",
   "Motor",
+  "Installation",
   "Delivery",
   "Review",
 ] as const;

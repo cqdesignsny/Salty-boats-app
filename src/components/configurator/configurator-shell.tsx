@@ -11,6 +11,7 @@ import { ColorSelect } from "./steps/color-select";
 import { EquipmentSelect } from "./steps/equipment-select";
 import { TrailerSelect } from "./steps/trailer-select";
 import { MotorSelect } from "./steps/motor-select";
+import { InstallationSelect } from "./steps/installation-select";
 import { DeliverySelect } from "./steps/delivery-select";
 import { ReviewSubmit } from "./steps/review-submit";
 import { Button } from "@/components/ui/button";
@@ -35,6 +36,8 @@ export function ConfiguratorShell() {
     selectedTrailer,
     trailerPrice,
     motorInstallFee,
+    installationFee,
+    isSaltySkiffs,
     motorAddOn,
     selectedPackageMotor,
     basePrice,
@@ -136,6 +139,17 @@ export function ConfiguratorShell() {
           />
         );
 
+      case "Installation":
+        return (
+          <InstallationSelect
+            installationOption={state.installationOption}
+            onSetOption={(opt) =>
+              dispatch({ type: "SET_INSTALLATION", payload: opt })
+            }
+            hasMotor={state.motorOption === "select" && !!state.motorId}
+          />
+        );
+
       case "Delivery":
         return (
           <DeliverySelect
@@ -164,6 +178,7 @@ export function ConfiguratorShell() {
             trailerPrice={trailerPrice}
             motorOption={state.motorOption}
             motorInstallFee={motorInstallFee}
+            installationFee={installationFee}
             motorAddOn={motorAddOn}
             selectedPackageMotor={selectedPackageMotor}
             deliveryType={state.deliveryType}
@@ -249,6 +264,7 @@ export function ConfiguratorShell() {
                 trailer={selectedTrailer}
                 trailerPrice={trailerPrice}
                 motorInstallFee={motorInstallFee}
+                installationFee={installationFee}
                 motorAddOn={motorAddOn}
                 motorOption={state.motorOption}
                 selectedPackageMotor={selectedPackageMotor}

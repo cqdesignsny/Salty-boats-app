@@ -14,6 +14,7 @@ interface BuildSummaryProps {
   trailer: Trailer | null;
   trailerPrice: number;
   motorInstallFee: number;
+  installationFee: number;
   motorAddOn: number;
   motorOption: "select" | "own" | null;
   selectedPackageMotor: PackageMotorOption | null;
@@ -33,6 +34,7 @@ export function BuildSummary({
   trailer,
   trailerPrice,
   motorInstallFee,
+  installationFee,
   motorAddOn,
   motorOption,
   selectedPackageMotor,
@@ -153,6 +155,16 @@ export function BuildSummary({
                 : motorInstallFee > 0
                 ? `Install +${formatPrice(motorInstallFee)}`
                 : "Contact for options"}
+            </span>
+          </div>
+        )}
+
+        {/* Installation — Salty Skiffs */}
+        {installationFee > 0 && (
+          <div className="flex justify-between">
+            <span className="text-slate-500">Installation</span>
+            <span className="font-medium text-navy">
+              +{formatPrice(installationFee)}
             </span>
           </div>
         )}

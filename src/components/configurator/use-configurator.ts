@@ -26,6 +26,7 @@ const initialState: ConfiguratorState = {
   trailerId: null,
   motorOption: null,
   motorId: null,
+  installationOption: null,
   deliveryType: null,
   deliveryAddress: "",
   customerName: "",
@@ -73,9 +74,11 @@ function reducer(state: ConfiguratorState, action: ConfiguratorAction): Configur
     case "SET_TRAILER":
       return { ...state, trailerId: action.payload };
     case "SET_MOTOR_OPTION":
-      return { ...state, motorOption: action.payload, motorId: null };
+      return { ...state, motorOption: action.payload, motorId: null, installationOption: null };
     case "SET_MOTOR":
       return { ...state, motorId: action.payload };
+    case "SET_INSTALLATION":
+      return { ...state, installationOption: action.payload };
     case "SET_DELIVERY_TYPE":
       return { ...state, deliveryType: action.payload, deliveryAddress: action.payload === "pickup" ? "" : state.deliveryAddress };
     case "SET_DELIVERY_ADDRESS":
@@ -142,9 +145,12 @@ export function useConfigurator() {
   // Motor install fee ($85 if "contact for options" — Stumpnocker only)
   const motorInstallFee = !isPackageBrand && state.motorOption === "select" && state.motorId && !selectedPackageMotor ? 85 : 0;
 
+  // Salty Skiffs motor installation fee ($250)
+  const installationFee = isSaltySkiffs && state.installationOption === "yes" ? 250 : 0;
+
   // Pricing varies by brand type:
   // - Palmetto Bay (all-in): packagePrice includes boat + motor + trailer + equipment
-  // - Salty Skiffs (pick-your-power motor): base + color + equipment + trailer + motorPrice
+  // - Salty Skiffs: base + color + trailer + motorPrice + installation
   // - Stumpnocker: base + color + equipment + trailer + motor install
   const basePrice = selectedModel?.basePrice ?? 0;
   const motorAddOn = selectedPackageMotor?.motorPrice ?? 0;
@@ -153,11 +159,11 @@ export function useConfigurator() {
       // All-in package (Palmetto Bay): packagePrice includes everything
       return selectedPackageMotor.packagePrice + colorPrice;
     }
-    // Standard build: base + color + equipment + trailer + motor cost
+    // Standard build: base + color + equipment + trailer + motor cost + installation
     const motorCost = selectedPackageMotor
       ? selectedPackageMotor.motorPrice  // Pick-your-power motor (Salty Skiffs)
       : motorInstallFee;                 // Stumpnocker $85 install (or $0)
-    return basePrice + colorPrice + equipmentTotal + trailerPrice + motorCost;
+    return basePrice + colorPrice + equipmentTotal + trailerPrice + motorCost + installationFee;
   })();
 
   const canGoNext = useCallback((): boolean => {
@@ -184,6 +190,10 @@ export function useConfigurator() {
           return true; // Stumpnocker: "contact for options" is enough
         }
         return false;
+      case "Installation":
+        // If no motor selected, they can skip; otherwise must choose yes/no
+        if (state.motorOption === "own") return true;
+        return state.installationOption !== null;
       case "Delivery":
         return state.deliveryType === "pickup" || (state.deliveryType === "delivery" && state.deliveryAddress.trim().length > 0);
       case "Review":
@@ -209,6 +219,8 @@ export function useConfigurator() {
     selectedTrailer,
     trailerPrice,
     motorInstallFee,
+    installationFee,
+    isSaltySkiffs,
     motorAddOn,
     selectedPackageMotor,
     basePrice,

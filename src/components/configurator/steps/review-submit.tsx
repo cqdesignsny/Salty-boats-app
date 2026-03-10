@@ -18,6 +18,7 @@ interface ReviewSubmitProps {
   trailerPrice: number;
   motorOption: "select" | "own" | null;
   motorInstallFee: number;
+  installationFee: number;
   motorAddOn: number;
   selectedPackageMotor: PackageMotorOption | null;
   deliveryType: "pickup" | "delivery" | null;
@@ -43,6 +44,7 @@ export function ReviewSubmit({
   trailerPrice,
   motorOption,
   motorInstallFee,
+  installationFee,
   motorAddOn,
   selectedPackageMotor,
   deliveryType,
@@ -95,6 +97,7 @@ export function ReviewSubmit({
             ${selectedPackageMotor && selectedPackageMotor.packagePrice > 0 ? `<tr><td style="padding:4px 8px">Motor — ${selectedPackageMotor.label}</td><td style="padding:4px 8px;text-align:right">Included</td></tr>` : ""}
             ${trailer ? `<tr><td style="padding:4px 8px">${trailer.trailerName}</td><td style="padding:4px 8px;text-align:right">${isPackageBrand ? "Included" : formatPrice(trailer.price)}</td></tr>` : ""}
             ${motorOption && !selectedPackageMotor ? `<tr><td style="padding:4px 8px">Motor — ${motorOption === "own" ? "Customer Supplied" : "Contact for options"}</td><td style="padding:4px 8px;text-align:right">${motorInstallFee > 0 ? formatPrice(motorInstallFee) + " install" : "—"}</td></tr>` : ""}
+            ${installationFee > 0 ? `<tr><td style="padding:4px 8px">Motor Installation</td><td style="padding:4px 8px;text-align:right">${formatPrice(installationFee)}</td></tr>` : ""}
             <tr><td style="padding:4px 8px">Delivery</td><td style="padding:4px 8px;text-align:right">${deliveryType === "pickup" ? "Pickup at Salty Boats" : "Delivery"}</td></tr>
             ${deliveryType === "delivery" && deliveryAddress ? `<tr><td style="padding:4px 8px;color:#64748b" colspan="2">${deliveryAddress}</td></tr>` : ""}
           </tbody>
@@ -141,6 +144,7 @@ export function ReviewSubmit({
           motorId: selectedPackageMotor?.id ?? null,
           motorLabel: selectedPackageMotor?.label ?? null,
           motorSku: selectedPackageMotor?.sku ?? null,
+          installationFee,
           deliveryType,
           deliveryAddress,
           totalPrice,
@@ -281,6 +285,19 @@ export function ReviewSubmit({
                     +{formatPrice(motorInstallFee)} install
                   </span>
                 )}
+              </p>
+            </div>
+          )}
+
+          {/* Installation — Salty Skiffs */}
+          {installationFee > 0 && (
+            <div>
+              <span className="text-slate-500">Installation</span>
+              <p className="font-semibold text-navy">
+                Motor Installation
+                <span className="text-ocean text-xs ml-1">
+                  +{formatPrice(installationFee)}
+                </span>
               </p>
             </div>
           )}
