@@ -39,6 +39,7 @@ export function ConfiguratorShell() {
     trailerAddOnTotal,
     motorInstallFee,
     installationFee,
+    installationPrice,
     isSaltySkiffs,
     motorAddOn,
     selectedPackageMotor,
@@ -151,6 +152,7 @@ export function ConfiguratorShell() {
               dispatch({ type: "SET_INSTALLATION", payload: opt })
             }
             hasMotor={state.motorOption === "select"}
+            installationPrice={installationPrice}
           />
         );
 

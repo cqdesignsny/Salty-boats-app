@@ -164,8 +164,9 @@ export function useConfigurator() {
   // Motor install fee (legacy — now handled by Installation step)
   const motorInstallFee = 0;
 
-  // Motor installation fee ($250 — Stumpnocker and Salty Skiffs)
-  const installationFee = !isPackageBrand && state.installationOption === "yes" ? 250 : 0;
+  // Motor installation price — HP-based: ≤30 HP = $250, 40+ HP = $350
+  const installationPrice = selectedPackageMotor && selectedPackageMotor.horsepower > 30 ? 350 : 250;
+  const installationFee = !isPackageBrand && state.installationOption === "yes" && selectedPackageMotor ? installationPrice : 0;
 
   // Pricing varies by brand type:
   // - Palmetto Bay (all-in): packagePrice includes boat + motor + trailer + equipment + installation
@@ -240,6 +241,7 @@ export function useConfigurator() {
     trailerAddOnTotal,
     motorInstallFee,
     installationFee,
+    installationPrice,
     isSaltySkiffs,
     motorAddOn,
     selectedPackageMotor,

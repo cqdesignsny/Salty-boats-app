@@ -8,12 +8,14 @@ interface InstallationSelectProps {
   installationOption: "yes" | "no" | null;
   onSetOption: (option: "yes" | "no") => void;
   hasMotor: boolean;
+  installationPrice: number;
 }
 
 export function InstallationSelect({
   installationOption,
   onSetOption,
   hasMotor,
+  installationPrice,
 }: InstallationSelectProps) {
   // No motor selected — nothing to install
   if (!hasMotor) {
@@ -37,7 +39,7 @@ export function InstallationSelect({
     <div>
       <h2 className="text-2xl font-bold text-navy mb-2">Motor Installation</h2>
       <p className="text-slate-500 mb-6">
-        Would you like us to install your motor? Installation is {formatPrice(250)}.
+        Would you like us to install your motor? Installation is {formatPrice(installationPrice)}.
       </p>
 
       <div className="space-y-3">
@@ -65,7 +67,7 @@ export function InstallationSelect({
                   Yes, install my motor
                 </h4>
                 <span className="text-ocean font-bold">
-                  +{formatPrice(250)}
+                  +{formatPrice(installationPrice)}
                 </span>
               </div>
               <p className="text-xs text-slate-500 mt-0.5">
