@@ -44,6 +44,16 @@ export const STUMPNOCKER_STEPS = [
   "Review",
 ] as const;
 
+export const SALTY_SKIFFS_STEPS = [
+  "Brand",
+  "Boat",
+  "Color",
+  "Trailer",
+  "Motor",
+  "Delivery",
+  "Review",
+] as const;
+
 export const PACKAGE_STEPS = [
   "Brand",
   "Boat",
@@ -54,4 +64,4 @@ export const PACKAGE_STEPS = [
   "Review",
 ] as const;
 
-export type StepName = (typeof STUMPNOCKER_STEPS)[number] | (typeof PACKAGE_STEPS)[number];
+export type StepName = (typeof STUMPNOCKER_STEPS)[number] | (typeof PACKAGE_STEPS)[number] | (typeof SALTY_SKIFFS_STEPS)[number];

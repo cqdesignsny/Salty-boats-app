@@ -2,7 +2,7 @@
 
 import { useReducer, useCallback, useMemo } from "react";
 import type { ConfiguratorState, ConfiguratorAction } from "@/types/configurator";
-import { STUMPNOCKER_STEPS, PACKAGE_STEPS } from "@/types/configurator";
+import { STUMPNOCKER_STEPS, SALTY_SKIFFS_STEPS, PACKAGE_STEPS } from "@/types/configurator";
 import {
   getBrandBySlug,
   getModelsByBrand,
@@ -105,7 +105,8 @@ export function useConfigurator() {
   const brand = state.brandSlug ? getBrandBySlug(state.brandSlug) : null;
   const isPackageBrand = brand?.isPackageBrand ?? false;
 
-  const steps = isPackageBrand ? PACKAGE_STEPS : STUMPNOCKER_STEPS;
+  const isSaltySkiffs = state.brandSlug === "salty-skiffs";
+  const steps = isPackageBrand ? PACKAGE_STEPS : isSaltySkiffs ? SALTY_SKIFFS_STEPS : STUMPNOCKER_STEPS;
   const currentStepName = steps[state.step] ?? "Brand";
   const totalSteps = steps.length;
 
