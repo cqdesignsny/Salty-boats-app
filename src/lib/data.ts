@@ -358,8 +358,9 @@ export function getColorPrice(modelId: string, colorId: string): number {
   if (modelId.includes("144")) return 550;
   if (modelId.includes("164")) return 650;
   if (modelId.includes("174")) return 750;
+  if (modelId.startsWith("salty-skiffs")) return 750;
 
-  // Salty Skiffs and other models — free color
+  // Palmetto Bay and other package brands — free color
   return 0;
 }
 
