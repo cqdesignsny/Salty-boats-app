@@ -503,7 +503,14 @@ export const trailers: Trailer[] = [
     trailerName: "A-1412",
     description: "Trailer for 14 Feet Boats.",
     price: 1790,
-    applicableModelIds: [],
+    applicableModelIds: ["stumpnocker-144-skiff-tiller"],
+  },
+  {
+    id: "JB-1612",
+    trailerName: "JB-1612",
+    description: "Trailer for 16 Feet Boats.",
+    price: 1690,
+    applicableModelIds: ["stumpnocker-164-skiff-tiller"],
   },
 ];
 
