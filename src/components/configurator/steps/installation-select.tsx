@@ -69,7 +69,7 @@ export function InstallationSelect({
                 </span>
               </div>
               <p className="text-xs text-slate-500 mt-0.5">
-                We&apos;ll install your motor so it&apos;s ready to go.
+                Includes fuel tank, fuel line, and propeller — installed and ready to go.
               </p>
             </div>
           </div>
@@ -110,7 +110,7 @@ export function InstallationSelect({
           <div className="flex items-start gap-2">
             <Wrench className="w-4 h-4 text-ocean mt-0.5 flex-shrink-0" />
             <p className="text-sm text-navy">
-              <span className="font-semibold">Professional installation:</span> Your motor will be installed and tested before delivery or pickup.
+              <span className="font-semibold">Professional installation:</span> Includes fuel tank, fuel line, and propeller. Your motor will be installed and tested before delivery or pickup.
             </p>
           </div>
         </div>
