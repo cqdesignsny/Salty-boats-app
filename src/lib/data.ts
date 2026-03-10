@@ -469,14 +469,6 @@ export const equipmentOptions: EquipmentOption[] = [
 // ─── TRAILERS ────────────────────────────────────────────────────────────────
 export const trailers: Trailer[] = [
   {
-    id: "continental-ec312",
-    trailerName: "Continental Model EC312 Trailer",
-    description:
-      'Galvanized, Side guides w/ PVC covers, tongue jack, hubs, 2" coupler, bow bunk board, 12" tires, bow safety chain.',
-    price: 890,
-    applicableModelIds: ["stumpnocker-144-skiff-tiller"],
-  },
-  {
     id: "continental-gta1615",
     trailerName: "Continental Model GTA1615",
     description:
@@ -501,14 +493,14 @@ export const trailers: Trailer[] = [
   {
     id: "A-1412",
     trailerName: "A-1412",
-    description: "Trailer for 14 Feet Boats.",
+    description: "Continental Trailer A-1412 Aluminum Frame with Galvanized torsion axel components.",
     price: 1790,
     applicableModelIds: ["stumpnocker-144-skiff-tiller"],
   },
   {
     id: "JB-1612",
     trailerName: "JB-1612",
-    description: "Trailer for 16 Feet Boats.",
+    description: "Continental Trailer JB-1612 Galvanized Frame with Galvanized torsion axel components.",
     price: 1690,
     applicableModelIds: ["stumpnocker-164-skiff-tiller"],
   },
