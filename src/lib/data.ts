@@ -484,13 +484,6 @@ export const trailers: Trailer[] = [
     applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
   },
   {
-    id: "gta-1615",
-    trailerName: "GTA 1615-1500 Aluminum Trailer",
-    description: "Lightweight aluminum trailer designed for small skiffs.",
-    price: 1995,
-    applicableModelIds: ["salty-skiffs-14-f", "salty-skiffs-14-s"],
-  },
-  {
     id: "as1830-2400",
     trailerName: "AS1830-2400",
     description: "Trailer for 186 Palmetto Bay.",
@@ -503,6 +496,13 @@ export const trailers: Trailer[] = [
     description: "Trailer for 1701 Palmetto Bay.",
     price: 3690,
     applicableModelIds: ["palmetto-1701-cc"],
+  },
+  {
+    id: "A-1412",
+    trailerName: "A-1412",
+    description: "Trailer for 14 Feet Boats.",
+    price: 1790,
+    applicableModelIds: [],
   },
 ];
 
