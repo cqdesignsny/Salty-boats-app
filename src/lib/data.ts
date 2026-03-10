@@ -474,7 +474,7 @@ export const trailers: Trailer[] = [
     description:
       "Aluminum / Alum Side Guides w/ PVC Covers / Tongue Jack / Galv Hubs / 2 Inch Coupler / Bow Bunk Board / 12b Tires / Bow Safety Chain.",
     price: 1990,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
   },
   {
     id: "as1830-2400",
@@ -561,8 +561,8 @@ export const packageMotorOptions: PackageMotorOption[] = [
     motorPrice: 0,
     applicableModelIds: ["palmetto-1701-cc"],
   },
-  // ── Salty Skiffs — Pick Your Power (10 Suzuki motors up to 25HP, additive pricing) ──
-  // All apply to both 14S and 14F. Installation available as separate step.
+  // ── Pick Your Power — 2.5–25 HP Suzuki motors (Salty Skiffs + Stumpnocker except 174 CC) ──
+  // All apply to Salty Skiffs 14S/14F and Stumpnocker 144/164/174/174 Deluxe.
   {
     id: "salty-df2-5l5",
     sku: "DF2.5L5",
@@ -571,7 +571,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 2.5,
     packagePrice: 0,
     motorPrice: 975,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
   },
   {
     id: "salty-df6al5",
@@ -581,7 +581,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 6,
     packagePrice: 0,
     motorPrice: 1780,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
   },
   {
     id: "salty-df9-9bel5",
@@ -591,7 +591,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 9.9,
     packagePrice: 0,
     motorPrice: 3070,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
   },
   {
     id: "salty-df9-9bthl5",
@@ -601,7 +601,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 9.9,
     packagePrice: 0,
     motorPrice: 3270,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
   },
   {
     id: "salty-df9-9bthlw5",
@@ -611,7 +611,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 9.9,
     packagePrice: 0,
     motorPrice: 3370,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
   },
   {
     id: "salty-df15athl5",
@@ -621,7 +621,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 15,
     packagePrice: 0,
     motorPrice: 3465,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
   },
   {
     id: "salty-df20athl5",
@@ -631,7 +631,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 20,
     packagePrice: 0,
     motorPrice: 4070,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
   },
   {
     id: "salty-df20athlw5",
@@ -641,7 +641,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 20,
     packagePrice: 0,
     motorPrice: 4170,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
   },
   {
     id: "salty-df25athl5",
@@ -651,7 +651,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 25,
     packagePrice: 0,
     motorPrice: 5130,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
   },
   {
     id: "salty-df25athlw5",
@@ -661,9 +661,9 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 25,
     packagePrice: 0,
     motorPrice: 5280,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
   },
-  // ── Stumpnocker — 30 HP Suzuki motors ──
+  // ── 30–60 HP Suzuki motors (Salty Skiffs + Stumpnocker except 174 CC) ──
   {
     id: "stump-df30athl5",
     sku: "DF30ATHL5",
@@ -672,7 +672,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 30,
     packagePrice: 0,
     motorPrice: 5945,
-    applicableModelIds: ["stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
   },
   {
     id: "stump-df30athlw5",
@@ -682,7 +682,67 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 30,
     packagePrice: 0,
     motorPrice: 6095,
-    applicableModelIds: ["stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
+  },
+  {
+    id: "df40atl5",
+    sku: "DF40ATL5",
+    label: "Suzuki 40 HP — Power Trim & Tilt",
+    description: "Power trim & tilt · 20\" shaft",
+    horsepower: 40,
+    packagePrice: 0,
+    motorPrice: 6585,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
+  },
+  {
+    id: "df40atlw5",
+    sku: "DF40ATLW5",
+    label: "Suzuki 40 HP — Power Trim & Tilt (White)",
+    description: "Power trim & tilt · 20\" shaft · White cowling",
+    horsepower: 40,
+    packagePrice: 0,
+    motorPrice: 6885,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
+  },
+  {
+    id: "df50atl5",
+    sku: "DF50ATL5",
+    label: "Suzuki 50 HP — Power Trim & Tilt",
+    description: "Power trim & tilt · 20\" shaft",
+    horsepower: 50,
+    packagePrice: 0,
+    motorPrice: 6855,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
+  },
+  {
+    id: "df50atlw5",
+    sku: "DF50ATLW5",
+    label: "Suzuki 50 HP — Power Trim & Tilt (White)",
+    description: "Power trim & tilt · 20\" shaft · White cowling",
+    horsepower: 50,
+    packagePrice: 0,
+    motorPrice: 7155,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
+  },
+  {
+    id: "df60atl5",
+    sku: "DF60ATL5",
+    label: "Suzuki 60 HP — Power Trim & Tilt",
+    description: "Power trim & tilt · 20\" shaft",
+    horsepower: 60,
+    packagePrice: 0,
+    motorPrice: 7575,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
+  },
+  {
+    id: "df60atlw5",
+    sku: "DF60ATLW5",
+    label: "Suzuki 60 HP — Power Trim & Tilt (White)",
+    description: "Power trim & tilt · 20\" shaft · White cowling",
+    horsepower: 60,
+    packagePrice: 0,
+    motorPrice: 7875,
+    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe"],
   },
 ];
 
