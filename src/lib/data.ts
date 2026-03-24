@@ -462,6 +462,25 @@ export const equipmentOptions: EquipmentOption[] = [
     sortOrder: 22,
     applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
+  // ADDITIONAL OPTIONS (only for select models)
+  {
+    id: "starboard-side-storage",
+    optionName: "Starboard Side Storage",
+    description: "Additional starboard side storage compartment.",
+    price: 450,
+    category: "additional-options",
+    sortOrder: 30,
+    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller"],
+  },
+  {
+    id: "bimini-top",
+    optionName: "Bimini Top",
+    description: "Fold-down bimini top for sun protection.",
+    price: 489,
+    category: "additional-options",
+    sortOrder: 31,
+    applicableModelIds: ["stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller"],
+  },
 ];
 
 // ─── TRAILERS ────────────────────────────────────────────────────────────────
