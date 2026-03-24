@@ -70,7 +70,7 @@ export function Header() {
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <button className="px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-colors flex items-center gap-1">
+                  <button className="px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-colors flex items-center gap-1">
                     {link.label}
                     <ChevronDown className={cn("w-4 h-4 transition-transform", brandsOpen && "rotate-180")} />
                   </button>
@@ -97,7 +97,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-colors",
+                    "px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-colors",
                     link.label === "Build Your Boat" &&
                       "bg-ocean text-white hover:bg-ocean-dark ml-2"
                   )}
@@ -110,7 +110,7 @@ export function Header() {
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+            className="lg:hidden p-2 rounded-full hover:bg-white/10 transition-colors"
             onClick={() => {
               setMobileOpen(!mobileOpen);
               if (mobileOpen) setBrandsOpen(false);
@@ -130,7 +130,7 @@ export function Header() {
               link.children ? (
                 <div key={link.label}>
                   <button
-                    className="w-full text-left px-4 py-3 text-base font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-colors flex items-center justify-between"
+                    className="w-full text-left px-4 py-3 text-base font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-colors flex items-center justify-between"
                     onClick={() => setBrandsOpen(!brandsOpen)}
                   >
                     {link.label}
@@ -142,7 +142,7 @@ export function Header() {
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="block px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                          className="block px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-colors"
                           onClick={() => {
                             setMobileOpen(false);
                             setBrandsOpen(false);
@@ -159,7 +159,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "block px-4 py-3 text-base font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-lg transition-colors",
+                    "block px-4 py-3 text-base font-medium text-white/90 hover:text-white hover:bg-white/10 rounded-full transition-colors",
                     link.label === "Build Your Boat" &&
                       "bg-ocean text-white hover:bg-ocean-dark text-center mt-4"
                   )}
