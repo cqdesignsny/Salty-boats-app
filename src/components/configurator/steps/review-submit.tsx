@@ -79,7 +79,7 @@ export function ReviewSubmit({
         <style>
           body { font-family: Arial, sans-serif; color: #0c1b3a; max-width: 700px; margin: 0 auto; padding: 40px 24px; }
           .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #0c1b3a; }
-          .header img { height: 50px; filter: grayscale(100%) brightness(0); }
+          .header img { height: 50px; }
           .header-right { text-align: right; }
           h1 { font-size: 20px; margin: 0; }
           .subtitle { color: #64748b; font-size: 13px; margin: 4px 0 0; }
@@ -93,7 +93,7 @@ export function ReviewSubmit({
       </head>
       <body>
         <div class="header">
-          <img src="${window.location.origin}/salty-boats-logo-color.svg" alt="Salty Boats" />
+          <img src="${window.location.origin}/salty-boats-logo-dark.svg" alt="Salty Boats" />
           <div class="header-right">
             <h1>Build Quote</h1>
             <p class="subtitle">${brand.name} ${model.modelName} &bull; ${new Date().toLocaleDateString()}</p>
