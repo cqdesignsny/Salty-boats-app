@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { createBuildQuote } from "@/lib/notion";
+import { sendBuildQuoteNotification } from "@/lib/email";
+import { formatPrice } from "@/lib/utils";
 import {
   getBrandBySlug,
   boatModels,
@@ -77,7 +79,26 @@ export async function POST(request: Request) {
       console.log("Build quote saved to Notion:", buildOrderId);
     } catch (notionError) {
       console.error("Failed to save to Notion:", notionError);
-      // Don't fail the request if Notion is down
+    }
+
+    // Send email notification
+    try {
+      await sendBuildQuoteNotification({
+        customerName: customerName.trim(),
+        email: customerEmail.trim(),
+        phone: customerPhone?.trim() || undefined,
+        brand: brand?.name || brandSlug,
+        model: model?.modelName || modelId,
+        hullColor: color?.colorName || hullColorId,
+        equipment: equipmentNames || "None",
+        motor: motorLabel || motorOption || "None",
+        trailer: trailer?.trailerName || "None",
+        deliveryType: deliveryType === "delivery" ? "Delivery" : "Pickup",
+        estimatedTotal: formatPrice(totalPrice || 0),
+      });
+      console.log("Build quote notification email sent for:", buildOrderId);
+    } catch (emailError) {
+      console.error("Failed to send build quote email:", emailError);
     }
 
     return NextResponse.json(
