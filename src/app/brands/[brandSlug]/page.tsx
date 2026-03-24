@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { ImageCarousel } from "@/components/ui/image-carousel";
 import { brands, getModelsByBrand, getBrandBySlug } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -79,16 +80,11 @@ export default async function BrandPage({ params }: Props) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {models.map((model) => (
               <Card key={model.id} className="group flex flex-col">
-                <div className="relative h-64 overflow-hidden">
-                  <Image
-                    src={model.imageUrl}
-                    alt={model.modelName}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                </div>
+                <ImageCarousel
+                  images={model.galleryImages.length > 0 ? model.galleryImages : [model.imageUrl]}
+                  alt={model.modelName}
+                  className="h-64"
+                />
                 <div className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-bold text-navy mb-2">
                     {model.modelName}

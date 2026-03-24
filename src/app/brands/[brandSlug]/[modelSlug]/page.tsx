@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ArrowLeft, Shield, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ImageGallery } from "@/components/ui/image-gallery";
 import { brands, boatModels, getModelBySlug, getBrandBySlug } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -68,18 +69,12 @@ export default async function BoatDetailPage({ params }: Props) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Image */}
+          {/* Image Gallery */}
           <div>
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100">
-              <Image
-                src={model.imageUrl}
-                alt={model.modelName}
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
+            <ImageGallery
+              images={model.galleryImages.length > 0 ? model.galleryImages : [model.imageUrl]}
+              alt={model.modelName}
+            />
             <Link
               href={`/brands/${brandSlug}`}
               className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-navy transition-colors mt-4"
