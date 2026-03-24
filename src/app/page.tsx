@@ -91,11 +91,11 @@ export default function HomePage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       <div className="absolute bottom-4 left-4">
-                        {brand.isPackageBrand && (
-                          <span className="inline-block bg-ocean text-white text-xs font-semibold px-2 py-1 rounded mb-2">
-                            {brand.slug === "salty-skiffs" ? "PICK YOUR POWER" : "ALL-IN PACKAGE"}
-                          </span>
-                        )}
+                        <span className="inline-block bg-ocean text-white text-xs font-semibold px-2 py-1 rounded mb-2">
+                          {brand.isPackageBrand
+                            ? "ALL-IN PACKAGE"
+                            : "CUSTOM BUILD"}
+                        </span>
                       </div>
                     </div>
                     <div className="p-6">
