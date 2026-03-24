@@ -29,14 +29,22 @@ export async function POST(request: Request) {
     console.log("Contact lead saved to Notion:", email, result.id);
 
     // Send email notification
+    let emailResult = null;
+    let emailError = null;
     try {
-      await sendContactLeadNotification(trimmedData);
-      console.log("Contact notification email sent for:", email);
-    } catch (emailError) {
+      emailResult = await sendContactLeadNotification(trimmedData);
+      console.log("Contact notification email sent:", JSON.stringify(emailResult));
+    } catch (err: unknown) {
+      emailError = err instanceof Error ? err.message : String(err);
       console.error("Failed to send contact notification email:", emailError);
     }
 
-    return NextResponse.json({ success: true, notionPageId: result.id });
+    return NextResponse.json({
+      success: true,
+      notionPageId: result.id,
+      email: emailResult ? "sent" : "failed",
+      emailDebug: emailError || (emailResult as Record<string, unknown>),
+    });
   } catch (error: unknown) {
     const errMsg = error instanceof Error ? error.message : String(error);
     console.error("Contact form error:", errMsg);
