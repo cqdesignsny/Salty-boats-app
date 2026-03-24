@@ -38,7 +38,7 @@ export function ImageGallery({ images, alt }: ImageGalleryProps) {
             alt={`${alt} ${i + 1}`}
             fill
             className={cn(
-              "object-contain transition-opacity duration-500",
+              "object-cover transition-opacity duration-500",
               i === current ? "opacity-100" : "opacity-0"
             )}
             priority={i === 0}
@@ -51,14 +51,14 @@ export function ImageGallery({ images, alt }: ImageGalleryProps) {
           <>
             <button
               onClick={prev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+              className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-opacity duration-200"
               aria-label="Previous image"
             >
               <ChevronLeft className="w-5 h-5 text-navy" />
             </button>
             <button
               onClick={next}
-              className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+              className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-opacity duration-200"
               aria-label="Next image"
             >
               <ChevronRight className="w-5 h-5 text-navy" />

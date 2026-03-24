@@ -44,7 +44,7 @@ export function ImageCarousel({
           src={images[0]}
           alt={alt}
           fill
-          className="object-contain"
+          className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
@@ -64,7 +64,7 @@ export function ImageCarousel({
           alt={`${alt} ${i + 1}`}
           fill
           className={cn(
-            "object-contain transition-opacity duration-700",
+            "object-cover transition-opacity duration-700",
             i === current ? "opacity-100" : "opacity-0"
           )}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -79,7 +79,7 @@ export function ImageCarousel({
           e.stopPropagation();
           prev();
         }}
-        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/25 hover:bg-black/45 rounded-full p-1.5 transition-all duration-200 opacity-0 group-hover:opacity-100 z-10"
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/25 hover:bg-black/45 rounded-full p-1.5 transition-all duration-200 z-10"
         aria-label="Previous image"
       >
         <ChevronLeft className="w-4 h-4 text-white" />
@@ -90,7 +90,7 @@ export function ImageCarousel({
           e.stopPropagation();
           next();
         }}
-        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/25 hover:bg-black/45 rounded-full p-1.5 transition-all duration-200 opacity-0 group-hover:opacity-100 z-10"
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/25 hover:bg-black/45 rounded-full p-1.5 transition-all duration-200 z-10"
         aria-label="Next image"
       >
         <ChevronRight className="w-4 h-4 text-white" />
