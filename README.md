@@ -64,6 +64,11 @@ Brand → Boat → Color → Motor → Trailer → Delivery → Review
 - **Contact Leads** — Contact form submissions saved to Notion database
 - **Deposit Tracking** — Stripe webhook updates deposit status (Paid/Unpaid) in Notion
 
+### Email Notifications (Resend)
+- **Build Quote alerts** — Email sent to admins when a new build quote is submitted
+- **Contact Lead alerts** — Email sent to admins when a contact form is filled out
+- **Recipients:** saltyboatsfl@gmail.com, donald@oldsaltmarine.com
+
 ### Interactive Hero
 - **Water Canvas** — Canvas 2D animated water effect with sine waves and mouse-reactive ripples
 - Listens on the full hero `<section>` for mouse/touch interaction across the entire area
@@ -255,6 +260,7 @@ Required variables:
 - `NOTION_API_KEY` — Notion internal integration secret
 - `NOTION_BUILD_QUOTES_DB` — Notion Build Quotes database ID
 - `NOTION_CONTACT_LEADS_DB` — Notion Contact Leads database ID
+- `RESEND_API_KEY` — Resend email API key
 
 ### Development
 
@@ -294,6 +300,7 @@ This project is configured for Vercel deployment. Pushes to `main` auto-deploy.
 | `NOTION_API_KEY` | Notion internal integration secret |
 | `NOTION_BUILD_QUOTES_DB` | Notion Build Quotes database ID |
 | `NOTION_CONTACT_LEADS_DB` | Notion Contact Leads database ID |
+| `RESEND_API_KEY` | Resend email API key |
 
 ## Design System
 
