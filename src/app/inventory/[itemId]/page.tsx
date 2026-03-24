@@ -194,12 +194,12 @@ export default async function InventoryDetailPage({ params }: Props) {
             {/* Financing */}
             <div className="mt-4 text-center">
               <a
-                href="https://www.oldsaltmarinefinance.com"
+                href="https://gateway.appone.net/onlineapp/Oldsaltmarine"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-ocean hover:underline"
               >
-                Need financing? Apply with Old Salt Marine Finance →
+                Need financing? Apply now →
               </a>
             </div>
           </div>

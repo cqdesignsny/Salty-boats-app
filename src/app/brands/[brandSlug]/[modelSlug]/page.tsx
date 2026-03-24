@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ArrowLeft, Shield, Check } from "lucide-react";
+import { ArrowRight, ArrowLeft, Shield, Check, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ImageGallery } from "@/components/ui/image-gallery";
 import { brands, boatModels, getModelBySlug, getBrandBySlug } from "@/lib/data";
@@ -147,6 +147,20 @@ export default async function BoatDetailPage({ params }: Props) {
                   Ask a Question
                 </Button>
               </Link>
+            </div>
+
+            {/* Financing */}
+            <div className="mb-8">
+              <a
+                href="https://gateway.appone.net/onlineapp/Oldsaltmarine"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-sea-green/10 text-sea-green font-semibold rounded-lg hover:bg-sea-green/20 transition-colors text-sm"
+              >
+                <DollarSign className="w-4 h-4" />
+                Need Financing? Apply Now
+                <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
 
             {/* Warranty badge */}

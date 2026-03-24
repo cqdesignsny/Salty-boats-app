@@ -409,6 +409,16 @@ export function ReviewSubmit({
             Save as PDF
           </Button>
         </div>
+
+        {/* Financing */}
+        <a
+          href="https://gateway.appone.net/onlineapp/Oldsaltmarine"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 mt-3 py-2.5 px-4 bg-sea-green/10 text-sea-green font-semibold rounded-lg hover:bg-sea-green/20 transition-colors text-sm"
+        >
+          Need Financing? Apply Now →
+        </a>
       </div>
 
       {/* Contact Form */}

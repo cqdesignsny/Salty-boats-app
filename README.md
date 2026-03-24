@@ -57,6 +57,12 @@ Brand → Boat → Color → Motor → Trailer → Delivery → Review
 - **Stripe Checkout** — $500 deposit for both custom builds and inventory purchases
 - **Webhook handler** — `/api/webhooks/stripe` processes `checkout.session.completed`
 - **Confirmation page** — Post-payment receipt with order details
+- **Financing** — Old Salt Marine Finance integration with application links across all key pages
+
+### Notion Integration
+- **Build Quotes** — Automatically pushed to Notion database on configurator submission
+- **Contact Leads** — Contact form submissions saved to Notion database
+- **Deposit Tracking** — Stripe webhook updates deposit status (Paid/Unpaid) in Notion
 
 ### Interactive Hero
 - **Water Canvas** — Canvas 2D animated water effect with sine waves and mouse-reactive ripples
@@ -117,6 +123,7 @@ src/
 ├── lib/
 │   ├── data.ts                 # All boat/brand/equipment/inventory data
 │   ├── stripe.ts               # Stripe client (lazy loaded)
+│   ├── notion.ts               # Notion API (build quotes, contact leads, deposit updates)
 │   └── utils.ts                # cn(), formatPrice()
 └── types/
     ├── configurator.ts         # State, actions, step arrays
@@ -245,6 +252,9 @@ Required variables:
 - `STRIPE_SECRET_KEY` — Stripe secret key
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` — Stripe publishable key
 - `STRIPE_WEBHOOK_SECRET` — Stripe webhook signing secret
+- `NOTION_API_KEY` — Notion internal integration secret
+- `NOTION_BUILD_QUOTES_DB` — Notion Build Quotes database ID
+- `NOTION_CONTACT_LEADS_DB` — Notion Contact Leads database ID
 
 ### Development
 
@@ -281,6 +291,9 @@ This project is configured for Vercel deployment. Pushes to `main` auto-deploy.
 | `STRIPE_SECRET_KEY` | Stripe secret key (use live key for production) |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key |
 | `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret |
+| `NOTION_API_KEY` | Notion internal integration secret |
+| `NOTION_BUILD_QUOTES_DB` | Notion Build Quotes database ID |
+| `NOTION_CONTACT_LEADS_DB` | Notion Contact Leads database ID |
 
 ## Design System
 

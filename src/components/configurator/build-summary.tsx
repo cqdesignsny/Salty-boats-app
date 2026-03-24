@@ -231,6 +231,18 @@ export function BuildSummary({
         )}
       </div>
 
+      {/* Financing link */}
+      {totalPrice > 0 && (
+        <a
+          href="https://gateway.appone.net/onlineapp/Oldsaltmarine"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block mt-3 text-center text-xs text-ocean hover:text-ocean-dark hover:underline transition-colors"
+        >
+          Need financing? Apply now →
+        </a>
+      )}
+
       {/* Navigation buttons */}
       {showNav && (
         <div className="flex justify-between mt-4 pt-4 border-t border-slate-200">

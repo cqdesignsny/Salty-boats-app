@@ -128,7 +128,7 @@ export default function InventoryPage() {
             Finance. Quick approvals and competitive rates.
           </p>
           <a
-            href="https://www.oldsaltmarinefinance.com"
+            href="https://gateway.appone.net/onlineapp/Oldsaltmarine"
             target="_blank"
             rel="noopener noreferrer"
           >

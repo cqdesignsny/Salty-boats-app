@@ -189,6 +189,29 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Financing */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-3">
+            Flexible Financing Available
+          </h2>
+          <p className="text-slate-500 text-lg mb-6 max-w-2xl mx-auto">
+            Get on the water sooner with competitive marine financing.
+            Quick approvals and flexible terms.
+          </p>
+          <a
+            href="https://gateway.appone.net/onlineapp/Oldsaltmarine"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="outline" size="lg">
+              Apply for Financing
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </a>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="bg-navy py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
