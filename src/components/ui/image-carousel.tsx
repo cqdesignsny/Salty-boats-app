@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ImageCarouselProps {
@@ -24,6 +25,10 @@ export function ImageCarousel({
     setCurrent((prev) => (prev + 1) % images.length);
   }, [images.length]);
 
+  const prev = useCallback(() => {
+    setCurrent((prev) => (prev - 1 + images.length) % images.length);
+  }, [images.length]);
+
   useEffect(() => {
     if (isPaused || images.length <= 1) return;
     const timer = setInterval(next, interval);
@@ -34,12 +39,12 @@ export function ImageCarousel({
 
   if (images.length === 1) {
     return (
-      <div className={cn("relative overflow-hidden", className)}>
+      <div className={cn("relative overflow-hidden bg-slate-100", className)}>
         <Image
           src={images[0]}
           alt={alt}
           fill
-          className="object-cover"
+          className="object-contain"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
@@ -48,7 +53,7 @@ export function ImageCarousel({
 
   return (
     <div
-      className={cn("relative overflow-hidden group", className)}
+      className={cn("relative overflow-hidden group bg-slate-100", className)}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -59,13 +64,37 @@ export function ImageCarousel({
           alt={`${alt} ${i + 1}`}
           fill
           className={cn(
-            "object-cover transition-opacity duration-700",
+            "object-contain transition-opacity duration-700",
             i === current ? "opacity-100" : "opacity-0"
           )}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           priority={i === 0}
         />
       ))}
+
+      {/* Prev / Next arrows */}
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          prev();
+        }}
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/25 hover:bg-black/45 rounded-full p-1.5 transition-all duration-200 opacity-0 group-hover:opacity-100 z-10"
+        aria-label="Previous image"
+      >
+        <ChevronLeft className="w-4 h-4 text-white" />
+      </button>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          next();
+        }}
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/25 hover:bg-black/45 rounded-full p-1.5 transition-all duration-200 opacity-0 group-hover:opacity-100 z-10"
+        aria-label="Next image"
+      >
+        <ChevronRight className="w-4 h-4 text-white" />
+      </button>
 
       {/* Dot indicators */}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">

@@ -38,7 +38,7 @@ export function ImageGallery({ images, alt }: ImageGalleryProps) {
             alt={`${alt} ${i + 1}`}
             fill
             className={cn(
-              "object-cover transition-opacity duration-500",
+              "object-contain transition-opacity duration-500",
               i === current ? "opacity-100" : "opacity-0"
             )}
             priority={i === 0}
