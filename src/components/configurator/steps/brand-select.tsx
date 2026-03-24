@@ -39,11 +39,9 @@ export function BrandSelect({ selected, onSelect }: BrandSelectProps) {
                 sizes="(max-width: 640px) 100vw, 33vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              {brand.isPackageBrand && (
-                <span className="absolute top-3 right-3 bg-ocean text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">
-                  Package
-                </span>
-              )}
+              <span className="absolute top-3 right-3 bg-ocean text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">
+                {brand.isPackageBrand ? "Package" : "Custom Build"}
+              </span>
               {selected === brand.slug && (
                 <div className="absolute top-3 left-3 w-6 h-6 bg-ocean rounded-full flex items-center justify-center">
                   <Check className="w-4 h-4 text-white" />
