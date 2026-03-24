@@ -10,8 +10,7 @@ export const brands: Brand[] = [
     description:
       "Stumpnocker skiffs are purpose-built for shallow-water fishing. Lightweight, durable, and fully customizable with your choice of equipment, motor, and trailer. Every hull is hand-laid fiberglass with a 10-year warranty.",
     logoUrl: "/images/logos/stumpnocker-logo.png",
-    heroImageUrl:
-      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b02819cfef512025a588_relume-570809.jpeg",
+    heroImageUrl: "/images/boats/stumpnocker-144-skiff-tiller.jpg",
     isPackageBrand: false,
   },
   {
@@ -48,8 +47,7 @@ export const boatModels: BoatModel[] = [
     brandSlug: "stumpnocker",
     modelName: "144 Skiff Tiller",
     slug: "144-skiff-tiller",
-    imageUrl:
-      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b02819cfef512025a588_relume-570809.jpeg",
+    imageUrl: "/images/boats/stumpnocker-144-skiff-tiller.jpg",
     galleryImages: [],
     basePrice: 5990,
     specs: {
@@ -879,8 +877,7 @@ export const inventoryItems: InventoryItem[] = [
     description:
       "Brand new Stumpnocker 144 Skiff Tiller in classic white. Hull only — add your own motor, trailer, and equipment. Ready for immediate pickup.",
     price: 5990,
-    imageUrl:
-      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b02819cfef512025a588_relume-570809.jpeg",
+    imageUrl: "/images/boats/stumpnocker-144-skiff-tiller.jpg",
     galleryImages: [],
     year: 2025,
     condition: "new",
