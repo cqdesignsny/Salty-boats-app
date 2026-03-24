@@ -149,7 +149,7 @@ export default async function BrandPage({ params }: Props) {
                           Details
                         </Button>
                       </Link>
-                      <Link href={`/build-your-boat?brand=${brandSlug}`}>
+                      <Link href={`/build-your-boat?brand=${brandSlug}&model=${model.slug}`}>
                         <Button size="sm">
                           Build
                           <ArrowRight className="w-4 h-4 ml-1" />

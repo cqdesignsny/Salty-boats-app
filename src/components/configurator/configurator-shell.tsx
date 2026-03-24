@@ -17,7 +17,7 @@ import { ReviewSubmit } from "./steps/review-submit";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
-import { getBrandBySlug } from "@/lib/data";
+import { getBrandBySlug, getModelBySlug } from "@/lib/data";
 
 export function ConfiguratorShell() {
   const {
@@ -55,10 +55,22 @@ export function ConfiguratorShell() {
   useEffect(() => {
     if (didAutoSelect.current) return;
     const brandParam = searchParams.get("brand");
+    const modelParam = searchParams.get("model");
     if (brandParam && getBrandBySlug(brandParam) && !state.brandSlug) {
       didAutoSelect.current = true;
       dispatch({ type: "SET_BRAND", payload: brandParam });
-      dispatch({ type: "NEXT_STEP" });
+
+      // If a model slug was also provided, auto-select it and skip to Color step
+      if (modelParam) {
+        const model = getModelBySlug(brandParam, modelParam);
+        if (model) {
+          dispatch({ type: "SET_MODEL", payload: model.id });
+          dispatch({ type: "GO_TO_STEP", payload: 2 }); // Color step
+          return;
+        }
+      }
+
+      dispatch({ type: "NEXT_STEP" }); // Just brand — go to Boat step
     }
   }, [searchParams, state.brandSlug, dispatch]);
 
