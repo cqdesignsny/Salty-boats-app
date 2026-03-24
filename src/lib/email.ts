@@ -2,8 +2,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Switch to noreply@saltyboats.com once domain is verified in Resend
-const FROM_EMAIL = "Salty Boats <onboarding@resend.dev>";
+const FROM_EMAIL = "Salty Boats <noreply@saltyboats.com>";
 const ADMIN_EMAILS = [
   "saltyboatsfl@gmail.com",
   "donald@oldsaltmarine.com",
