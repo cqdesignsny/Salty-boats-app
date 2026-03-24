@@ -99,7 +99,7 @@ export default function AboutPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                   <span className="absolute top-3 right-3 bg-ocean text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">
-                    {brand.isPackageBrand ? "Package" : "Custom Build"}
+                    {brand.isPackageBrand ? "All-In Package" : "Custom Build"}
                   </span>
                 </div>
                 <div className="p-6">
