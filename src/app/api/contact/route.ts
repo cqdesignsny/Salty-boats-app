@@ -14,23 +14,21 @@ export async function POST(request: Request) {
     }
 
     // Push to Notion
-    try {
-      await createContactLead({
-        name: name.trim(),
-        email: email.trim(),
-        phone: phone?.trim() || undefined,
-        message: message.trim(),
-        source: "Contact Form",
-      });
-      console.log("Contact lead saved to Notion:", email);
-      return NextResponse.json({ success: true });
-    } catch (notionError: unknown) {
-      const errMsg = notionError instanceof Error ? notionError.message : String(notionError);
-      console.error("Failed to save contact to Notion:", errMsg);
-      return NextResponse.json({ success: true, notionError: errMsg });
-  } catch {
+    const result = await createContactLead({
+      name: name.trim(),
+      email: email.trim(),
+      phone: phone?.trim() || undefined,
+      message: message.trim(),
+      source: "Contact Form",
+    });
+
+    console.log("Contact lead saved to Notion:", email, result.id);
+    return NextResponse.json({ success: true, notionPageId: result.id });
+  } catch (error: unknown) {
+    const errMsg = error instanceof Error ? error.message : String(error);
+    console.error("Contact form error:", errMsg);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { success: false, error: errMsg },
       { status: 500 }
     );
   }
