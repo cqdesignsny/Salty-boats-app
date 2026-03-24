@@ -129,6 +129,7 @@ export function ReviewSubmit({
           </tbody>
         </table>
         <p style="font-size:13px;color:#64748b;">$500 deposit required to start your build.</p>
+        <p style="font-size:11px;color:#94a3b8;margin-top:8px;">Prices quoted are valid for 30 days from the date shown above. After 30 days, pricing is subject to change without notice.</p>
         <div class="footer">
           <p>Salty Boats &bull; 900 Industrial Drive, Wildwood, FL 34785</p>
           <p>(352) 748-1161 &bull; sales@saltyboats.com</p>
