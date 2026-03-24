@@ -36,12 +36,12 @@ export default function HomePage() {
               Florida with a 10-year hull warranty.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="#brands">
+              <a href="#brands">
                 <Button size="lg">
                   Choose Your Boat
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
-              </Link>
+              </a>
               <Link href="/inventory">
                 <Button
                   variant="outline"
