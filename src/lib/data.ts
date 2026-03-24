@@ -10,7 +10,7 @@ export const brands: Brand[] = [
     description:
       "Stumpnocker skiffs are purpose-built for shallow-water fishing. Lightweight, durable, and fully customizable with your choice of equipment, motor, and trailer. Every hull is hand-laid fiberglass with a 10-year warranty.",
     logoUrl: "/images/logos/stumpnocker-logo.png",
-    heroImageUrl: "/resized-images/stumpnocker/144-skiff-tiller/stumpnocker-144-001.webp",
+    heroImageUrl: "/images/boats/stumpnocker-144-skiff-tiller.jpg",
     isPackageBrand: false,
   },
   {
@@ -21,7 +21,8 @@ export const brands: Brand[] = [
     description:
       "Palmetto Bay boats come as complete, ready-to-fish packages. Motor, trailer, and all equipment included — just pick your color and hit the water. No hidden costs, no add-ons needed.",
     logoUrl: "/images/logos/palmetto-bay-logo.png",
-    heroImageUrl: "/resized-images/palmetto-bay/186-bay/186-bay-1.webp",
+    heroImageUrl:
+      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b857ac4ab035bea690d0_relume-572947.png",
     isPackageBrand: true,
   },
   {
@@ -32,7 +33,8 @@ export const brands: Brand[] = [
     description:
       "Salty Skiffs are compact, affordable fishing skiffs built for the water. Pick your motor, choose a trailer, and customize your build.",
     logoUrl: "/images/logos/salty-skiffs-logo.png",
-    heroImageUrl: "/resized-images/salty-skiffs/14-s/14-s-1.webp",
+    heroImageUrl:
+      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84ce5c1e21665aa3b73_relume-571026.jpeg",
     isPackageBrand: false,
   },
 ];
@@ -45,7 +47,7 @@ export const boatModels: BoatModel[] = [
     brandSlug: "stumpnocker",
     modelName: "144 Skiff Tiller",
     slug: "144-skiff-tiller",
-    imageUrl: "/resized-images/stumpnocker/144-skiff-tiller/stumpnocker-144-001.webp",
+    imageUrl: "/images/boats/stumpnocker-144-skiff-tiller.jpg",
     galleryImages: [
       "/resized-images/stumpnocker/144-skiff-tiller/stumpnocker-144-001.webp",
       "/resized-images/stumpnocker/144-skiff-tiller/stumpnocker-144-002.webp",
@@ -81,7 +83,8 @@ export const boatModels: BoatModel[] = [
     brandSlug: "stumpnocker",
     modelName: "164 Skiff Tiller",
     slug: "164-skiff-tiller",
-    imageUrl: "/resized-images/stumpnocker/164-skiff-tiller/164-skiff-tiller-1.webp",
+    imageUrl:
+      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920ae5add96ece37b4eae32_relume-570454.jpeg",
     galleryImages: [
       "/resized-images/stumpnocker/164-skiff-tiller/164-skiff-tiller-1.webp",
       "/resized-images/stumpnocker/164-skiff-tiller/164-skiff-tiller-2.webp",
@@ -123,7 +126,8 @@ export const boatModels: BoatModel[] = [
     brandSlug: "stumpnocker",
     modelName: "174 Skiff Tiller",
     slug: "174-skiff-tiller",
-    imageUrl: "/resized-images/stumpnocker/174-skiff-tiller/174-skiff-tiller-1.webp",
+    imageUrl:
+      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b8740d7c8a8d98e08902_relume-573164.jpeg",
     galleryImages: [
       "/resized-images/stumpnocker/174-skiff-tiller/174-skiff-tiller-1.webp",
       "/resized-images/stumpnocker/174-skiff-tiller/174-skiff-tiller-2.webp",
@@ -161,7 +165,7 @@ export const boatModels: BoatModel[] = [
     brandSlug: "stumpnocker",
     modelName: "174 Skiff Tiller Deluxe",
     slug: "174-skiff-tiller-deluxe",
-    imageUrl: "/resized-images/stumpnocker/174-skiff-deluxe/IMG_2270.webp",
+    imageUrl: "/174-cc-deluxe.png",
     galleryImages: [
       "/resized-images/stumpnocker/174-skiff-deluxe/IMG_2270.webp",
       "/resized-images/stumpnocker/174-skiff-deluxe/IMG_2271.webp",
@@ -198,7 +202,7 @@ export const boatModels: BoatModel[] = [
     brandSlug: "stumpnocker",
     modelName: "174 Skiff CC",
     slug: "174-skiff-cc",
-    imageUrl: "/resized-images/stumpnocker/174-skiff-cc/174-skiff-cc-1.webp",
+    imageUrl: "/174skiff-cc.jpg",
     galleryImages: [
       "/resized-images/stumpnocker/174-skiff-cc/174-skiff-cc-1.webp",
       "/resized-images/stumpnocker/174-skiff-cc/174-skiff-cc-2.webp",
@@ -239,7 +243,8 @@ export const boatModels: BoatModel[] = [
     brandSlug: "palmetto-bay",
     modelName: "186 Bay",
     slug: "186-bay",
-    imageUrl: "/resized-images/palmetto-bay/186-bay/186-bay-1.webp",
+    imageUrl:
+      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b857ac4ab035bea690d0_relume-572947.png",
     galleryImages: [
       "/resized-images/palmetto-bay/186-bay/186-bay-1.webp",
       "/resized-images/palmetto-bay/186-bay/186-bay-2.webp",
@@ -280,7 +285,8 @@ export const boatModels: BoatModel[] = [
     brandSlug: "palmetto-bay",
     modelName: "1701 CC",
     slug: "1701-cc",
-    imageUrl: "/resized-images/palmetto-bay/1701-CC/1701-cc-1.webp",
+    imageUrl:
+      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b857ac4ab035bea690d0_relume-572947.png",
     galleryImages: [
       "/resized-images/palmetto-bay/1701-CC/1701-cc-1.webp",
       "/resized-images/palmetto-bay/1701-CC/1701-cc-2.webp",
@@ -323,7 +329,8 @@ export const boatModels: BoatModel[] = [
     brandSlug: "salty-skiffs",
     modelName: "14 S",
     slug: "14-s",
-    imageUrl: "/resized-images/salty-skiffs/14-s/14-s-1.webp",
+    imageUrl:
+      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84ce5c1e21665aa3b73_relume-571026.jpeg",
     galleryImages: [
       "/resized-images/salty-skiffs/14-s/14-s-1.webp",
       "/resized-images/salty-skiffs/14-s/14-s-2.webp",
@@ -359,7 +366,8 @@ export const boatModels: BoatModel[] = [
     brandSlug: "salty-skiffs",
     modelName: "14 F",
     slug: "14-f",
-    imageUrl: "/resized-images/salty-skiffs/14-f/14-f-1.webp",
+    imageUrl:
+      "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84d44168c818a89331d_relume-571027.jpeg",
     galleryImages: [
       "/resized-images/salty-skiffs/14-f/14-f-1.webp",
       "/resized-images/salty-skiffs/14-f/14-f-2.webp",
@@ -957,7 +965,7 @@ export const inventoryItems: InventoryItem[] = [
     description:
       "Brand new Stumpnocker 144 Skiff Tiller in classic white. Hull only — add your own motor, trailer, and equipment. Ready for immediate pickup.",
     price: 5990,
-    imageUrl: "/resized-images/stumpnocker/144-skiff-tiller/stumpnocker-144-001.webp",
+    imageUrl: "/images/boats/stumpnocker-144-skiff-tiller.jpg",
     galleryImages: [],
     year: 2025,
     condition: "new",
