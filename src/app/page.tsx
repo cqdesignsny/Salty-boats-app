@@ -36,9 +36,9 @@ export default function HomePage() {
               Florida with a 10-year hull warranty.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/build-your-boat">
+              <Link href="#brands">
                 <Button size="lg">
-                  Build Your Boat
+                  Choose Your Boat
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
@@ -57,7 +57,7 @@ export default function HomePage() {
       </section>
 
       {/* Brand Cards */}
-      <section className="py-20 bg-slate-50">
+      <section id="brands" className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold text-navy mb-4">
