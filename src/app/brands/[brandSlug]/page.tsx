@@ -54,15 +54,9 @@ export default async function BrandPage({ params }: Props) {
             )}
             <h1 className="text-4xl sm:text-5xl font-bold mb-4">{brand.name}</h1>
             <p className="text-xl text-ocean font-medium mb-4">{brand.tagline}</p>
-            <p className="text-white/70 text-lg leading-relaxed mb-8">
+            <p className="text-white/70 text-lg leading-relaxed">
               {brand.description}
             </p>
-            <Link href={`/build-your-boat?brand=${brandSlug}`}>
-              <Button size="lg">
-                Build Your {brand.name.split(" ")[0]}
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
@@ -176,13 +170,7 @@ export default async function BrandPage({ params }: Props) {
           </p>
           <div className="flex gap-4 justify-center">
             <Link href="/contact">
-              <Button variant="secondary">Contact Us</Button>
-            </Link>
-            <Link href={`/build-your-boat?brand=${brandSlug}`}>
-              <Button>
-                Start Building
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+              <Button>Contact Us</Button>
             </Link>
           </div>
         </div>
