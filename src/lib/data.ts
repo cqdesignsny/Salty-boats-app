@@ -49,8 +49,8 @@ export const boatModels: BoatModel[] = [
     slug: "144-skiff-tiller",
     imageUrl: "/images/boats/stumpnocker-144-skiff-tiller.jpg",
     galleryImages: [
-      "/resized-images/stumpnocker/144-skiff-tiller/stumpnocker-144-001.webp",
-      "/resized-images/stumpnocker/144-skiff-tiller/stumpnocker-144-002.webp",
+      "/resized-images/stumpnocker/144-skiff-tiller/Copy of STUMPNOCKER 144 001.webp",
+      "/resized-images/stumpnocker/144-skiff-tiller/Copy of STUMPNOCKER 144 002.webp",
       "/resized-images/stumpnocker/144-skiff-tiller/DSCN3216.webp",
       "/resized-images/stumpnocker/144-skiff-tiller/DSCN3218.webp",
       "/resized-images/stumpnocker/144-skiff-tiller/DSCN3221.webp",
@@ -63,7 +63,7 @@ export const boatModels: BoatModel[] = [
       boatWeightApprox: "460 lbs",
       maxPersonsOrWeight: "3 or 500 lbs",
       maxWeight: "850 lbs",
-      maxHP: "25",
+      maxHP: "30",
       draft: '3"–6"',
       hullWarrantyYears: 10,
     },
@@ -857,7 +857,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     motorPrice: 5990,
     applicableModelIds: ["stumpnocker-174-skiff-cc"],
   },
-  // ── 40–60 HP (shared with Salty Skiffs + tiller Stumpnockers + 174 CC) ──
+  // ── 40 HP (164 Skiff Tiller, 174 Tiller, 174 Deluxe, 174 CC) ──
   {
     id: "df40atl5",
     sku: "DF40ATL5",
@@ -866,7 +866,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 40,
     packagePrice: 0,
     motorPrice: 6585,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
   {
     id: "df40atlw5",
@@ -876,8 +876,9 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 40,
     packagePrice: 0,
     motorPrice: 6885,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
+  // ── 50 HP (174 Tiller, 174 Deluxe, 174 CC) ──
   {
     id: "df50atl5",
     sku: "DF50ATL5",
@@ -886,7 +887,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 50,
     packagePrice: 0,
     motorPrice: 6855,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
   {
     id: "df50atlw5",
@@ -896,8 +897,9 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 50,
     packagePrice: 0,
     motorPrice: 7155,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
   },
+  // ── 60 HP (174 CC only) ──
   {
     id: "df60atl5",
     sku: "DF60ATL5",
@@ -906,7 +908,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 60,
     packagePrice: 0,
     motorPrice: 7575,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-174-skiff-cc"],
   },
   {
     id: "df60atlw5",
@@ -916,7 +918,7 @@ export const packageMotorOptions: PackageMotorOption[] = [
     horsepower: 60,
     packagePrice: 0,
     motorPrice: 7875,
-    applicableModelIds: ["salty-skiffs-14-s", "salty-skiffs-14-f", "stumpnocker-144-skiff-tiller", "stumpnocker-164-skiff-tiller", "stumpnocker-174-skiff-tiller", "stumpnocker-174-skiff-tiller-deluxe", "stumpnocker-174-skiff-cc"],
+    applicableModelIds: ["stumpnocker-174-skiff-cc"],
   },
   // ── V-Twin motors (174 Skiff CC only) ──
   {
