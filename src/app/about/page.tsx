@@ -1,4 +1,7 @@
+import Image from "next/image";
+import Link from "next/link";
 import { Shield, Award, Users, MapPin } from "lucide-react";
+import { brands } from "@/lib/data";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -80,31 +83,35 @@ export default function AboutPage() {
             Our Brands
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Stumpnocker",
-                desc: "Custom shallow-water skiffs. Choose your equipment, motor, and trailer. Built your way.",
-              },
-              {
-                name: "Palmetto Bay Boats",
-                desc: "Complete bay boat packages. Motor, trailer, everything included. Just pick your color.",
-              },
-              {
-                name: "Salty Skiffs",
-                desc: "Affordable fishing skiff packages. Everything you need to get on the water, included.",
-              },
-            ].map((brand) => (
-              <div
-                key={brand.name}
-                className="bg-white rounded-xl p-8 border border-slate-200"
+            {brands.map((brand) => (
+              <Link
+                key={brand.id}
+                href={`/brands/${brand.slug}`}
+                className="group bg-white rounded-xl overflow-hidden border border-slate-200 hover:shadow-lg hover:border-ocean/40 transition-all duration-200"
               >
-                <h3 className="text-xl font-bold text-navy mb-3">
-                  {brand.name}
-                </h3>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  {brand.desc}
-                </p>
-              </div>
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={brand.heroImageUrl}
+                    alt={brand.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <span className="absolute top-3 right-3 bg-ocean text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">
+                    {brand.isPackageBrand ? "Package" : "Custom Build"}
+                  </span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-navy mb-1">
+                    {brand.name}
+                  </h3>
+                  <p className="text-xs text-ocean font-medium mb-2">{brand.tagline}</p>
+                  <p className="text-slate-600 text-sm leading-relaxed line-clamp-2">
+                    {brand.description}
+                  </p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
