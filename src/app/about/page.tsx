@@ -5,8 +5,9 @@ import { brands } from "@/lib/data";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "Learn about Salty Boats — Florida's home for quality skiffs and bay boats.",
+  title: "About Salty Boats — Wildwood, FL Boat Dealer",
+  description:
+    "Salty Boats is a family-operated boat dealer in Wildwood, Florida. We carry Stumpnocker, Palmetto Bay, and Salty Skiff brands — hand-laid fiberglass hulls with a 10-year warranty. Custom builds, in-stock inventory, and professional boat services.",
 };
 
 export default function AboutPage() {

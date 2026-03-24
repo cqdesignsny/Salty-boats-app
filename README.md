@@ -16,8 +16,8 @@ Full-stack website and boat configurator for Salty Boats — a Florida-based boa
 
 ### Marketing Pages
 - **Home** — Interactive water canvas hero, brand showcase cards (fully clickable), "How It Works" process steps, CTA
-- **Brand pages** (3) — Brand hero, boat model grid with pricing, "Build Your [Brand]" buttons link directly to configurator with brand pre-selected
-- **Boat detail pages** (9) — Specs, features, gallery, warranty badge, "Build This Boat" CTA (auto-selects brand in configurator)
+- **Brand pages** (3) — Boat model grid with image carousels (arrow navigation), pricing, "Build" buttons link to configurator with brand + model pre-selected
+- **Boat detail pages** (9) — Specs, features, image gallery with arrows, warranty badge, "Build This Boat" CTA (auto-selects brand + model in configurator, skips to Color step)
 - **Inventory** — Filterable grid of in-stock boats with deposit buttons
 - **Inventory detail** — Full boat details with $500 deposit checkout
 - **About** — Company story, values, team
@@ -46,7 +46,9 @@ Brand → Boat → Color → Motor → Trailer → Delivery → Review
 - Motor included in all-in package price
 
 **Smart features:**
-- Brand auto-selection via URL query param (`?brand=stumpnocker`)
+- Brand + model auto-selection via URL query params (`?brand=stumpnocker&model=164-skiff-tiller`)
+- Build Summary sidebar visible from step 1 (no layout shift)
+- Clickable step indicator dots to jump back to completed steps
 - Print Quote / Save as PDF — generates a clean branded quote document
 - Real-time price calculation in sidebar and mobile sticky bar
 - Step validation prevents advancing without required selections
@@ -95,7 +97,7 @@ src/
 │       └── webhooks/
 │           └── stripe/         # Stripe webhook handler
 ├── components/
-│   ├── ui/                     # Button, Card, Input, Select, Badge, Dialog, WaterCanvas
+│   ├── ui/                     # Button, Card, Input, Select, Badge, Dialog, WaterCanvas, ImageCarousel, ImageGallery
 │   ├── layout/                 # Header, Footer
 │   ├── scroll-to-top.tsx       # Client component — scrolls to top on route change
 │   └── configurator/           # Shell, steps, summary, hook
@@ -138,7 +140,7 @@ All product data is defined as TypeScript constants in `src/lib/data.ts`:
 ### Stumpnocker (Custom Build)
 | Model | Base Price | Max HP |
 |-------|-----------|--------|
-| 144 Skiff Tiller | $5,990 | 25 |
+| 144 Skiff Tiller | $5,990 | 30 |
 | 164 Skiff Tiller | $6,990 | 40 |
 | 174 Skiff Tiller | $10,990 | 50 |
 | 174 Skiff Tiller Deluxe | $10,990 | 50 |

@@ -6,6 +6,13 @@ import { Card } from "@/components/ui/card";
 import { WaterCanvas } from "@/components/ui/water-canvas";
 import { brands, boatModels } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Salty Boats | Florida Skiffs & Bay Boats — Wildwood, FL",
+  description:
+    "Build your dream fishing boat or shop in-stock inventory at Salty Boats. Three brands — Stumpnocker, Palmetto Bay, and Salty Skiffs. Custom builds, all-in packages, and expert service in Wildwood, Florida.",
+};
 
 export default function HomePage() {
   return (

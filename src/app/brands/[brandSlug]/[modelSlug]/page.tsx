@@ -24,9 +24,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const model = getModelBySlug(brandSlug, modelSlug);
   const brand = getBrandBySlug(brandSlug);
   if (!model || !brand) return {};
+  const specs = model.specs;
   return {
     title: `${model.modelName} — ${brand.name}`,
-    description: model.description,
+    description: `${model.description} ${specs.length} length, ${specs.maxHP} max HP, ${specs.draft} draft. Starting at $${model.basePrice.toLocaleString()}. Available at Salty Boats, Wildwood FL.`,
+    openGraph: {
+      title: `${brand.name} ${model.modelName} | Salty Boats`,
+      description: model.description,
+      images: model.imageUrl ? [{ url: model.imageUrl }] : [],
+    },
   };
 }
 

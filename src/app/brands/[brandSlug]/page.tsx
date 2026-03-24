@@ -19,9 +19,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { brandSlug } = await params;
   const brand = getBrandBySlug(brandSlug);
   if (!brand) return {};
+  const models = getModelsByBrand(brandSlug);
+  const modelNames = models.map((m) => m.modelName).join(", ");
   return {
-    title: brand.name,
-    description: brand.description,
+    title: `${brand.name} — ${brand.tagline}`,
+    description: `${brand.description} Models: ${modelNames}. Available at Salty Boats in Wildwood, FL.`,
+    openGraph: {
+      title: `${brand.name} | Salty Boats`,
+      description: brand.description,
+      images: brand.heroImageUrl ? [{ url: brand.heroImageUrl }] : [],
+    },
   };
 }
 
