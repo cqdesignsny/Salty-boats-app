@@ -1,4 +1,12 @@
 import { NextResponse } from "next/server";
+import { createBuildQuote } from "@/lib/notion";
+import {
+  getBrandBySlug,
+  boatModels,
+  hullColors,
+  equipmentOptions,
+  trailers,
+} from "@/lib/data";
 
 export async function POST(request: Request) {
   try {
@@ -14,9 +22,11 @@ export async function POST(request: Request) {
       selectedEquipment,
       trailerId,
       motorOption,
+      motorLabel,
       deliveryType,
       deliveryAddress,
       totalPrice,
+      stripeSessionId,
     } = body;
 
     // Validate required fields
@@ -34,36 +44,47 @@ export async function POST(request: Request) {
       );
     }
 
+    // Resolve human-readable names from IDs
+    const brand = getBrandBySlug(brandSlug);
+    const model = boatModels.find((m) => m.id === modelId);
+    const color = hullColors.find((c) => c.id === hullColorId);
+    const equipmentNames = (selectedEquipment || [])
+      .map((id: string) => equipmentOptions.find((e) => e.id === id)?.optionName)
+      .filter(Boolean)
+      .join(", ");
+    const trailer = trailerId ? trailers.find((t) => t.id === trailerId) : null;
+
     // Generate a build order ID for tracking
     const buildOrderId = `SB-${Date.now()}`;
 
-    // Build the order data
-    const orderData = {
-      buildOrderId,
-      customerName: customerName.trim(),
-      customerEmail: customerEmail.trim(),
-      customerPhone: customerPhone?.trim() || null,
-      brandSlug,
-      modelId,
-      hullColorId,
-      selectedEquipment: selectedEquipment || [],
-      trailerId: trailerId || null,
-      motorOption: motorOption || null,
-      deliveryType: deliveryType || null,
-      deliveryAddress: deliveryAddress?.trim() || null,
-      totalPrice,
-      createdAt: new Date().toISOString(),
-    };
-
-    // Future: Save to Supabase and send email via Resend
-    console.log("Build request received:", buildOrderId, orderData.customerEmail, orderData.brandSlug);
+    // Push to Notion
+    try {
+      await createBuildQuote({
+        customerName: customerName.trim(),
+        email: customerEmail.trim(),
+        phone: customerPhone?.trim() || undefined,
+        brand: brand?.name || brandSlug,
+        model: model?.modelName || modelId,
+        hullColor: color?.colorName || hullColorId,
+        equipment: equipmentNames || "None",
+        motor: motorLabel || motorOption || "None",
+        trailer: trailer?.trailerName || "None",
+        deliveryType: deliveryType === "delivery" ? "Delivery" : "Pickup",
+        estimatedTotal: totalPrice || 0,
+        depositStatus: "Unpaid",
+        stripeSessionId: stripeSessionId || "",
+      });
+      console.log("Build quote saved to Notion:", buildOrderId);
+    } catch (notionError) {
+      console.error("Failed to save to Notion:", notionError);
+      // Don't fail the request if Notion is down
+    }
 
     return NextResponse.json(
       {
         success: true,
         message: "Build request submitted successfully.",
         buildOrderId,
-        order: orderData,
       },
       { status: 201 }
     );

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { createContactLead } from "@/lib/notion";
 
 export async function POST(request: Request) {
   try {
@@ -12,9 +13,20 @@ export async function POST(request: Request) {
       );
     }
 
-    // Future: Save to Supabase and send email via Resend
-    // For now, the submission is acknowledged and logged server-side
-    console.log("Contact submission received:", email);
+    // Push to Notion
+    try {
+      await createContactLead({
+        name: name.trim(),
+        email: email.trim(),
+        phone: phone?.trim() || undefined,
+        message: message.trim(),
+        source: "Contact Form",
+      });
+      console.log("Contact lead saved to Notion:", email);
+    } catch (notionError) {
+      console.error("Failed to save contact to Notion:", notionError);
+      // Don't fail the request if Notion is down
+    }
 
     return NextResponse.json({ success: true });
   } catch {

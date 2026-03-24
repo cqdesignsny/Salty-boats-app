@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
+import { updateBuildQuoteDeposit } from "@/lib/notion";
 import type Stripe from "stripe";
 
 export async function POST(request: Request) {
@@ -37,19 +38,20 @@ export async function POST(request: Request) {
       console.log("Payment completed:", {
         sessionId: session.id,
         orderType: metadata.order_type,
-        itemId: metadata.item_id,
         buildOrderId: metadata.build_order_id,
         amountTotal: session.amount_total,
         customerEmail: session.customer_details?.email,
       });
 
-      // TODO: Update order status in Supabase
-      // TODO: Send confirmation email via Resend
-      // if (metadata.order_type === 'inventory') {
-      //   await supabase.from('inventory_orders').update({ deposit_paid: true }).eq('item_id', metadata.item_id);
-      // } else if (metadata.order_type === 'build') {
-      //   await supabase.from('build_orders').update({ deposit_paid: true, status: 'deposit_paid' }).eq('id', metadata.build_order_id);
-      // }
+      // Update deposit status in Notion
+      if (metadata.order_type === "build") {
+        try {
+          await updateBuildQuoteDeposit(session.id, "Paid");
+          console.log("Notion deposit status updated to Paid:", session.id);
+        } catch (notionError) {
+          console.error("Failed to update Notion deposit status:", notionError);
+        }
+      }
 
       break;
     }
