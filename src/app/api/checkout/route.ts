@@ -4,7 +4,7 @@ import { getStripe, DEPOSIT_AMOUNT } from "@/lib/stripe";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { orderType, itemId, itemTitle, buildOrderId, buildSummary } = body;
+    const { orderType, itemId, itemTitle, buildOrderId, buildSummary, customerEmail, customerName, customerPhone } = body;
 
     if (!orderType || !["inventory", "build"].includes(orderType)) {
       return NextResponse.json(
@@ -28,12 +28,15 @@ export async function POST(request: Request) {
     if (orderType === "build" && buildOrderId) {
       metadata.build_order_id = buildOrderId;
     }
+    if (customerName) metadata.customer_name = customerName;
+    if (customerPhone) metadata.customer_phone = customerPhone;
 
     const origin = request.headers.get("origin") || "http://localhost:3000";
 
     const session = await getStripe().checkout.sessions.create({
       mode: "payment",
       payment_method_types: ["card"],
+      ...(customerEmail ? { customer_email: customerEmail } : {}),
       line_items: [
         {
           price_data: {

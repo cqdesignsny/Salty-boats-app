@@ -34,8 +34,12 @@ export async function POST(request: Request) {
       );
     }
 
+    // Generate a build order ID for tracking
+    const buildOrderId = `SB-${Date.now()}`;
+
     // Build the order data
     const orderData = {
+      buildOrderId,
       customerName: customerName.trim(),
       customerEmail: customerEmail.trim(),
       customerPhone: customerPhone?.trim() || null,
@@ -52,12 +56,13 @@ export async function POST(request: Request) {
     };
 
     // Future: Save to Supabase and send email via Resend
-    console.log("Build request received:", orderData.customerEmail, orderData.brandSlug);
+    console.log("Build request received:", buildOrderId, orderData.customerEmail, orderData.brandSlug);
 
     return NextResponse.json(
       {
         success: true,
         message: "Build request submitted successfully.",
+        buildOrderId,
         order: orderData,
       },
       { status: 201 }

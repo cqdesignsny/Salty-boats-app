@@ -71,6 +71,16 @@ export function ReviewSubmit({
       .map((e) => `<tr><td style="padding:4px 8px">${e.optionName}</td><td style="padding:4px 8px;text-align:right">${formatPrice(e.price)}</td></tr>`)
       .join("");
 
+    // Fetch the SVG logo and convert to base64 data URL for print window
+    const logoDataUrl = (() => {
+      try {
+        const svgText = `LOGO_SVG_PLACEHOLDER`;
+        return `data:image/svg+xml;base64,${btoa(svgText)}`;
+      } catch {
+        return "";
+      }
+    })();
+
     const html = `
       <!DOCTYPE html>
       <html>
@@ -141,6 +151,7 @@ export function ReviewSubmit({
     setLoading(true);
 
     try {
+      // 1. Submit the build request
       const res = await fetch("/api/build-requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -164,9 +175,37 @@ export function ReviewSubmit({
           totalPrice,
         }),
       });
-      if (res.ok) setSubmitted(true);
+
+      if (!res.ok) throw new Error("Build request failed");
+      const data = await res.json();
+
+      // 2. Create Stripe checkout session for $500 deposit
+      setSubmitted(true); // show "redirecting" state
+      const checkoutRes = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          orderType: "build",
+          buildOrderId: data.buildOrderId,
+          buildSummary: `${brand.name} ${model.modelName} — ${formatPrice(totalPrice)}`,
+          customerName,
+          customerEmail,
+          customerPhone,
+        }),
+      });
+
+      if (checkoutRes.ok) {
+        const { url } = await checkoutRes.json();
+        if (url) {
+          window.location.href = url;
+          return;
+        }
+      }
+
+      // If Stripe redirect fails, still show success
     } catch {
       alert("Something went wrong. Please try again.");
+      setSubmitted(false);
     } finally {
       setLoading(false);
     }
@@ -176,18 +215,18 @@ export function ReviewSubmit({
     return (
       <div className="text-center py-12">
         <div className="w-20 h-20 bg-sea-green/20 rounded-full flex items-center justify-center mx-auto mb-6">
-          <CheckCircle className="w-10 h-10 text-sea-green" />
+          <CheckCircle className="w-10 h-10 text-sea-green animate-pulse" />
         </div>
         <h2 className="text-3xl font-bold text-navy mb-4">
-          Build Request Submitted!
+          Redirecting to Payment...
         </h2>
         <p className="text-slate-600 max-w-md mx-auto mb-2">
-          Thank you, {customerName}! Your build request for the{" "}
-          <strong>{model.modelName}</strong> has been submitted.
+          Your build request for the <strong>{model.modelName}</strong> has been submitted.
+          You&apos;re being redirected to our secure payment page for the $500 deposit.
         </p>
         <p className="text-slate-500 text-sm max-w-md mx-auto">
-          Our team will contact you at {customerEmail} to discuss next steps and
-          collect the $500 deposit to start your build.
+          If you are not redirected automatically,{" "}
+          please contact us at sales@saltyboats.com to arrange your deposit.
         </p>
       </div>
     );
