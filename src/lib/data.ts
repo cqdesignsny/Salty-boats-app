@@ -323,7 +323,7 @@ export const boatModels: BoatModel[] = [
     ],
     isActive: true,
   },
-  // Salty Skiffs — 2 active boats (all-in packages)
+  // Salty Skiffs — 2 active boats (custom build)
   {
     id: "salty-skiffs-14-s",
     brandSlug: "salty-skiffs",
@@ -352,11 +352,11 @@ export const boatModels: BoatModel[] = [
     },
     standardColors: ["White", "Gray"],
     description:
-      "The 14 S (Standard) is the most affordable way to get on the water. A complete fishing skiff package with motor and trailer included.",
+      "The 14 S (Standard) is the most affordable way to get on the water. A compact, customizable fishing skiff — pick your motor, trailer, and equipment.",
     features: [
-      "Complete package — motor & trailer included",
-      "Any hull color included at no extra charge",
       "Lightweight and easy to trailer",
+      "Fully customizable — choose your motor and trailer",
+      "Hand-laid fiberglass hull",
       "10-year hull warranty",
     ],
     isActive: true,
@@ -392,12 +392,11 @@ export const boatModels: BoatModel[] = [
     },
     standardColors: ["White", "Gray"],
     description:
-      "The 14 F (Fish) is the angler-focused Salty Skiff. Enhanced fishing features in a complete package with motor and trailer included.",
+      "The 14 F (Fish) is the angler-focused Salty Skiff with an enhanced fishing layout. Fully customizable with your choice of motor, trailer, and equipment.",
     features: [
-      "Complete package — motor & trailer included",
-      "Any hull color included at no extra charge",
       "Enhanced fishing layout",
-      "GTA 1615 aluminum trailer included",
+      "Fully customizable — choose your motor and trailer",
+      "Hand-laid fiberglass hull",
       "10-year hull warranty",
     ],
     isActive: true,
