@@ -29,21 +29,21 @@ Full-stack website and boat configurator for Salty Boats — a Florida-based boa
 ### Boat Configurator (`/build-your-boat`)
 Interactive multi-step wizard for building custom boats:
 
-**Stumpnocker (8 steps):**
-1. **Brand Select** — Choose from 3 brands
-2. **Boat Select** — Pick a model with specs and pricing
-3. **Color Select** — Hull color picker with per-model pricing
-4. **Equipment Select** — Electrical, plumbing, and accessories
-5. **Trailer Select** — Trailer options with pricing
-6. **Motor Select** — Motor dropdown or "I have my own motor"
-7. **Delivery** — Pickup or delivery with address form
-8. **Review & Submit** — Full build summary, print/download quote, customer info, and submission
+**Stumpnocker (9 steps):**
+Brand → Boat → Color → Equipment → Trailer → Motor → Installation → Delivery → Review
 
-**Package brands (Palmetto Bay, Salty Skiffs) — 7 steps:**
+- Tiller models (144, 164, 174, 174 Deluxe): 18 pick-your-power Suzuki motors ($975–$7,875)
+- 174 Skiff CC (center console): 17 remote-steering Suzuki motors ($3,465–$7,875), including V-Twin options
+
+**Salty Skiffs (8 steps):**
+Brand → Boat → Color → Trailer → Motor → Installation → Delivery → Review
+
+- 18 pick-your-power Suzuki tiller motors ($975–$7,875)
+
+**Palmetto Bay (7 steps):**
 Brand → Boat → Color → Motor → Trailer → Delivery → Review
 
-- **Palmetto Bay (all-in):** Motor step shows included motor(s), trailer shows as "Included"
-- **Salty Skiffs (pick your power):** 12 Suzuki motor options ($975–$6,095 add-on), trailer included
+- Motor included in all-in package price
 
 **Smart features:**
 - Brand auto-selection via URL query param (`?brand=stumpnocker`)
@@ -130,7 +130,7 @@ All product data is defined as TypeScript constants in `src/lib/data.ts`:
 - **8 hull colors** — with hex codes and per-model pricing
 - **Equipment options** — categorized (Electrical, Plumbing, Accessories) with per-model applicability
 - **Trailer options** — with per-model pricing and applicability
-- **Motor options** — dual pricing system: all-in package (Palmetto Bay) and additive pick-your-power (Salty Skiffs, 12 Suzuki motors)
+- **Motor options** — dual pricing system: all-in package (Palmetto Bay) and additive pick-your-power (Salty Skiffs + Stumpnocker). 30 total motor entries across all brands.
 - **~8 inventory items** — in-stock boats with full details
 
 ## Boat Lineup
@@ -156,23 +156,67 @@ All product data is defined as TypeScript constants in `src/lib/data.ts`:
 | 14S | $6,000 |
 | 14F | $10,500 |
 
-#### Salty Skiffs Motor Options (12 Suzuki outboards)
-| Motor | HP | SKU | Add-on Price |
-|-------|-----|-----|-------------|
-| Suzuki 2.5 HP Tiller | 2.5 | DF2.5L5 | $975 |
-| Suzuki 4 HP Tiller | 4 | DF4AL5 | $1,575 |
-| Suzuki 6 HP Tiller | 6 | DF6AL5 | $1,765 |
-| Suzuki 9.9B HP E-Start Tiller + Power Tilt | 9.9 | DF9.9BETL5 | $3,295 |
-| Suzuki 15 HP E-Start Tiller + Power Tilt | 15 | DF15AEHTL5 | $3,195 |
-| Suzuki 20 HP E-Start Tiller + Power Tilt | 20 | DF20AEHTL5 | $3,495 |
-| Suzuki 20 HP E-Start Tiller + Power Tilt (White) | 20 | DF20AEHTLW5 | $3,595 |
-| Suzuki 25 HP E-Start Tiller + Power Trim & Tilt | 25 | DF25AETL5 | $4,195 |
-| Suzuki 25 HP E-Start Tiller + PT&T (White) | 25 | DF25AETLW5 | $4,295 |
-| Suzuki 30 HP E-Start Tiller + Power Trim & Tilt | 30 | DF30ATHL5 | $5,895 |
-| Suzuki 30 HP E-Start Tiller + PT&T (White) | 30 | DF30ATHLW5 | $6,095 |
-| Suzuki 30 HP 2nd Gen E-Start Tiller + PT&T | 30 | DF30ATL5 | $5,295 |
+### Motor Options
 
-> Motor price is added to the base boat + trailer price. All motors include fuel tank, fuel line, and propeller — installed and ready to go.
+All pick-your-power motors are Suzuki outboards. Motor price is added to the base boat price. All motors include fuel tank, fuel line, and propeller.
+
+#### Tiller Motors — Salty Skiffs + Stumpnocker (except 174 CC)
+18 motors shared across Salty Skiffs 14S/14F and Stumpnocker 144, 164, 174, 174 Deluxe:
+
+| Motor | HP | SKU | Price |
+|-------|-----|-----|-------|
+| 2.5 HP Tiller | 2.5 | DF2.5L5 | $975 |
+| 4 HP Tiller | 4 | DF4AL5 | $1,575 |
+| 6 HP Tiller | 6 | DF6AL5 | $1,765 |
+| 9.9B HP E-Start Tiller + Power Tilt | 9.9 | DF9.9BETL5 | $3,295 |
+| 15 HP E-Start Tiller + Power Tilt | 15 | DF15AEHTL5 | $3,195 |
+| 20 HP E-Start Tiller + Power Tilt | 20 | DF20AEHTL5 | $3,495 |
+| 20 HP E-Start Tiller + Power Tilt (White) | 20 | DF20AEHTLW5 | $3,595 |
+| 25 HP E-Start Tiller + PT&T | 25 | DF25AETL5 | $4,195 |
+| 25 HP E-Start Tiller + PT&T (White) | 25 | DF25AETLW5 | $4,295 |
+| 30 HP Tiller + PT&T | 30 | DF30ATHLS | $5,945 |
+| 30 HP Tiller + PT&T (White) | 30 | DF30ATHLW5 | $6,095 |
+| 30 HP 2nd Gen + PT&T | 30 | DF30ATL5 | $5,295 |
+| 40 HP PT&T | 40 | DF40ATL5 | $6,585 |
+| 40 HP PT&T (White) | 40 | DF40ATLW5 | $6,885 |
+| 50 HP PT&T | 50 | DF50ATL5 | $6,855 |
+| 50 HP PT&T (White) | 50 | DF50ATLW5 | $7,155 |
+| 60 HP PT&T | 60 | DF60ATL5 | $7,575 |
+| 60 HP PT&T (White) | 60 | DF60ATLW5 | $7,875 |
+
+#### Remote-Steering Motors — 174 Skiff CC Only
+17 motors for the center console (no tiller handle):
+
+| Motor | HP | SKU | Price |
+|-------|-----|-----|-------|
+| 9.9B HP PT&T | 9.9 | DF9.9BTL5 | $3,465 |
+| 9.9B HP PT&T (White) | 9.9 | DF9.9BTLW5 | $3,565 |
+| 20 HP PT&T | 20 | DF20ATL5 | $4,340 |
+| 20 HP PT&T (White) | 20 | DF20ATLW5 | $4,440 |
+| 25 HP PT&T | 25 | DF25ATL5 | $5,055 |
+| 25 HP PT&T (White) | 25 | DF25ATLW5 | $5,205 |
+| 30 HP PT&T | 30 | DF30ATL5 | $5,840 |
+| 30 HP PT&T (White) | 30 | DF30ATLW5 | $5,990 |
+| 40 HP PT&T | 40 | DF40ATL5 | $6,585 |
+| 40 HP PT&T (White) | 40 | DF40ATLW5 | $6,885 |
+| 50 HP PT&T | 50 | DF50ATL5 | $6,855 |
+| 50 HP PT&T (White) | 50 | DF50ATLW5 | $7,155 |
+| 50 HP V-Twin PT&T | 50 | DF50AVTL5 | $7,190 |
+| 60 HP PT&T | 60 | DF60ATL5 | $7,575 |
+| 60 HP PT&T (White) | 60 | DF60ATLW5 | $7,875 |
+| 60 HP V-Twin PT&T | 60 | DF60AVTL5 | $7,720 |
+| 60 HP V-Twin PT&T (25" Shaft) | 60 | DF60AVTX5 | $7,800 |
+
+> The 40–60 HP non-V-Twin motors are shared entries (same data.ts objects) between tiller and CC models. The 174 CC 9.9–30 HP motors have separate IDs/prices from the tiller versions since they are different SKUs (remote steering vs tiller handle).
+
+#### Palmetto Bay Motors (All-In Package)
+| Model | Motor | Included |
+|-------|-------|----------|
+| 186 Bay | Suzuki 115 HP or Yamaha 115 HP | In package price |
+| 1701 CC | Suzuki 90 HP | In package price |
+
+#### SKU Decoding Key
+`DF` = 4-Stroke, `A` = 2nd Gen, `B` = 3rd Gen, `V` = V-Twin, `E` = Electric Start, `H` = Tiller Handle, `T` = Power Trim & Tilt, `L` = 20" Shaft, `X` = 25" Shaft, `W` = White Cowling, `5` = model year suffix
 
 ## Getting Started
 

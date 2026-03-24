@@ -113,11 +113,6 @@ export function Footer() {
           <p className="text-white/40 text-sm">
             &copy; {new Date().getFullYear()} Salty Boats. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <Link href="/dealers" className="text-white/40 hover:text-white/70 text-sm transition-colors">
-              Dealer Locator
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

@@ -498,6 +498,13 @@ export const trailers: Trailer[] = [
     applicableModelIds: ["stumpnocker-144-skiff-tiller"],
   },
   {
+    id: "AS-1616",
+    trailerName: "AS-1616",
+    description: "Continental Trailer AS-1616 Aluminum Frame with Galvanized torsion axel components.",
+    price: 2490,
+    applicableModelIds: ["stumpnocker-174-skiff-cc"],
+  },
+  {
     id: "JB-1612",
     trailerName: "JB-1612",
     description: "Continental Trailer JB-1612 Galvanized Frame with Galvanized torsion axel components.",
