@@ -78,19 +78,27 @@ export function ReviewSubmit({
         <title>Salty Boats — Build Quote</title>
         <style>
           body { font-family: Arial, sans-serif; color: #0c1b3a; max-width: 700px; margin: 0 auto; padding: 40px 24px; }
-          h1 { font-size: 22px; margin-bottom: 4px; }
-          .subtitle { color: #64748b; font-size: 14px; margin-bottom: 24px; }
+          .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #0c1b3a; }
+          .header img { height: 50px; filter: grayscale(100%) brightness(0); }
+          .header-right { text-align: right; }
+          h1 { font-size: 20px; margin: 0; }
+          .subtitle { color: #64748b; font-size: 13px; margin: 4px 0 0; }
           table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
           th { text-align: left; padding: 8px; background: #f1f5f9; font-size: 13px; color: #64748b; border-bottom: 1px solid #e2e8f0; }
           td { padding: 8px; font-size: 14px; border-bottom: 1px solid #f1f5f9; }
           .total-row td { border-top: 2px solid #0c1b3a; font-weight: bold; font-size: 18px; padding-top: 12px; }
-          .footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8; }
+          .footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8; text-align: center; }
           @media print { body { padding: 20px; } }
         </style>
       </head>
       <body>
-        <h1>Salty Boats — Build Quote</h1>
-        <p class="subtitle">${brand.name} ${model.modelName} &bull; ${new Date().toLocaleDateString()}</p>
+        <div class="header">
+          <img src="${window.location.origin}/salty-boats-logo-color.svg" alt="Salty Boats" />
+          <div class="header-right">
+            <h1>Build Quote</h1>
+            <p class="subtitle">${brand.name} ${model.modelName} &bull; ${new Date().toLocaleDateString()}</p>
+          </div>
+        </div>
         <table>
           <thead><tr><th>Item</th><th style="text-align:right">Price</th></tr></thead>
           <tbody>
