@@ -49,8 +49,8 @@ export const boatModels: BoatModel[] = [
     slug: "144-skiff-tiller",
     imageUrl: "/images/boats/stumpnocker-144-skiff-tiller.jpg",
     galleryImages: [
-      "/resized-images/stumpnocker/144-skiff-tiller/Copy of STUMPNOCKER 144 001.webp",
-      "/resized-images/stumpnocker/144-skiff-tiller/Copy of STUMPNOCKER 144 002.webp",
+      "/resized-images/stumpnocker/144-skiff-tiller/stumpnocker-144-001.webp",
+      "/resized-images/stumpnocker/144-skiff-tiller/stumpnocker-144-002.webp",
       "/resized-images/stumpnocker/144-skiff-tiller/DSCN3216.webp",
       "/resized-images/stumpnocker/144-skiff-tiller/DSCN3218.webp",
       "/resized-images/stumpnocker/144-skiff-tiller/DSCN3221.webp",
