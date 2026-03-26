@@ -60,7 +60,8 @@ export default async function InventoryDetailPage({ params }: Props) {
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Image */}
+          {/* Left column — Image + Features */}
+          <div className="space-y-6">
           <div className="relative h-80 sm:h-[28rem] rounded-2xl overflow-hidden border border-slate-200">
             <Image
               src={item.imageUrl}
@@ -93,7 +94,50 @@ export default async function InventoryDetailPage({ params }: Props) {
             )}
           </div>
 
-          {/* Details */}
+          {/* Standard Features — under image */}
+          {item.standardFeatures && item.standardFeatures.length > 0 && (
+            <div className="bg-white rounded-xl border border-slate-200 p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <CheckCircle className="w-5 h-5 text-sea-green" />
+                <h3 className="font-bold text-navy text-lg">Standard Features</h3>
+              </div>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {item.standardFeatures.map((feature) => (
+                  <li
+                    key={feature}
+                    className="flex items-start gap-2 text-sm text-slate-600"
+                  >
+                    <CheckCircle className="w-4 h-4 text-sea-green flex-shrink-0 mt-0.5" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Dealer Options — under features */}
+          {item.dealerOptions && item.dealerOptions.length > 0 && (
+            <div className="bg-white rounded-xl border border-slate-200 p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <Wrench className="w-5 h-5 text-ocean" />
+                <h3 className="font-bold text-navy text-lg">Dealer Added Options</h3>
+              </div>
+              <ul className="space-y-2">
+                {item.dealerOptions.map((option) => (
+                  <li
+                    key={option}
+                    className="flex items-start gap-2 text-sm text-slate-600"
+                  >
+                    <CheckCircle className="w-4 h-4 text-ocean flex-shrink-0 mt-0.5" />
+                    {option}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          </div>
+
+          {/* Details — right column */}
           <div>
             <div className="flex items-center gap-3 mb-1">
               <span className="text-xs text-ocean font-semibold uppercase tracking-wider">
@@ -289,53 +333,6 @@ export default async function InventoryDetailPage({ params }: Props) {
             </div>
           </div>
         </div>
-
-        {/* Standard Features + Dealer Options */}
-        {(item.standardFeatures?.length || item.dealerOptions?.length) && (
-          <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Standard Features */}
-            {item.standardFeatures && item.standardFeatures.length > 0 && (
-              <div className="bg-white rounded-xl border border-slate-200 p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <CheckCircle className="w-5 h-5 text-sea-green" />
-                  <h3 className="font-bold text-navy text-lg">Standard Features</h3>
-                </div>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {item.standardFeatures.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-start gap-2 text-sm text-slate-600"
-                    >
-                      <CheckCircle className="w-4 h-4 text-sea-green flex-shrink-0 mt-0.5" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* Dealer Options */}
-            {item.dealerOptions && item.dealerOptions.length > 0 && (
-              <div className="bg-white rounded-xl border border-slate-200 p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Wrench className="w-5 h-5 text-ocean" />
-                  <h3 className="font-bold text-navy text-lg">Dealer Added Options</h3>
-                </div>
-                <ul className="space-y-2">
-                  {item.dealerOptions.map((option) => (
-                    <li
-                      key={option}
-                      className="flex items-start gap-2 text-sm text-slate-600"
-                    >
-                      <CheckCircle className="w-4 h-4 text-ocean flex-shrink-0 mt-0.5" />
-                      {option}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        )}
 
         {/* Disclaimer */}
         <div className="mt-8 text-xs text-slate-400 leading-relaxed max-w-3xl">
