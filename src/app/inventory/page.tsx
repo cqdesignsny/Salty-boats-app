@@ -1,9 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
-import { formatPrice } from "@/lib/utils";
 import { getAvailableInventory } from "@/lib/data";
 import { Button } from "@/components/ui/button";
-import { Anchor, Tag, Truck } from "lucide-react";
+import { InventoryCard } from "@/components/inventory/inventory-card";
+import { Anchor } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -49,86 +48,9 @@ export default function InventoryPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {inventory.map((item) => {
-              return (
-                <Link
-                  key={item.id}
-                  href={`/inventory/${item.id}`}
-                  className="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-ocean/30 transition-all duration-200"
-                >
-                  <div className="relative h-52 overflow-hidden">
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                    {item.originalPrice && item.originalPrice > item.price && (
-                      <div className="absolute top-3 left-3">
-                        <span className="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase">
-                          On Sale
-                        </span>
-                      </div>
-                    )}
-                    <div className="absolute top-3 right-3">
-                      <span className="bg-sea-green text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase">
-                        In Stock
-                      </span>
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent h-20" />
-                    <div className="absolute bottom-3 left-3">
-                      <span className="text-white text-xs bg-black/40 px-2 py-0.5 rounded">
-                        {item.year} · {item.condition === "new" ? "New" : "Used"}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="p-5">
-                    <h3 className="font-bold text-navy text-lg leading-tight mb-2 group-hover:text-ocean transition-colors">
-                      {item.title}
-                    </h3>
-
-                    <div className="space-y-1.5 text-xs text-slate-500 mb-4">
-                      {item.hullColor && (
-                        <div className="flex items-center gap-1.5">
-                          <Tag className="w-3.5 h-3.5" />
-                          <span>Hull: {item.hullColor}</span>
-                        </div>
-                      )}
-                      {item.motorIncluded !== "None" && (
-                        <div className="flex items-center gap-1.5">
-                          <Anchor className="w-3.5 h-3.5" />
-                          <span>{item.motorIncluded}</span>
-                        </div>
-                      )}
-                      {item.trailerIncluded !== "None" && (
-                        <div className="flex items-center gap-1.5">
-                          <Truck className="w-3.5 h-3.5" />
-                          <span>{item.trailerIncluded}</span>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="flex items-baseline justify-between border-t border-slate-100 pt-3">
-                      <div>
-                        {item.originalPrice && item.originalPrice > item.price && (
-                          <span className="text-xs text-slate-400 line-through block">
-                            {formatPrice(item.originalPrice)}
-                          </span>
-                        )}
-                        <span className="text-2xl font-bold text-navy">
-                          {formatPrice(item.price)}
-                        </span>
-                      </div>
-                      <span className="text-xs text-ocean font-semibold">
-                        $500 to reserve →
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
+            {inventory.map((item) => (
+              <InventoryCard key={item.id} item={item} />
+            ))}
           </div>
         )}
 
