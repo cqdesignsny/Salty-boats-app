@@ -415,7 +415,7 @@ export function ReviewSubmit({
           href="https://gateway.appone.net/onlineapp/Oldsaltmarine"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 mt-3 py-2.5 px-4 bg-sea-green/10 text-sea-green font-semibold rounded-lg hover:bg-sea-green/20 transition-colors text-sm"
+          className="flex items-center justify-center gap-2 mt-3 py-2.5 px-4 bg-navy text-white font-semibold rounded-full hover:bg-navy/90 transition-colors text-sm"
         >
           Need Financing? Apply Now →
         </a>

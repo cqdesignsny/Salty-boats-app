@@ -158,6 +158,69 @@ export default async function InventoryDetailPage({ params }: Props) {
               {item.description}
             </p>
 
+            {/* Price + Deposit */}
+            <div className="bg-white rounded-xl border-2 border-navy p-6 mb-6">
+              {isOnSale ? (
+                <div className="mb-4">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase">
+                      On Sale
+                    </span>
+                    <span className="text-sm text-slate-400 line-through">
+                      {formatPrice(item.originalPrice!)}
+                    </span>
+                  </div>
+                  <div className="flex items-baseline justify-between">
+                    <span className="text-4xl font-bold text-navy">
+                      {formatPrice(item.price)}
+                    </span>
+                  </div>
+                  <p className="text-sm text-sea-green font-semibold mt-1">
+                    Save {formatPrice(item.originalPrice! - item.price)}
+                    {item.saleEnds && ` — sale ends ${item.saleEnds}`}
+                  </p>
+                </div>
+              ) : (
+                <div className="flex items-baseline justify-between mb-4">
+                  <span className="text-slate-500 font-medium">Price</span>
+                  <span className="text-4xl font-bold text-navy">
+                    {formatPrice(item.price)}
+                  </span>
+                </div>
+              )}
+
+              {!item.isSold ? (
+                <>
+                  <DepositButton itemId={item.id} itemTitle={item.title} />
+                  <p className="text-xs text-slate-400 text-center mt-3">
+                    Reserve with a $500 refundable deposit. Our team will
+                    contact you to arrange payment and pickup/delivery.
+                  </p>
+                </>
+              ) : (
+                <div className="text-center py-2">
+                  <p className="text-red-600 font-semibold">
+                    This boat has been sold.
+                  </p>
+                  <Link href="/inventory" className="text-ocean text-sm">
+                    Browse other available boats
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Financing */}
+            <div className="mb-6 text-center">
+              <a
+                href="https://gateway.appone.net/onlineapp/Oldsaltmarine"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full px-6 py-3 bg-navy text-white font-semibold rounded-full hover:bg-navy/90 transition-colors text-sm"
+              >
+                Need financing? Apply now
+              </a>
+            </div>
+
             {/* Quick specs */}
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="bg-white rounded-lg border border-slate-200 p-4">
@@ -269,68 +332,6 @@ export default async function InventoryDetailPage({ params }: Props) {
               </div>
             )}
 
-            {/* Price + Deposit */}
-            <div className="bg-white rounded-xl border-2 border-navy p-6">
-              {isOnSale ? (
-                <div className="mb-4">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase">
-                      On Sale
-                    </span>
-                    <span className="text-sm text-slate-400 line-through">
-                      {formatPrice(item.originalPrice!)}
-                    </span>
-                  </div>
-                  <div className="flex items-baseline justify-between">
-                    <span className="text-4xl font-bold text-navy">
-                      {formatPrice(item.price)}
-                    </span>
-                  </div>
-                  <p className="text-sm text-sea-green font-semibold mt-1">
-                    Save {formatPrice(item.originalPrice! - item.price)}
-                    {item.saleEnds && ` — sale ends ${item.saleEnds}`}
-                  </p>
-                </div>
-              ) : (
-                <div className="flex items-baseline justify-between mb-4">
-                  <span className="text-slate-500 font-medium">Price</span>
-                  <span className="text-4xl font-bold text-navy">
-                    {formatPrice(item.price)}
-                  </span>
-                </div>
-              )}
-
-              {!item.isSold ? (
-                <>
-                  <DepositButton itemId={item.id} itemTitle={item.title} />
-                  <p className="text-xs text-slate-400 text-center mt-3">
-                    Reserve with a $500 refundable deposit. Our team will
-                    contact you to arrange payment and pickup/delivery.
-                  </p>
-                </>
-              ) : (
-                <div className="text-center py-2">
-                  <p className="text-red-600 font-semibold">
-                    This boat has been sold.
-                  </p>
-                  <Link href="/inventory" className="text-ocean text-sm">
-                    Browse other available boats
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            {/* Financing */}
-            <div className="mt-4 text-center">
-              <a
-                href="https://gateway.appone.net/onlineapp/Oldsaltmarine"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-ocean hover:underline"
-              >
-                Need financing? Apply now →
-              </a>
-            </div>
           </div>
         </div>
 

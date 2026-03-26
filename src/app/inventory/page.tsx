@@ -146,7 +146,7 @@ export default function InventoryPage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button variant="outline">Apply for Financing</Button>
+            <Button variant="secondary">Apply for Financing</Button>
           </a>
         </div>
       </section>

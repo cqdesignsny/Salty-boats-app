@@ -204,7 +204,7 @@ export default function HomePage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button variant="outline" size="lg">
+            <Button variant="secondary" size="lg">
               Apply for Financing
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>

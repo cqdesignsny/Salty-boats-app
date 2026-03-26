@@ -155,7 +155,7 @@ export default async function BoatDetailPage({ params }: Props) {
                 href="https://gateway.appone.net/onlineapp/Oldsaltmarine"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-sea-green/10 text-sea-green font-semibold rounded-lg hover:bg-sea-green/20 transition-colors text-sm"
+                className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-navy text-white font-semibold rounded-full hover:bg-navy/90 transition-colors text-sm"
               >
                 <DollarSign className="w-4 h-4" />
                 Need Financing? Apply Now
