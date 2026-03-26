@@ -6,6 +6,7 @@ const FROM_EMAIL = "Salty Boats <noreply@saltyboats.com>";
 const ADMIN_EMAILS = [
   "saltyboatsfl@gmail.com",
   "donald@oldsaltmarine.com",
+  "sales@saltyboats.com",
 ];
 
 // ─── New Build Quote Notification ───────────────────────────────────────────
