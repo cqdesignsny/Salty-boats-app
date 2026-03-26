@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { formatPrice } from "@/lib/utils";
 import { getInventoryItem, inventoryItems, boatModels } from "@/lib/data";
 import { Button } from "@/components/ui/button";
+import { ImageGallery } from "@/components/ui/image-gallery";
 import { DepositButton } from "@/components/inventory/deposit-button";
 import {
   Anchor,
@@ -62,37 +63,20 @@ export default async function InventoryDetailPage({ params }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left column — Image + Features */}
           <div className="space-y-6">
-          <div className="relative h-80 sm:h-[28rem] rounded-2xl overflow-hidden border border-slate-200">
-            <Image
-              src={item.imageUrl}
-              alt={item.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            {isOnSale && (
-              <div className="absolute top-4 left-4">
-                <span className="bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase shadow-lg">
-                  On Sale
-                </span>
-              </div>
-            )}
-            {!item.isSold && (
-              <div className="absolute top-4 right-4">
-                <span className="bg-sea-green text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase shadow-lg">
-                  In Stock
-                </span>
-              </div>
-            )}
-            {item.isSold && (
-              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                <span className="bg-red-600 text-white text-2xl font-bold px-6 py-3 rounded-xl -rotate-12">
-                  SOLD
-                </span>
-              </div>
-            )}
-          </div>
+          {item.galleryImages.length > 1 ? (
+            <ImageGallery images={item.galleryImages} alt={item.title} />
+          ) : (
+            <div className="relative h-80 sm:h-[28rem] rounded-2xl overflow-hidden border border-slate-200">
+              <Image
+                src={item.imageUrl}
+                alt={item.title}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+          )}
 
           {/* Standard Features — under image */}
           {item.standardFeatures && item.standardFeatures.length > 0 && (
