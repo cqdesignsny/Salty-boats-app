@@ -962,7 +962,7 @@ export const inventoryItems: InventoryItem[] = [
   {
     id: "inv-stump-174-sand-cl117",
     boatModelId: "stumpnocker-174-skiff-tiller",
-    title: "2025 Stumpnocker 174 Skiff Tiller — Sand",
+    title: "2025 Salty Boats Stumpnocker 174 Skiff Tiller",
     description:
       "2025 Stumpnocker 174 Tiller powered by a Suzuki DF30ATHLW5 paired with a Continental Trailer. Fully equipped with electrical switch panel, navigation lights, bilge pump, livewell pump, plumbed livewells, 12V trolling motor pre-wire, and more.",
     price: 18990,
