@@ -91,6 +91,8 @@ export interface InventoryItem {
   title: string;
   description: string;
   price: number;
+  originalPrice?: number;
+  saleEnds?: string;
   imageUrl: string;
   galleryImages: string[];
   year: number;
@@ -98,6 +100,12 @@ export interface InventoryItem {
   motorIncluded: string;
   trailerIncluded: string;
   hullColor: string;
+  trimColor?: string;
+  stockNumber?: string;
+  vin?: string;
+  location?: string;
+  standardFeatures?: string[];
+  dealerOptions?: string[];
   isSold: boolean;
 }
 

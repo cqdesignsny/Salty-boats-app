@@ -64,9 +64,16 @@ export default function InventoryPage() {
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
+                    {item.originalPrice && item.originalPrice > item.price && (
+                      <div className="absolute top-3 left-3">
+                        <span className="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase">
+                          On Sale
+                        </span>
+                      </div>
+                    )}
                     <div className="absolute top-3 right-3">
                       <span className="bg-sea-green text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase">
-                        Available
+                        In Stock
                       </span>
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent h-20" />
@@ -104,9 +111,16 @@ export default function InventoryPage() {
                     </div>
 
                     <div className="flex items-baseline justify-between border-t border-slate-100 pt-3">
-                      <span className="text-2xl font-bold text-navy">
-                        {formatPrice(item.price)}
-                      </span>
+                      <div>
+                        {item.originalPrice && item.originalPrice > item.price && (
+                          <span className="text-xs text-slate-400 line-through block">
+                            {formatPrice(item.originalPrice)}
+                          </span>
+                        )}
+                        <span className="text-2xl font-bold text-navy">
+                          {formatPrice(item.price)}
+                        </span>
+                      </div>
                       <span className="text-xs text-ocean font-semibold">
                         $500 to reserve →
                       </span>
