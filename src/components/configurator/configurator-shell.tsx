@@ -77,11 +77,13 @@ export function ConfiguratorShell() {
   function handleNext() {
     if (canGoNext()) {
       dispatch({ type: "NEXT_STEP" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
 
   function handleBack() {
     dispatch({ type: "PREV_STEP" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function renderStep() {
@@ -237,7 +239,10 @@ export function ConfiguratorShell() {
           <StepIndicator
             steps={steps}
             currentStep={state.step}
-            onGoToStep={(step) => dispatch({ type: "GO_TO_STEP", payload: step })}
+            onGoToStep={(step) => {
+              dispatch({ type: "GO_TO_STEP", payload: step });
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
           />
         </div>
       </div>
