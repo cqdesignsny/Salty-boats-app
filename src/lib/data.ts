@@ -1083,6 +1083,37 @@ export const inventoryItems: InventoryItem[] = [
     ],
     isSold: false,
   },
+  {
+    id: "inv-stump-174-gray-cl122",
+    boatModelId: "stumpnocker-174-skiff-tiller",
+    title: "2025 Salty Boats Stumpnocker 174 Skiff Tiller",
+    description:
+      "2025 Stumpnocker 174 Tiller Hull in Gray. Pick your power! Pricing includes hull, Continental trailer, freight, and prep. Ready for your motor of choice.",
+    price: 12990,
+    imageUrl: "/resized-images/stumpnocker/174-skiff-tiller/174-skiff-tiller-1.webp",
+    galleryImages: [
+      "/resized-images/stumpnocker/174-skiff-tiller/174-skiff-tiller-1.webp",
+      "/resized-images/stumpnocker/174-skiff-tiller/174-skiff-tiller-2.webp",
+      "/resized-images/stumpnocker/174-skiff-tiller/174-skiff-tiller-3.webp",
+      "/resized-images/stumpnocker/174-skiff-tiller/174-skiff-tiller-4.webp",
+      "/resized-images/stumpnocker/174-skiff-tiller/174-skiff-tiller-5.webp",
+    ],
+    year: 2025,
+    condition: "new",
+    motorIncluded: "None — Pick Your Power",
+    trailerIncluded: "Continental Trailer",
+    hullColor: "Gray",
+    stockNumber: "CL122",
+    vin: "OLECL122K425",
+    location: "Old Salt Marine - Wildwood",
+    standardFeatures: [
+      "Hull",
+      "Continental Trailer",
+      "Freight",
+      "Prep",
+    ],
+    isSold: false,
+  },
 ];
 
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
