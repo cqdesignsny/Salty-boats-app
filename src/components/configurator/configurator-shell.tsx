@@ -74,16 +74,23 @@ export function ConfiguratorShell() {
     }
   }, [searchParams, state.brandSlug, dispatch]);
 
+  // Scroll to top whenever the step changes
+  const prevStep = useRef(state.step);
+  useEffect(() => {
+    if (state.step !== prevStep.current) {
+      prevStep.current = state.step;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [state.step]);
+
   function handleNext() {
     if (canGoNext()) {
       dispatch({ type: "NEXT_STEP" });
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
 
   function handleBack() {
     dispatch({ type: "PREV_STEP" });
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function renderStep() {
@@ -239,10 +246,7 @@ export function ConfiguratorShell() {
           <StepIndicator
             steps={steps}
             currentStep={state.step}
-            onGoToStep={(step) => {
-              dispatch({ type: "GO_TO_STEP", payload: step });
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
+            onGoToStep={(step) => dispatch({ type: "GO_TO_STEP", payload: step })}
           />
         </div>
       </div>
