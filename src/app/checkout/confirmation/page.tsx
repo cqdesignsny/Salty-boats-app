@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CheckCircle, Home, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AutoRedirect } from "./auto-redirect";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 export default function ConfirmationPage() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-slate-50">
+      <AutoRedirect seconds={10} />
       <div className="text-center px-4 max-w-lg">
         <div className="w-20 h-20 bg-sea-green/20 rounded-full flex items-center justify-center mx-auto mb-6">
           <CheckCircle className="w-10 h-10 text-sea-green" />
@@ -63,6 +65,10 @@ export default function ConfirmationPage() {
             </li>
           </ol>
         </div>
+
+        <p className="text-slate-400 text-xs mb-4">
+          Redirecting to homepage automatically...
+        </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link href="/">
