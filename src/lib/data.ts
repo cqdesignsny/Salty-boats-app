@@ -1145,6 +1145,37 @@ export const inventoryItems: InventoryItem[] = [
     ],
     isSold: false,
   },
+  {
+    id: "inv-salty-14s-seacreature-js00a",
+    boatModelId: "salty-skiffs-14-s",
+    title: "2026 Salty Boats Salty Skiff 14S",
+    description:
+      "2026 Salty Skiff 14 S in Sea Creature. Features Sea Creature hull sides with bench seat or folding fishing seat. Trailer not included in sale price.",
+    price: 6000,
+    originalPrice: 7490,
+    saleEnds: "06/30/2026",
+    imageUrl: "/resized-images/salty-skiffs/14-s/14-s-1.webp",
+    galleryImages: [
+      "/resized-images/salty-skiffs/14-s/14-s-1.webp",
+      "/resized-images/salty-skiffs/14-s/14-s-2.webp",
+      "/resized-images/salty-skiffs/14-s/14-s-3.webp",
+      "/resized-images/salty-skiffs/14-s/14-s-4.webp",
+      "/resized-images/salty-skiffs/14-s/14-s-5.webp",
+    ],
+    year: 2026,
+    condition: "new",
+    motorIncluded: "None",
+    trailerIncluded: "Not included in sale price",
+    hullColor: "Sea Creature",
+    stockNumber: "JS00A",
+    vin: "OLEJS00AC526",
+    location: "Old Salt Marine - Lakeland",
+    standardFeatures: [
+      "Sea Creature Hull Sides",
+      "Bench Seat or Folding Fishing Seat",
+    ],
+    isSold: false,
+  },
 ];
 
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
