@@ -79,7 +79,10 @@ export function ConfiguratorShell() {
   useEffect(() => {
     if (state.step !== prevStep.current) {
       prevStep.current = state.step;
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // Force scroll to absolute top — instant, no smooth
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
     }
   }, [state.step]);
 
