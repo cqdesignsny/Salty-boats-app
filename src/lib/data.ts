@@ -327,7 +327,7 @@ export const boatModels: BoatModel[] = [
   {
     id: "salty-skiffs-14-s",
     brandSlug: "salty-skiffs",
-    modelName: "14 S",
+    modelName: "14 Standard",
     slug: "14-s",
     imageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84ce5c1e21665aa3b73_relume-571026.jpeg",
@@ -364,7 +364,7 @@ export const boatModels: BoatModel[] = [
   {
     id: "salty-skiffs-14-f",
     brandSlug: "salty-skiffs",
-    modelName: "14 F",
+    modelName: "14 Fish",
     slug: "14-f",
     imageUrl:
       "https://cdn.prod.website-files.com/6920ad7dcb93ec99176de89c/6920b84d44168c818a89331d_relume-571027.jpeg",
